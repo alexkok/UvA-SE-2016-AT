@@ -9,10 +9,18 @@ module Main
  */
 
 import IO;
+import lang::java::m3::Core;
+import lang::java::jdt::m3::Core;
+import lang::java::jdt::m3::AST;
+
+
 
 public void main() {
 	println("Starting metrics analysis");
 	
+	m = createM3FromEclipseProject(|project://MetricsTests2|);
+	//methods = m@annotations;
+	iprint(methods);
 }
 
 /**
