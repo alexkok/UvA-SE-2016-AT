@@ -58,9 +58,14 @@ public void main() {
 }
 
 public int calculateLOC(loc location) {
-	t = parse(#CompilationUnit, location);
-	countSLOC(t);
-	return countSLOC(t);
+	try {
+		t = parse(#start[CompilationUnit], location);
+		countSLOC(t);
+		return countSLOC(t);
+	} catch ParseError(loc l): {
+		println("Found a parse error at line <l.begin.line>, column <l.begin.column>");
+		return 0;
+	}
 }
 
 /**
@@ -80,16 +85,15 @@ public int calculateLOC(loc location) {
  * > /* ^/ + // aaa - Will be considered as a LOC >> (where ^ will be a *)
  * > When a { or } is found as their own on a line, it will still be considered as a LOC. 
  */
-public list[loc] fileLocations(loc root) {
-	list[loc] result = [ls | ls <- root.ls, !isDirectory(ls)];
+public list[tuple[loc, int]] filesLOC(loc root) {
+	list[tuple[loc fst, int snd]] result = [<ls, calculateLOC(ls)> | ls <- root.ls, !isDirectory(ls)];
 	for (nl <- [rst | rst <- root.ls, isDirectory(rst)]) { // The dirs
-		result += fileLocations(nl);
+		result += filesLOC(nl);
 	}
 	return result;
 }
 
-public void calculateVolume() {
-	// iterate through each file
-	// sum LOC
-	// return that amount
+public int calculateVolume(loc project) {
+	iprintln(filesLOC(project));
+	return (0 | it + e | <_, e> <- filesLOC(project));
 }
