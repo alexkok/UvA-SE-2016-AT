@@ -25,10 +25,10 @@ public void calculateUnitComplexity(loc project) {
 	myModel = createM3FromEclipseProject(project);
 	myMethods = methods(myModel);
 	
-	int sumIf = 0, sumWhile = 0, sumFor = 0, sumCase = 0, sumCatch = 0;
-	
 	for(method <- myMethods) {
 		methodAST = getMethodASTEclipse(method, model=myModel);
+		int sumIf = 0, sumWhile = 0, sumFor = 0, sumCase = 0, sumCatch = 0, sumAnd = 0, sumOr = 0, sumConditional = 0;
+		int complexity = 1;
 		
 		visit(methodAST) {
 			// count if / if else
@@ -48,12 +48,25 @@ public void calculateUnitComplexity(loc project) {
 			
 			// catch
 			case \catch(_, _) : sumCatch += 1;
+			
+			// conditions
+			case \infix(_,"&&",_) : sumAnd += 1;
+			case \infix(_,"||",_) : sumOr += 1;
+			
+			// ternary
+			case \conditional(_,_,_) : sumConditional += 1;
 		};
+		
+		complexity += sumIf + sumWhile + sumFor + sumCase + sumCatch + sumAnd + sumOr + sumConditional;
+		
+		println("if: <sumIf>");
+		println("while: <sumWhile>");
+		println("for: <sumFor>");
+		println("case: <sumCase>");
+		println("catch: <sumCatch>");
+		println("and: <sumAnd>");
+		println("or: <sumOr>");
+		println("conditional: <sumConditional>");
+		println(<method, complexity>);
 	}
-	
-	println("if: <sumIf>");
-	println("while: <sumWhile>");
-	println("for: <sumFor>");
-	println("case: <sumCase>");
-	println("catch: <sumCatch>");
 }
