@@ -56,10 +56,11 @@ public void main2() {
 	}
 }
 
-public int calculateLOC(loc location) {
+public int calculateLOC(theType, loc location) { // Not sure what the type is of the first argument
 	try {
 		//t = parse(#start[CompilationUnit], location);
-		t = parse(#MethodDec, location);
+		//t = parse(#MethodDec, location);
+		t = parse(theType, location);
 		countSLOC(t);
 		return countSLOC(t);
 	} catch ParseError(loc l): {
@@ -87,7 +88,7 @@ public int calculateLOC(loc location) {
  * > When a { or } is found as their own on a line, it will still be considered as a LOC. 
  */
 public list[tuple[loc, int]] filesLOC(loc root) {
-	list[tuple[loc, int]] result = [<ls, calculateLOC(ls)> | ls <- root.ls, !isDirectory(ls)];
+	list[tuple[loc, int]] result = [<ls, calculateLOC(#start[CompilationUnit], ls)> | ls <- root.ls, !isDirectory(ls)];
 	for (nl <- [rst | rst <- root.ls, isDirectory(rst)]) { // The dirs
 		result += filesLOC(nl);
 	}
@@ -104,7 +105,7 @@ public void calculateUnitSize(loc project) {
 	M3 m = createM3FromEclipseProject(project);
 	
 	println("Calculating LOC per method");
-	list[tuple[loc, int]] methodsLOC = [<l,calculateLOC(l)> | l <- methods(m)];
+	list[tuple[loc, int]] methodsLOC = [<l,calculateLOC(#MethodDec, l)> | l <- methods(m)];
 	iprintln(methodsLOC);
 	
 	map[int, int] amountPerCategory = (1: 0, 2: 0, 3: 0, 4: 0);
@@ -126,9 +127,28 @@ public void calculateUnitSize(loc project) {
 		}
 	}
 	iprintln(amountPerCategory);
+	int volume = calculateVolume(project);
+	map[int, int] percentsPerCategory = (
+		1: amountPerCategory[1] * 100 / volume, 
+		2: amountPerCategory[2] * 100 / volume, 
+		3: amountPerCategory[3] * 100 / volume, 
+		4: amountPerCategory[4] * 100 / volume 
+		);
 	
 	// Now we know the LOC per category, we can define the percentages.
-	
+	iprintln(percentsPerCategory);
+	print("Result: ");
+	if (percentsPerCategory[2] <= 25 && percentsPerCategory[3] == 0 && percentsPerCategory[4] == 0) {
+	 	println("++");
+	} else if (percentsPerCategory[2] <= 30 && percentsPerCategory[3] <= 5 && percentsPerCategory[4] == 0) {
+	 	println("+");
+	} else if (percentsPerCategory[2] <= 40 && percentsPerCategory[3] <= 10 && percentsPerCategory[4] == 0) {
+	 	println("0");
+	} else if (percentsPerCategory[2] <= 50 && percentsPerCategory[3] <= 15 && percentsPerCategory[4] <= 5) {
+	 	println("-");
+	} else {
+	 	println("--");
+	}
 	
 	
 	
