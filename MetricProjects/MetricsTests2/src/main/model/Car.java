@@ -4,7 +4,7 @@ public class Car {
 	
 	private String name;
 	private int wheels;
-	private Boolean airbag = false;
+	private boolean airbag = false;
 	
 	public String getName() {
 		return name;
@@ -18,7 +18,7 @@ public class Car {
 	public void setWheels(int wheels) {
 		this.wheels = wheels;
 	}
-	public int getAirbag() {
+	public boolean getAirbag() {
 		return airbag;
 	}
 	
