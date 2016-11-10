@@ -11,7 +11,8 @@ public class MainA {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getEmail() {
+	public String getEmail(String a) {
+		a = email;
 		return email;
 	}
 	public void setEmail(String email) {

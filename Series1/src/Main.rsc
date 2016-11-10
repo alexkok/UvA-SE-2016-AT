@@ -1,14 +1,15 @@
 module Main
 
 /**
- * Alex Kok (11353155)
+ * Alex Kok
  * alex.kok@student.uva.nl
  * 
- * Thanusijan Tharumarajah (_STNUMMER_)
+ * Thanusijan Tharumarajah
  * thanus.tharumarajah@student.uva.nl
  */
 
 import IO;
+import DateTime;
 import lang::java::m3::Core;
 import lang::java::jdt::m3::Core;
 import lang::java::jdt::m3::AST;
@@ -21,9 +22,15 @@ import lang::java::m3::AST;
 import lang::java::\syntax::Java15;
 
 public void main() {
-	loc projectLoc = |project://MetricsTests2/src/main/|;
-	println("Starting metrics analysis");
+	loc projectLoc = |project://hsqldb-2.3.1/hsqldb/src/|;
+	
+	startTime = now();
+	println("Starting metrics analysis \n<printDateTime(startTime)>");
+	
 	println("loc = <calculateVolume(projectLoc)>");
+	
+	endTime = now();
+	println("<printDateTime(endTime)> \n<createDuration(startTime, endTime)>");
 }
 
 /**
@@ -46,7 +53,7 @@ public void main() {
 public int calculateVolume(loc project) {
 	int sloc = 0;
 
-	for(loc TS <- project.ls) {
+	for(loc TS <- project) {
 		try {
 			if(isDirectory(TS)) {
 				sloc += calculateVolume(TS);
