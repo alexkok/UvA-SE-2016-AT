@@ -8,16 +8,13 @@ module metrics::UnitSize
  * thanus.tharumarajah@student.uva.nl
  */
 
-import IO;
-import lang::java::m3::Core;
-import lang::java::jdt::m3::Core;
-import lang::java::jdt::m3::AST;
 import Prelude;
 import ParseTree;
-import vis::ParseTree;
-import String;
 import util::LOC;
+import lang::java::m3::Core;
 import lang::java::m3::AST;
+import lang::java::jdt::m3::AST;
+import lang::java::jdt::m3::Core;
 import lang::java::\syntax::Java15;
 
 public void main() {
