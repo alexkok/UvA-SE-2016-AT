@@ -1,5 +1,5 @@
 
-# Created by https://www.gitignore.io/api/exl,eclipse
+# Created by https://www.gitignore.io/api/exl,eclipse,osx
 
 ### Eclipse ###
 
@@ -53,3 +53,7 @@ local.properties
 
 # Code Recommenders
 .recommenders/
+
+
+### OSX ###
+*.DS_Store
