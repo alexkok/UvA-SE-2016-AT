@@ -25,6 +25,14 @@ public class Main {
 		System.out.println("SOMETEST");
 		System.out.println("SOMETEST");
 		System.out.println("SOMETEST");
+		int i = 1 
+		/*
+		 * *
+		 /// asdasd
+		 */ 
+				+
+				/////
+				1;
 		System.out.println("SOMETEST");
 		System.out.println("SOMETEST");
 		System.out.println("SOMETEST");

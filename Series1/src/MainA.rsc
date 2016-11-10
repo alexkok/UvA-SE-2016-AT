@@ -149,7 +149,51 @@ public void calculateUnitSize(loc project) {
 	} else {
 	 	println("--");
 	}
+}
+
+public void calculateUnitComplexity(loc project) {
+	// Duplicate!
+	println("Creating M3 model from project");
+	M3 m = createM3FromEclipseProject(project);
 	
+	println("Calculating LOC per method");
+	list[tuple[loc, int, int]] methodsLOC = [<l,calculateLOC(#MethodDec, l), 0> | l <- methods(m)];
+	iprintln(methodsLOC);
+	// EndDuplicate!
 	
+	for (<ml,n,d> <- methodsLOC) { // ml unused atm
+		// calcluate complexity for this method
+		int complexity = 0;
+		Declaration d = getMethodASTEclipse(ml, model=m);
+		
+		int ifStatements = 0, 
+			forStatements = 0, 
+			whileStatements = 0, 
+			caseStatements = 0, 
+			catchStatements = 0
+			;
+		
+		visit (d) {
+			case \if(_,_) : 		ifStatements    += 1; // if-then 
+			case \if(_,_,_) : 		ifStatements    += 1; // if-then-else
+			case \foreach(_,_,_) : 	forStatements   += 1; // foreach
+			case \for(_,_,_,_): 	forStatements   += 1; // for | with 4 params
+			case \for(_,_): 		forStatements   += 1; // for | with 2 params
+			case \while(_,_): 		whileStatements += 1; // while
+			case \case(_): 			caseStatements  += 1; // case
+			case \catch(_): 		catchStatments  += 1; // catch
+		}
+		
+		complexity += ifStatements 
+				   += forStatements
+				   += whileStatements
+				   += caseStatements
+				   += catchStatements
+				   ;
+		
+		
+		println("Method complexity: <complexity>");
+		;
+	}
 	
 }
