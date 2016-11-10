@@ -18,4 +18,13 @@ public class Car {
 		this.wheels = wheels;
 	}
 	
+	public boolean isDriving(boolean driving) {
+		boolean carIsDriving = false;
+		if (driving) {
+			carIsDriving = true;
+		}
+		
+		return carIsDriving;
+	}
+	
 }
