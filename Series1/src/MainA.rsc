@@ -64,7 +64,7 @@ public int calculateLOC(loc location) {
 		return countSLOC(t);
 	} catch ParseError(loc l): {
 		println("Found a parse error at line <l.begin.line>, column <l.begin.column>");
-		return 0;
+		return -1;
 	}
 }
 
@@ -95,5 +95,5 @@ public list[tuple[loc, int]] filesLOC(loc root) {
 
 public int calculateVolume(loc project) {
 	iprintln(filesLOC(project));
-	return (0 | it + e | <_, e> <- filesLOC(project));
+	return (0 | it + e | <_, e> <- filesLOC(project), e != -1); // -1 means it was an error.
 }
