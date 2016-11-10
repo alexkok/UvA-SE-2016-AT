@@ -27,4 +27,13 @@ public class Car {
 		return carIsDriving;
 	}
 	
+	public void speed() {
+		int count = 1;
+		
+        while (count < 130) {
+            System.out.println("speed is: " + count);
+            count++;
+        }
+	}
+	
 }
