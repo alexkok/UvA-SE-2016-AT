@@ -15,6 +15,24 @@ public class Main {
 	
 	public void anotherTest() {
 		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
 	}
 	
 	private class innerClass {

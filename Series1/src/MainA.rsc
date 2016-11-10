@@ -10,7 +10,6 @@ module MainA
 
 import IO;
 //import List;
-import Set;
 import lang::java::m3::Core;
 import lang::java::jdt::m3::Core;
 import lang::java::jdt::m3::AST;
@@ -20,11 +19,11 @@ import util::LOC;
 import lang::java::\syntax::Java15;
 
 public loc prLoc = |project://MetricsTests2/src|;
-public M3 m = createM3FromEclipseProject(prLoc);
+//public M3 m = createM3FromEclipseProject(prLoc);
 //public M3 m = createM3FromEclipseProject(|project://MetricsTests2|);
-public Declaration d = getMethodASTEclipse(|java+method:///main/Main/main(java.lang.String%5B%5D)|, model=m);
+//public Declaration d = getMethodASTEclipse(|java+method:///main/Main/main(java.lang.String%5B%5D)|, model=m);
 
-public void main() {
+public void main2() {
 	println("Starting metrics analysis");
 	
 	//m = createM3FromEclipseProject(|project://MetricsTests2|);
@@ -59,10 +58,12 @@ public void main() {
 
 public int calculateLOC(loc location) {
 	try {
-		t = parse(#start[CompilationUnit], location);
+		//t = parse(#start[CompilationUnit], location);
+		t = parse(#MethodDec, location);
 		countSLOC(t);
 		return countSLOC(t);
 	} catch ParseError(loc l): {
+		println("<readFile(l)>");
 		println("Found a parse error at line <l.begin.line>, column <l.begin.column>");
 		return -1;
 	}
@@ -86,7 +87,7 @@ public int calculateLOC(loc location) {
  * > When a { or } is found as their own on a line, it will still be considered as a LOC. 
  */
 public list[tuple[loc, int]] filesLOC(loc root) {
-	list[tuple[loc fst, int snd]] result = [<ls, calculateLOC(ls)> | ls <- root.ls, !isDirectory(ls)];
+	list[tuple[loc, int]] result = [<ls, calculateLOC(ls)> | ls <- root.ls, !isDirectory(ls)];
 	for (nl <- [rst | rst <- root.ls, isDirectory(rst)]) { // The dirs
 		result += filesLOC(nl);
 	}
@@ -96,4 +97,39 @@ public list[tuple[loc, int]] filesLOC(loc root) {
 public int calculateVolume(loc project) {
 	iprintln(filesLOC(project));
 	return (0 | it + e | <_, e> <- filesLOC(project), e != -1); // -1 means it was an error.
+}
+
+public void calculateUnitSize(loc project) {
+	println("Creating M3 model from project");
+	M3 m = createM3FromEclipseProject(project);
+	
+	println("Calculating LOC per method");
+	list[tuple[loc, int]] methodsLOC = [<l,calculateLOC(l)> | l <- methods(m)];
+	iprintln(methodsLOC);
+	
+	map[int, int] amountPerCategory = (1: 0, 2: 0, 3: 0, 4: 0);
+	for (<ml,n> <- methodsLOC) { // ml unused atm
+		if (n > 0) {
+			if (n <= 10) {
+				amountPerCategory[1] += n;
+			} else if (n <= 50) {
+				amountPerCategory[2] += n;
+			} else if (n <= 100) {
+				amountPerCategory[3] += n;
+			} else {
+				// It's above 100!
+				amountPerCategory[4] += n;
+			}
+		} else {
+			// We had a parse error here
+			;
+		}
+	}
+	iprintln(amountPerCategory);
+	
+	// Now we know the LOC per category, we can define the percentages.
+	
+	
+	
+	
 }
