@@ -4,6 +4,7 @@ public class Car {
 	
 	private String name;
 	private int wheels;
+	private Boolean airbag = false;
 	
 	public String getName() {
 		return name;
@@ -16,6 +17,9 @@ public class Car {
 	}
 	public void setWheels(int wheels) {
 		this.wheels = wheels;
+	}
+	public int getAirbag() {
+		return airbag;
 	}
 	
 	public boolean isDriving(boolean driving) {
@@ -34,6 +38,10 @@ public class Car {
             System.out.println("speed is: " + count);
             count++;
         }
+	}
+	
+	public boolean hasAirbag() {
+		return (isDriving(true)) ? true : false;
 	}
 	
 }

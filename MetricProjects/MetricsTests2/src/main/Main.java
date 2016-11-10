@@ -25,7 +25,7 @@ public class Main {
 		System.out.println("SOMETEST");
 		System.out.println("SOMETEST");
 		System.out.println("SOMETEST");
-		int i = 1 
+		int a = 1
 		/*
 		 * *
 		 /// asdasd
