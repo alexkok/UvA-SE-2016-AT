@@ -1,10 +1,10 @@
 module MainA
 
 /**
- * Alex Kok (11353155)
+ * Alex Kok
  * alex.kok@student.uva.nl
  * 
- * Thanusijan Tharumarajah (_STNUMMER_)
+ * Thanusijan Tharumarajah
  * thanus.tharumarajah@student.uva.nl
  */
 
@@ -49,14 +49,23 @@ public void main() {
 	theLocation = prLoc + "main/Main.java";
 	//theLocation = |project://MetricsTests2/src/main/Main.java|;
 	println("The location: <theLocation>");
-	t = parse(#CompilationUnit, theLocation);
-	countSLOC(t);
+	try {
+		t = parse(#CompilationUnit, theLocation);
+		println(countSLOC(t));
+	} catch ParseError(loc l): {
+		println("I found a parse error at line <l.begin.line>, column <l.begin.column>");
+	}
 }
 
-public int calculateSomeLOC(loc location) {
-	t = parse(#CompilationUnit, location);
-	countSLOC(t);
-	return countSLOC(t);
+public int calculateLOC(loc location) {
+	try {
+		t = parse(#start[CompilationUnit], location);
+		countSLOC(t);
+		return countSLOC(t);
+	} catch ParseError(loc l): {
+		println("Found a parse error at line <l.begin.line>, column <l.begin.column>");
+		return -1;
+	}
 }
 
 /**
@@ -76,6 +85,15 @@ public int calculateSomeLOC(loc location) {
  * > /* ^/ + // aaa - Will be considered as a LOC >> (where ^ will be a *)
  * > When a { or } is found as their own on a line, it will still be considered as a LOC. 
  */
-public void calculateVolume() {
+public list[tuple[loc, int]] filesLOC(loc root) {
+	list[tuple[loc fst, int snd]] result = [<ls, calculateLOC(ls)> | ls <- root.ls, !isDirectory(ls)];
+	for (nl <- [rst | rst <- root.ls, isDirectory(rst)]) { // The dirs
+		result += filesLOC(nl);
+	}
+	return result;
+}
 
+public int calculateVolume(loc project) {
+	iprintln(filesLOC(project));
+	return (0 | it + e | <_, e> <- filesLOC(project), e != -1); // -1 means it was an error.
 }
