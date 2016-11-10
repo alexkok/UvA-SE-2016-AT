@@ -22,7 +22,7 @@ import lang::java::m3::AST;
 import lang::java::\syntax::Java15;
 
 public void main() {
-	loc projectLoc = |project://hsqldb-2.3.1/hsqldb/src/|;
+	loc projectLoc = |project://MetricsTests2/src/|;
 	
 	startTime = now();
 	println("Starting metrics analysis \n<printDateTime(startTime)>");
@@ -53,7 +53,7 @@ public void main() {
 public int calculateVolume(loc project) {
 	int sloc = 0;
 
-	for(loc TS <- project) {
+	for(loc TS <- project.ls) {
 		try {
 			if(isDirectory(TS)) {
 				sloc += calculateVolume(TS);
