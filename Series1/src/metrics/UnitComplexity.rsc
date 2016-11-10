@@ -25,7 +25,7 @@ public void calculateUnitComplexity(loc project) {
 	myModel = createM3FromEclipseProject(project);
 	myMethods = methods(myModel);
 	
-	int sumIf = 0, sumWhile = 0, sumFor = 0;
+	int sumIf = 0, sumWhile = 0, sumFor = 0, sumCase = 0, sumCatch = 0;
 	
 	for(method <- myMethods) {
 		methodAST = getMethodASTEclipse(method, model=myModel);
@@ -42,9 +42,18 @@ public void calculateUnitComplexity(loc project) {
 			case \foreach(_,_,_) : sumFor += 1;
 			case \for(_,_,_) : sumFor += 1;
 			case \for(_,_,_,_) : sumFor += 1;
+			
+			// switch cases
+			case \case(_) : sumCase += 1;
+			
+			// catch
+			case \catch(_, _) : sumCatch += 1;
 		};
 	}
 	
 	println("if: <sumIf>");
 	println("while: <sumWhile>");
+	println("for: <sumFor>");
+	println("case: <sumCase>");
+	println("catch: <sumCatch>");
 }

@@ -44,4 +44,14 @@ public class Car {
 		return (isDriving(true)) ? true : false;
 	}
 	
+	public void driving500KM() {
+		int km = 500;
+		Double fuel = 70D; 
+		
+		for(int i = 0; i < km; i++) {
+			fuel -= 0.14;
+			System.out.println("Driving " + i + " km, fuel: " + fuel);
+		}
+	}
+	
 }
