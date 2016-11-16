@@ -237,11 +237,18 @@ public void calculateDuplication(loc project) {
 	// 			> False? Add as duplicate if count > 6
 	//		> Go on with next row (if it is not in the duplicates?)
 	
+	println("Finding duplicates");
+	afi = |java+class:///main/Main|;
 	theSrc = readFile(|java+class:///main/Main|);
-	println("<theSrc>");
+	//println("<theSrc>");
 	
-	duplications = findDuplications(theSrc, theSrc);
-	println("<duplications>");
+	//duplications = findDuplications(theSrc, theSrc);
+	duplications = findDuplications(afi, afi);
+	//for (dup <- size(duplications)) {
+	//	println("Dup <dup> | <duplications[dup]>");
+	//	;
+	//}
+	println(size(duplications));
 	
 	//for (cl <- classesToCheck) {
 	//	tmpSrcLines = readFile(cl);
@@ -262,10 +269,10 @@ public void calculateDuplication(loc project) {
 	//}
 }
 
-public list[str] findDuplications(str src1, str src2) {
+public list[str] findDuplications(loc src1, loc src2) {
 	list[str] dups = [];
-	src1lines = split("\r\n", src1);
-	src2lines = split("\r\n", src2);
+	src1lines = split("\r\n", readFile(src1));
+	src2lines = split("\r\n", readFile(src2));
 	
 	str chStLine; // Checking start line
 	int lStart, lEnd;
@@ -280,10 +287,11 @@ public list[str] findDuplications(str src1, str src2) {
 		while (j < size(src2lines)) {
 			int i2 = 0;
 			int j2 = 0;
-			if (chStLine == src2lines[j]) {
+			if (chStLine == src2lines[j], isValidDupLine(chStLine), containsWords(chStLine), 
+				(src1 != src2 || (src1 == src2 && i != j))) { // If locations are the same, the starting line of the duplicate may not be equal (becuase that's probably what's being measured now.) 
 				lStart1 = i;
 				lStart2 = j;
-				println("Found dup. st. w. | F1 L<lStart1> : F2 L<lStart2> - <chStLine> : <src2lines[j]>");
+				//println("Found dup. st. w. | F1 L<lStart1> : F2 L<lStart2> - <chStLine> : <src2lines[j]>");
 				// Now we should check if 2 lines are equal!
 				//i+=1;
 				theDuplicate = chStLine;
@@ -303,9 +311,12 @@ public list[str] findDuplications(str src1, str src2) {
 				}
 				int totalLines = i2 - i;
 				if (maxI2 < totalLines) { maxI2 = totalLines; }
-				println("Full duplicate: <theDuplicate>");
+				//println("Full duplicate:\n <theDuplicate>");
+				println("Duplicate | <i> <i2> <lStart1> <j> <j2> <lStart2> | F1_L<lStart1> : F2_L<lStart2> : \n <theDuplicate>");
 				if (theDuplicate notin dups) {
-					dups += theDuplicate;
+					//if () {
+						dups += theDuplicate;
+					//}
 				}
 			}
 			j+=1;
