@@ -27,7 +27,7 @@ public void calculateUnitComplexity(loc project) {
 	
 	for(method <- myMethods) {
 		methodAST = getMethodASTEclipse(method, model=myModel);
-		int sumIf = 0, sumWhile = 0, sumFor = 0, sumCase = 0, sumCatch = 0, sumAnd = 0, sumOr = 0, sumConditional = 0;
+		int sumIf = 0, sumWhile = 0, sumFor = 0, sumCase = 0, sumCatch = 0, sumAnd = 0, sumOr = 0, sumConditional = 0, sumAssert = 0;
 		int complexity = 1;
 		
 		visit(methodAST) {
@@ -55,9 +55,13 @@ public void calculateUnitComplexity(loc project) {
 			
 			// ternary
 			case \conditional(_,_,_) : sumConditional += 1;
+			
+			// assert
+			case \assert(_) : sumAssert += 1;
+			case \assert(_, _) : sumAssert += 1;
 		};
 		
-		complexity += sumIf + sumWhile + sumFor + sumCase + sumCatch + sumAnd + sumOr + sumConditional;
+		complexity += sumIf + sumWhile + sumFor + sumCase + sumCatch + sumAnd + sumOr + sumConditional + sumAssert;
 		
 		println("if: <sumIf>");
 		println("while: <sumWhile>");
@@ -67,6 +71,7 @@ public void calculateUnitComplexity(loc project) {
 		println("and: <sumAnd>");
 		println("or: <sumOr>");
 		println("conditional: <sumConditional>");
+		println("sumAssert: <sumAssert>");
 		println(<method, complexity>);
 	}
 }
