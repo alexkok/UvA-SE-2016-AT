@@ -284,11 +284,12 @@ public list[str] findDuplications(loc src1, loc src2) {
 		//for (j <- [0..size(src2lines)], src2lines[j] == chStLine) { //dupL <- src2lines, chStLine == dupL) {
 		int j = 0;
 		int maxI2 = 0;
+		int totalLines = 1;
 		while (j < size(src2lines)) {
 			int i2 = 0;
 			int j2 = 0;
-			if (chStLine == src2lines[j], isValidDupLine(chStLine), containsWords(chStLine), 
-				(src1 != src2 || (src1 == src2 && i != j))) { // If locations are the same, the starting line of the duplicate may not be equal (becuase that's probably what's being measured now.) 
+			if (chStLine == src2lines[j], isValidDupLine(chStLine), containsWords(chStLine)  ) {
+				//, (src1 != src2 || (src1 == src2 && i != j))) { // If locations are the same, the starting line of the duplicate may not be equal (becuase that's probably what's being measured now.) 
 				lStart1 = i;
 				lStart2 = j;
 				//println("Found dup. st. w. | F1 L<lStart1> : F2 L<lStart2> - <chStLine> : <src2lines[j]>");
@@ -309,14 +310,20 @@ public list[str] findDuplications(loc src1, loc src2) {
 					i2 += 1;
 					j2 += 1;
 				}
-				int totalLines = i2 - i;
-				if (maxI2 < totalLines) { maxI2 = totalLines; }
-				//println("Full duplicate:\n <theDuplicate>");
-				println("Duplicate | <i> <i2> <lStart1> <j> <j2> <lStart2> | F1_L<lStart1> : F2_L<lStart2> : \n <theDuplicate>");
-				if (theDuplicate notin dups) {
-					//if () {
+				if (src1 == src2 && (lStart1 == lStart2 || lStart2 in [lStart1..i2+1])) { //lStart1 == lStart2) {
+					// TODO: Find some smart method to remove or skip current checking block
+					// Check if lstart2-i2 does not consist in lstart1-i2
+					// 16 - 25  |  17 - 26
+					;
+				} else { 
+					totalLines = i2 - i;
+					if (maxI2 < totalLines) { maxI2 = totalLines; }
+					//println("Full duplicate:\n <theDuplicate>");
+					if (theDuplicate notin dups && totalLines != 1) { // Ignore one line duplicates... (Don't need those anyway)
+						println("Duplicate | <i> <i2> <lStart1> <j> <j2> <lStart2>  <totalLines> | F1_L<lStart1> : F2_L<lStart2> : \n <theDuplicate>");
 						dups += theDuplicate;
-					//}
+					}
+					j+=totalLines;
 				}
 			}
 			j+=1;
