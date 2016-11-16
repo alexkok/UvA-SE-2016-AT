@@ -10,13 +10,16 @@ module MainA
 
 import IO;
 //import List;
+import String;
 import lang::java::m3::Core;
 import lang::java::jdt::m3::Core;
 import lang::java::jdt::m3::AST;
 import lang::java::m3::AST;
 import ParseTree;
+import vis::ParseTree;
 import util::LOC;
 import lang::java::\syntax::Java15;
+import Set;
 
 public loc prLoc = |project://MetricsTests2/src|;
 //public M3 m = createM3FromEclipseProject(prLoc);
@@ -173,7 +176,8 @@ public void calculateUnitComplexity(loc project) {
 			catchStatements = 0,
 			andStatements = 0,
 			orStatements = 0,
-			ternaryStatements = 0
+			ternaryStatements = 0,
+			assertStatements = 0
 			;
 		
 		visit (d) {
@@ -188,6 +192,8 @@ public void calculateUnitComplexity(loc project) {
 			case infix(_,"&&",_): 	andStatements  	+= 1; // &&
 			case infix(_,"||",_): 	orStatements  	+= 1; // &&
 			case conditional(_,_,_): ternaryStatements  	+= 1; // ? | ternary operator
+			case \assert(_): 		assertStatements +=1; // Assert
+			case \assert(_,_): 		assertStatements +=1; // Assert
 		}
 		
 		complexity += ifStatements 
@@ -198,9 +204,124 @@ public void calculateUnitComplexity(loc project) {
 				   += andStatements
 				   += orStatements
 				   += ternaryStatements
+				   += assertStatements
 				   ;
 		println("Complexity is <complexity>\tfor method: <ml.path>");
 		;
 	}
 	
+}
+
+public void calculateDuplication(loc project) {
+	println("Creating ASTs model from project");
+	M3 m = createM3FromEclipseProject(project);
+	//println("Rendering parse tree");
+	//iprintln(m);
+	//renderParsetree(parse(#CompilationUnit, m));
+	classesToCheck = classes(m);
+	allClasses = classes(m);
+	
+	// Remove \t's!
+	//
+	// For each class
+	// Compare with all classes
+	// 
+	// *Note: If we check for A->B we also need to check for B->A
+	// > For each class
+	// 		> Take row1
+	// 		> Check if duplicate is found in the other classes (including A)
+	// 			> if class == A then 2 occurences must be found
+	// 			> else found
+	// 			> Check if it will still hold for this row(s) + next row
+	//			> True? check again
+	// 			> False? Add as duplicate if count > 6
+	//		> Go on with next row (if it is not in the duplicates?)
+	
+	theSrc = readFile(|java+class:///main/Main|);
+	println("<theSrc>");
+	
+	duplications = findDuplications(theSrc, theSrc);
+	println("<duplications>");
+	
+	//for (cl <- classesToCheck) {
+	//	tmpSrcLines = readFile(cl);
+	//	int lStart = 0;
+	//	int lEnd = 0;
+	//	iprintln("The source line: <tmpSrcLines>");
+ //		for (line <- split("\r\n", tmpSrcLines)) {
+ //		 	if (isValidDupLine(line)) {
+ //		 	 	if (containsWords(line)) {
+ //					iprintln("IsValidDupLine: <isValidDupLine(line)>, Line: <line>");
+	//			}
+	//		}
+ //		}
+ //		for (othercl <- allClasses) {
+ //			
+ //			;
+ //		}
+	//}
+}
+
+public list[str] findDuplications(str src1, str src2) {
+	list[str] dups = [];
+	src1lines = split("\r\n", src1);
+	src2lines = split("\r\n", src2);
+	
+	str chStLine; // Checking start line
+	int lStart, lEnd;
+	int i = 0;
+	//for (i <- [0..size(src1lines)]) { // While i < size...
+	while (i < size(src1lines)) {
+		chStLine = src1lines[i];
+		
+		//for (j <- [0..size(src2lines)], src2lines[j] == chStLine) { //dupL <- src2lines, chStLine == dupL) {
+		int j = 0;
+		int maxI2 = 0;
+		while (j < size(src2lines)) {
+			int i2 = 0;
+			int j2 = 0;
+			if (chStLine == src2lines[j]) {
+				lStart1 = i;
+				lStart2 = j;
+				println("Found dup. st. w. | F1 L<lStart1> : F2 L<lStart2> - <chStLine> : <src2lines[j]>");
+				// Now we should check if 2 lines are equal!
+				//i+=1;
+				theDuplicate = chStLine;
+				// Simple if construction for next line:
+				//int i2 = i+1;
+				//int j2 = j+1;
+				//if (i2 < size(src1lines), j2 < size(src2lines), src1lines[i2] == src2lines[j2]) {
+				//	theDuplicate = theDuplicate + " + " + src1lines[i2];
+				//}
+				// Using while to construct it
+				i2 = i+1;
+				j2 = j+1;
+				while (i2 < size(src1lines), j2 < size(src2lines), src1lines[i2] == src2lines[j2]) {
+					theDuplicate += "\r\n" + src1lines[i2];
+					i2 += 1;
+					j2 += 1;
+				}
+				int totalLines = i2 - i;
+				if (maxI2 < totalLines) { maxI2 = totalLines; }
+				println("Full duplicate: <theDuplicate>");
+				if (theDuplicate notin dups) {
+					dups += theDuplicate;
+				}
+			}
+			j+=1;
+		}
+		i += maxI2; // Increase starting line with the I2 so we ignore the block now... (ofcourse this causes us to ignore dup. 5-11 if a dup 1-12 has been found... But this will be fixed when checking it the other way around later on, probably)
+		i += 1;
+	}
+	return dups;
+}
+
+private bool isValidDupLine(str line) {
+	tmpLine = visit(line) {
+   		case /^\t+<line:.*>/ => line
+   	};
+	return !isEmpty(tmpLine);
+}
+private bool containsWords(str line) {
+	return /\w+/ := line;
 }

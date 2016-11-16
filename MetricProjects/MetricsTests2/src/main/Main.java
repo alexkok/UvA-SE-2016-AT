@@ -12,6 +12,8 @@ public class Main {
 	
 	public void test() {
 		anotherTest();
+		System.out.println("SOMETEST"); System.out.println("SOMETEST"); System.out.println("SOMETEST"); System.out.println("SOMETEST"); System.out.println("SOMETEST"); 
+		System.out.println("SOMETEST"); System.out.println("SOMETEST"); System.out.println("SOMETEST"); System.out.println("SOMETEST"); System.out.println("SOMETEST");
 	}
 	
 	public void anotherTest() {
@@ -42,10 +44,14 @@ public class Main {
 		System.out.println("SOMETEST");
 		System.out.println("SOMETEST");
 		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
 	}
 	
 	private class innerClass {
 		public void justAmethod() {
+			System.out.println("SOMETEST");
+			System.out.println("SOMETEST");
+			System.out.println("SOMETEST");
 			System.out.println("SOMETEST");
 		}
 	}
