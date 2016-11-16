@@ -44,6 +44,10 @@ public class Car {
 		return (isDriving(true)) ? true : false;
 	}
 	
+	public boolean isCar() {
+		return (name != null && wheels > 0 && true || false);
+	}
+	
 	public void driving500KM() {
 		int km = 500;
 		Double fuel = 70D; 

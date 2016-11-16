@@ -170,7 +170,10 @@ public void calculateUnitComplexity(loc project) {
 			forStatements = 0, 
 			whileStatements = 0, 
 			caseStatements = 0, 
-			catchStatements = 0
+			catchStatements = 0,
+			andStatements = 0,
+			orStatements = 0,
+			ternaryStatements = 0
 			;
 		
 		visit (d) {
@@ -182,6 +185,9 @@ public void calculateUnitComplexity(loc project) {
 			case \while(_,_): 		whileStatements += 1; // while
 			case \case(_): 			caseStatements  += 1; // case
 			case \catch(_): 		catchStatments  += 1; // catch
+			case infix(_,"&&",_): 	andStatements  	+= 1; // &&
+			case infix(_,"||",_): 	orStatements  	+= 1; // &&
+			case conditional(_,_,_): ternaryStatements  	+= 1; // ? | ternary operator
 		}
 		
 		complexity += ifStatements 
@@ -189,10 +195,11 @@ public void calculateUnitComplexity(loc project) {
 				   += whileStatements
 				   += caseStatements
 				   += catchStatements
+				   += andStatements
+				   += orStatements
+				   += ternaryStatements
 				   ;
-		
-		
-		println("Method complexity: <complexity>");
+		println("Complexity is <complexity>\tfor method: <ml.path>");
 		;
 	}
 	
