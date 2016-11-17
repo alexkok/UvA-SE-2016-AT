@@ -218,8 +218,8 @@ public void calculateDuplication(loc project) {
 	//println("Rendering parse tree");
 	//iprintln(m);
 	//renderParsetree(parse(#CompilationUnit, m));
-	classesToCheck = classes(m);
-	allClasses = classes(m);
+	classesToCheck = toList(classes(m));
+	allClasses = toList(classes(m));
 	
 	// Remove \t's!
 	//
@@ -239,17 +239,29 @@ public void calculateDuplication(loc project) {
 	
 	println("Finding duplicates");
 	int totalDuplications = 0;
-	for (f <- files(m)) {
+	for (i <- [0..size(classesToCheck)]) {
+		f = classesToCheck[i];
 		//afi = |java+class:///main/Main|;
-		afi = f;
-		println("- Checking file <afi>");
+		println("- Checking file <substring(f.path, findLast(f.path, "/")+1)>");
 		//theSrc = readFile(|java+class:///main/Main|);
 		//println("<theSrc>");
 		
 		//duplications = findDuplications(theSrc, theSrc);
-		duplications = findDuplications(afi, afi);
-		totalDuplications += size(duplications);
-		println("- Duplications: <size(duplications)>");
+		
+		for (j <- [i..size(allClasses)]) {
+		//for (f2 <- classes(m)) {
+			f2 = allClasses[j];
+			//println(" : <substring(f2.path, findLast(f2.path, "/")+1)>");
+			duplications = findDuplications(f, f2);
+			totalDuplications += size(duplications);
+			if (size(duplications) > 0) {
+				println("-   Duplications: <size(duplications)>\n");
+			} else {
+				print(".");
+			}
+		//}
+		}
+		println();
 		//for (dup <- size(duplications)) {
 		//	println("Dup <dup> | <duplications[dup]>");
 		//	;
@@ -276,8 +288,9 @@ public void calculateDuplication(loc project) {
 	//}
 }
 
-public list[str] findDuplications(loc src1, loc src2) {
-	list[str] dups = [];
+public list[tuple[str, str]] findDuplications(loc src1, loc src2) {
+	// TODO: Implement for readfileLines instead of ReadFile
+	list[tuple[str, str]] dups = [];
 	src1lines = split("\r\n", readFile(src1));
 	src2lines = split("\r\n", readFile(src2));
 	
@@ -330,9 +343,21 @@ public list[str] findDuplications(loc src1, loc src2) {
 					if (maxI2 < totalLines) { maxI2 = totalLines; }
 					//println("Full duplicate:\n <theDuplicate>");
 					int minDupLength = 6;
-					if (theDuplicate notin dups && totalLines != 1 && totalLines >= minDupLength) { // Ignore one line duplicates... (Don't need those anyway)
-						println("Duplicate | <i> <i2> <lStart1> <j> <j2> <lStart2>  <totalLines> | F1_L<lStart1> : F2_L<lStart2> : \n <theDuplicate>");
-						dups += theDuplicate;
+					str dupTag    = "Duplicate | <i> <i2> <lStart1> <j> <j2> <lStart2>  <totalLines> | F1_L<lStart1> : F2_L<lStart2>";
+					str dupTagRev = "Duplicate | <j> <j2> <lStart2> <i> <i2> <lStart1>  <totalLines> | F1_L<lStart2> : F2_L<lStart1> ";
+					if (<dupTag, theDuplicate> notin dups && totalLines != 1 && totalLines >= minDupLength) { // Ignore one line duplicates... (Don't need those anyway)
+						if (isEmpty([t | <t,_> <- dups, t != dupTagRev])) {
+							file1name = substring(src1.path, findLast(src1.path, "/")+1);
+							file2name = substring(src2.path, findLast(src2.path, "/")+1);
+							
+							println("-    Found duplicate F1:<file1name> F2:<file2name>");
+							println("<dupTag>");
+							println("<dupTagRev>");
+							println("-    Duplicate | <i> <i2> <lStart1> <j> <j2> <lStart2>  <totalLines> | F1_L<lStart1> : F2_L<lStart2> : \n <theDuplicate>");
+							dups += <dupTag, theDuplicate>;
+						} else {
+							println("-   Found duplicate that is already found");
+						}
 					}
 					j+=i2 - i;
 				}
