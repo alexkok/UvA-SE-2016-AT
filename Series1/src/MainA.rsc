@@ -213,7 +213,7 @@ public void calculateUnitComplexity(loc project) {
 }
 
 public void calculateDuplication(loc project) {
-	println("Creating ASTs model from project");
+	println("Creating model from project");
 	M3 m = createM3FromEclipseProject(project);
 	//println("Rendering parse tree");
 	//iprintln(m);
@@ -238,17 +238,24 @@ public void calculateDuplication(loc project) {
 	//		> Go on with next row (if it is not in the duplicates?)
 	
 	println("Finding duplicates");
-	afi = |java+class:///main/Main|;
-	theSrc = readFile(|java+class:///main/Main|);
-	//println("<theSrc>");
-	
-	//duplications = findDuplications(theSrc, theSrc);
-	duplications = findDuplications(afi, afi);
-	//for (dup <- size(duplications)) {
-	//	println("Dup <dup> | <duplications[dup]>");
-	//	;
-	//}
-	println(size(duplications));
+	int totalDuplications = 0;
+	for (f <- files(m)) {
+		//afi = |java+class:///main/Main|;
+		afi = f;
+		println("- Checking file <afi>");
+		//theSrc = readFile(|java+class:///main/Main|);
+		//println("<theSrc>");
+		
+		//duplications = findDuplications(theSrc, theSrc);
+		duplications = findDuplications(afi, afi);
+		totalDuplications += size(duplications);
+		println("- Duplications: <size(duplications)>");
+		//for (dup <- size(duplications)) {
+		//	println("Dup <dup> | <duplications[dup]>");
+		//	;
+		//}
+	}
+	println("\> Total duplications: <totalDuplications>");
 	
 	//for (cl <- classesToCheck) {
 	//	tmpSrcLines = readFile(cl);
@@ -288,7 +295,7 @@ public list[str] findDuplications(loc src1, loc src2) {
 		while (j < size(src2lines)) {
 			int i2 = 0;
 			int j2 = 0;
-			if (chStLine == src2lines[j], isValidDupLine(chStLine), containsWords(chStLine)  ) {
+			if (trim(chStLine) == trim(src2lines[j]), isValidDupLine(chStLine), containsWords(chStLine)  ) {
 				//, (src1 != src2 || (src1 == src2 && i != j))) { // If locations are the same, the starting line of the duplicate may not be equal (becuase that's probably what's being measured now.) 
 				lStart1 = i;
 				lStart2 = j;
@@ -305,8 +312,12 @@ public list[str] findDuplications(loc src1, loc src2) {
 				// Using while to construct it
 				i2 = i+1;
 				j2 = j+1;
-				while (i2 < size(src1lines), j2 < size(src2lines), src1lines[i2] == src2lines[j2]) {
+				totalLines = 1;
+				while (i2 < size(src1lines), j2 < size(src2lines), trim(src1lines[i2]) == trim(src2lines[j2])) {
 					theDuplicate += "\r\n" + src1lines[i2];
+					if (shouldIncreaseDupLineCount(trim(src1lines[i2]))) {
+						totalLines += 1;
+					}
 					i2 += 1;
 					j2 += 1;
 				}
@@ -316,14 +327,14 @@ public list[str] findDuplications(loc src1, loc src2) {
 					// 16 - 25  |  17 - 26
 					;
 				} else { 
-					totalLines = i2 - i;
 					if (maxI2 < totalLines) { maxI2 = totalLines; }
 					//println("Full duplicate:\n <theDuplicate>");
-					if (theDuplicate notin dups && totalLines != 1) { // Ignore one line duplicates... (Don't need those anyway)
+					int minDupLength = 6;
+					if (theDuplicate notin dups && totalLines != 1 && totalLines >= minDupLength) { // Ignore one line duplicates... (Don't need those anyway)
 						println("Duplicate | <i> <i2> <lStart1> <j> <j2> <lStart2>  <totalLines> | F1_L<lStart1> : F2_L<lStart2> : \n <theDuplicate>");
 						dups += theDuplicate;
 					}
-					j+=totalLines;
+					j+=i2 - i;
 				}
 			}
 			j+=1;
@@ -342,4 +353,8 @@ private bool isValidDupLine(str line) {
 }
 private bool containsWords(str line) {
 	return /\w+/ := line;
+}
+
+private bool shouldIncreaseDupLineCount(str trimmedLine) {
+	return !(/[{}]+/ := trimmedLine);
 }

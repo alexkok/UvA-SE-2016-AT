@@ -56,6 +56,36 @@ public class Car {
 			fuel -= 0.14;
 			System.out.println("Driving " + i + " km, fuel: " + fuel);
 		}
+		
+		
+
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+	}
+	
+	public void show() {
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println("SOMETEST");
+		System.out.println( "      ____");
+		System.out.println( "_____/    |");
+		System.out.println("\\_________|");
+		System.out.println( "(_)     (_)");
 	}
 	
 }
