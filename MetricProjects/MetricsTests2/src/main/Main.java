@@ -49,10 +49,18 @@ public class Main {
 	
 	private class innerClass {
 		public void justAmethod() {
-			System.out.println("SOMETEST");
-			System.out.println("SOMETEST");
-			System.out.println("SOMETEST");
-			System.out.println("SOMETEST");
+			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD");
 		}
 	}
 

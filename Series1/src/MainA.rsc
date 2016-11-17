@@ -219,39 +219,18 @@ public void calculateDuplication(loc project) {
 	//iprintln(m);
 	//renderParsetree(parse(#CompilationUnit, m));
 	classesToCheck = toList(classes(m));
-	allClasses = toList(classes(m));
-	//classesToCheck = toList(methods(m));
-	//allClasses = toList(methods(m));
-	
-	// Remove \t's!
-	//
-	// For each class
-	// Compare with all classes
-	// 
-	// *Note: If we check for A->B we also need to check for B->A
-	// > For each class
-	// 		> Take row1
-	// 		> Check if duplicate is found in the other classes (including A)
-	// 			> if class == A then 2 occurences must be found 
-	// 			> else found
-	// 			> Check if it will still hold for this row(s) + next row
-	//			> True? check again
-	// 			> False? Add as duplicate if count > 6
-	//		> Go on with next row (if it is not in the duplicates?)
+	allClasses = toList(files(m));
 	
 	println("Finding duplicates");
 	int totalDuplications = 0;
 	for (i <- [0..size(classesToCheck)]) {
 		f = classesToCheck[i];
 		//afi = |java+class:///main/Main|;
-		println("[<i>/<size(classesToCheck)>] Checking: <substring(f.path, findLast(f.path, "/")+1)>");
+		println("[<i+1>/<size(classesToCheck)>] Checking: <substring(f.path, findLast(f.path, "/")+1)>");
 		//theSrc = readFile(|java+class:///main/Main|);
 		//println("<theSrc>");
 		
-		//duplications = findDuplications(theSrc, theSrc);
-		
-		for (j <- [i..size(allClasses)]) {
-		//for (f2 <- classes(m)) {
+		for (j <- [0..size(allClasses)]) {
 			f2 = allClasses[j];
 			//println(" : <substring(f2.path, findLast(f2.path, "/")+1)>");
 			duplications = findDuplications(f, f2);
@@ -262,33 +241,10 @@ public void calculateDuplication(loc project) {
 				print(".");
 				//;
 			}
-		//}
 		}
 		println();
-		//for (dup <- size(duplications)) {
-		//	println("Dup <dup> | <duplications[dup]>");
-		//	;
-		//}
 	}
 	println("\> Total duplications: <totalDuplications>");
-	
-	//for (cl <- classesToCheck) {
-	//	tmpSrcLines = readFile(cl);
-	//	int lStart = 0;
-	//	int lEnd = 0;
-	//	iprintln("The source line: <tmpSrcLines>");
- //		for (line <- split("\r\n", tmpSrcLines)) {
- //		 	if (isValidDupLine(line)) {
- //		 	 	if (containsWords(line)) {
- //					iprintln("IsValidDupLine: <isValidDupLine(line)>, Line: <line>");
-	//			}
-	//		}
- //		}
- //		for (othercl <- allClasses) {
- //			
- //			;
- //		}
-	//}
 }
 
 public list[tuple[str, str]] findDuplications(loc src1, loc src2) {
@@ -305,26 +261,16 @@ public list[tuple[str, str]] findDuplications(loc src1, loc src2) {
 		chStLine = src1lines[i];
 		
 		//for (j <- [0..size(src2lines)], src2lines[j] == chStLine) { //dupL <- src2lines, chStLine == dupL) {
-		int j = 0;
+		int j = i;
 		int maxI2 = 0;
 		int totalLines = 1;
 		while (j < size(src2lines)) {
 			int i2 = 0;
 			int j2 = 0;
-			if (trim(chStLine) == trim(src2lines[j]), isValidDupLine(chStLine), containsWords(chStLine)  ) {
-				//, (src1 != src2 || (src1 == src2 && i != j))) { // If locations are the same, the starting line of the duplicate may not be equal (becuase that's probably what's being measured now.) 
+			if (trim(chStLine) == trim(src2lines[j]), isValidDupLine(chStLine), containsWords(chStLine)  ) { 
 				lStart1 = i;
 				lStart2 = j;
-				//println("Found dup. st. w. | F1 L<lStart1> : F2 L<lStart2> - <chStLine> : <src2lines[j]>");
-				// Now we should check if 2 lines are equal!
-				//i+=1;
 				theDuplicate = chStLine;
-				// Simple if construction for next line:
-				//int i2 = i+1;
-				//int j2 = j+1;
-				//if (i2 < size(src1lines), j2 < size(src2lines), src1lines[i2] == src2lines[j2]) {
-				//	theDuplicate = theDuplicate + " + " + src1lines[i2];
-				//}
 				// Using while to construct it
 				i2 = i+1;
 				j2 = j+1;
@@ -383,5 +329,14 @@ private bool containsWords(str line) {
 }
 
 private bool shouldIncreaseDupLineCount(str trimmedLine) {
-	return !isEmpty(trimmedLine) && !(/[{}]+/ := trimmedLine);
+	if (isEmpty(trimmedLine)) {
+		return false;
+	}
+	if (isEmpty(replaceAll(trimmedLine, "}", ""))) {
+		return false;
+	}
+	if (isEmpty(replaceAll(trimmedLine, "{", ""))) {
+		return false;
+	}
+	return true;
 }

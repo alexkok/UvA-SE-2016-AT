@@ -72,16 +72,13 @@ public class Car {
 	}
 	
 	public void show() {
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
+			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD");
 		System.out.println( "      ____");
 		System.out.println( "_____/    |");
 		System.out.println("\\_________|");
