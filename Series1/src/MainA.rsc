@@ -220,6 +220,8 @@ public void calculateDuplication(loc project) {
 	//renderParsetree(parse(#CompilationUnit, m));
 	classesToCheck = toList(classes(m));
 	allClasses = toList(classes(m));
+	//classesToCheck = toList(methods(m));
+	//allClasses = toList(methods(m));
 	
 	// Remove \t's!
 	//
@@ -230,7 +232,7 @@ public void calculateDuplication(loc project) {
 	// > For each class
 	// 		> Take row1
 	// 		> Check if duplicate is found in the other classes (including A)
-	// 			> if class == A then 2 occurences must be found
+	// 			> if class == A then 2 occurences must be found 
 	// 			> else found
 	// 			> Check if it will still hold for this row(s) + next row
 	//			> True? check again
@@ -242,7 +244,7 @@ public void calculateDuplication(loc project) {
 	for (i <- [0..size(classesToCheck)]) {
 		f = classesToCheck[i];
 		//afi = |java+class:///main/Main|;
-		println("- Checking file <substring(f.path, findLast(f.path, "/")+1)>");
+		println("[<i>/<size(classesToCheck)>] Checking: <substring(f.path, findLast(f.path, "/")+1)>");
 		//theSrc = readFile(|java+class:///main/Main|);
 		//println("<theSrc>");
 		
@@ -258,6 +260,7 @@ public void calculateDuplication(loc project) {
 				println("-   Duplications: <size(duplications)>\n");
 			} else {
 				print(".");
+				//;
 			}
 		//}
 		}
@@ -334,8 +337,7 @@ public list[tuple[str, str]] findDuplications(loc src1, loc src2) {
 					i2 += 1;
 					j2 += 1;
 				}
-				if (src1 == src2 && (lStart1 == lStart2 || lStart2 in [lStart1..i2+1])) { //lStart1 == lStart2) {
-					// TODO: Find some smart method to remove or skip current checking block
+				if (src1 == src2 && (lStart1 == lStart2 || lStart2 in [lStart1..i2+1])) { 
 					// Check if lstart2-i2 does not consist in lstart1-i2
 					// 16 - 25  |  17 - 26
 					;
@@ -351,8 +353,8 @@ public list[tuple[str, str]] findDuplications(loc src1, loc src2) {
 							file2name = substring(src2.path, findLast(src2.path, "/")+1);
 							
 							println("-    Found duplicate F1:<file1name> F2:<file2name>");
-							println("<dupTag>");
-							println("<dupTagRev>");
+							//println("<dupTag>");
+							//println("<dupTagRev>");
 							println("-    Duplicate | <i> <i2> <lStart1> <j> <j2> <lStart2>  <totalLines> | F1_L<lStart1> : F2_L<lStart2> : \n <theDuplicate>");
 							dups += <dupTag, theDuplicate>;
 						} else {
@@ -381,5 +383,5 @@ private bool containsWords(str line) {
 }
 
 private bool shouldIncreaseDupLineCount(str trimmedLine) {
-	return !(/[{}]+/ := trimmedLine);
+	return !isEmpty(trimmedLine) && !(/[{}]+/ := trimmedLine);
 }
