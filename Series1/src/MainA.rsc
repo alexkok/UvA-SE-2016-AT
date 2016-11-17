@@ -22,6 +22,7 @@ import lang::java::\syntax::Java15;
 import Set;
 
 public loc prLoc = |project://MetricsTests2/src|;
+//public loc prLoc = |project://smallsql0.21_src/src|;
 //public M3 m = createM3FromEclipseProject(prLoc);
 //public M3 m = createM3FromEclipseProject(|project://MetricsTests2|);
 //public Declaration d = getMethodASTEclipse(|java+method:///main/Main/main(java.lang.String%5B%5D)|, model=m);
@@ -67,7 +68,7 @@ public int calculateLOC(theType, loc location) { // Not sure what the type is of
 		countSLOC(t);
 		return countSLOC(t);
 	} catch ParseError(loc l): {
-		println("<readFile(l)>");
+		println("<l>");
 		println("Found a parse error at line <l.begin.line>, column <l.begin.column>");
 		return -1;
 	}
@@ -166,7 +167,7 @@ public void calculateUnitComplexity(loc project) {
 	
 	for (<ml,n,d> <- methodsLOC) { // ml unused atm
 		// calcluate complexity for this method
-		int complexity = 0;
+		int complexity = 1;
 		Declaration d = getMethodASTEclipse(ml, model=m);
 		
 		int ifStatements = 0, 
