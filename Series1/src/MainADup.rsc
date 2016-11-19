@@ -38,52 +38,58 @@ public void main(loc project = prLoc) {
 	
 	// Find the duplications of 6 lines or higher
 	println("Starting our logic");
-	for (tup <- theList) {
+	int curLnNumber = 0;
+	int i = 0;
+	while (i < size(theList)) {
+		tup = theList[i];
 		tupKey = indexOf(theList, tup);
 		//println("Tuple: <tup> | <theList[tupKey]>");
 		//list[int] val = theList[key];
 		//
-		for (v <- theList[tupKey].dupLs) {
-			//println("- <v>");
-			checkIndex = indexOf(domain(theList), tup.lnNumber+6);
-			if (checkIndex != -1, v+6 in theList[checkIndex].dupLs) {
-				checkIndex5 = indexOf(domain(theList), tup.lnNumber+5);
-				checkIndex4 = indexOf(domain(theList), tup.lnNumber+4);
-				checkIndex3 = indexOf(domain(theList), tup.lnNumber+3);
-				checkIndex2 = indexOf(domain(theList), tup.lnNumber+2);
-				checkIndex1 = indexOf(domain(theList), tup.lnNumber+1);
-				if (checkIndex != -1, v+5 in theList[checkIndex5].dupLs &&
-					checkIndex != -1, v+4 in theList[checkIndex4].dupLs &&
-					checkIndex != -1, v+3 in theList[checkIndex3].dupLs &&
-					checkIndex != -1, v+2 in theList[checkIndex2].dupLs &&
-					checkIndex != -1, v+1 in theList[checkIndex1].dupLs ) {
-					
-					theDuplicate = theList[checkIndex1].dupStr + theList[checkIndex2].dupStr + theList[checkIndex3].dupStr + theList[checkIndex4].dupStr + theList[checkIndex5].dupStr + theList[checkIndex].dupStr;
-					blockSize = 7;
-					while (indexOf(domain(theList), tup.lnNumber+blockSize) != -1, v+blockSize in theList[indexOf(domain(theList), tup.lnNumber+blockSize)].dupLs) {
-						blockSize += 1;
-					} 
-					println("Found block! <tup.lnNumber> | <blockSize-1> | <theDuplicate>");
+		if (tup.lnNumber >= curLnNumber) {
+			//println("Ln:<tup.lnNumber>|i:<i>");
+			int maxValue = 0;
+			int j = 0;
+			while (j < size(theList[tupKey].dupLs)) {
+				v = theList[tupKey].dupLs[j];
+				checkIndex = indexOf(domain(theList), tup.lnNumber+5);
+				if (checkIndex != -1, v+5 in theList[checkIndex].dupLs) {
+					checkIndex4 = indexOf(domain(theList), tup.lnNumber+4);
+					checkIndex3 = indexOf(domain(theList), tup.lnNumber+3);
+					checkIndex2 = indexOf(domain(theList), tup.lnNumber+2);
+					checkIndex1 = indexOf(domain(theList), tup.lnNumber+1);
+					if (checkIndex4 != -1, v+4 in theList[checkIndex4].dupLs &&
+						checkIndex3 != -1, v+3 in theList[checkIndex3].dupLs &&
+						checkIndex2 != -1, v+2 in theList[checkIndex2].dupLs &&
+						checkIndex1 != -1, v+1 in theList[checkIndex1].dupLs ) {
+						
+						str theDuplicate = theList[checkIndex1].dupStr + theList[checkIndex2].dupStr + theList[checkIndex3].dupStr + theList[checkIndex4].dupStr + theList[checkIndex].dupStr;
+						blockSize = 6;
+						while (indexOf(domain(theList), tup.lnNumber+blockSize) != -1, v+blockSize in theList[indexOf(domain(theList), tup.lnNumber+blockSize)].dupLs) {
+							theDuplicate += theList[indexOf(domain(theList), tup.lnNumber+blockSize)].dupStr;
+							blockSize += 1;
+						}
+						println("<tup.lnNumber>:<tup.lnNumber+blockSize-1>|<v>-<v+blockSize-1>| Found block! <tup.lnNumber> | <blockSize-1> | <substring(theDuplicate, 0, (size(theDuplicate) > 100) ? 100 : size(theDuplicate))>");
+						j += blockSize-1;
+						if (tup.lnNumber+blockSize-1 > maxValue) {
+							maxValue = tup.lnNumber+blockSize-1;
+						}
+					}
 				}
+				j += 1;
 			}
-		//	if (key+6 in theList && v+6 in theList[key+6]) {
-		//		if (key+5 in theList && v+5 in theList[key+5] && 
-		//			key+4 in theList && v+4 in theList[key+4] && 
-		//			key+3 in theList && v+3 in theList[key+3] && 
-		//			key+2 in theList && v+2 in theList[key+2] && 
-		//			key+1 in theList && v+1 in theList[key+1] ) {
-		//			
-		//			blockSize = 7;
-		//			while (key+blockSize in theList && v+blockSize in theList[key+blockSize] ) {
-		//				blockSize += 1;
-		//			}
-		//			println("Found dupl. block at <key> for <v> : size <blockSize>");
-		//		}
-		//	}
-			;
+			i+=1;
+			if (maxValue != 0) {
+			curLnNumber = maxValue;
+			//println("Max:<maxValue>|i:<i>");
+			//	i = maxValue;
+			//} else {
+			//	i+=1;
+			}
+		} else {
+			i+=1;
 		}
 	}
-	//println(theBigSrcFile);
 }
 
 private str createBigFile(set[loc] files) {

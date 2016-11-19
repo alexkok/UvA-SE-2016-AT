@@ -12,21 +12,21 @@ public class Main {
 	
 	public void test() {
 		anotherTest();
-		System.out.println("SOMETEST"); System.out.println("SOMETEST"); System.out.println("SOMETEST"); System.out.println("SOMETEST"); System.out.println("SOMETEST"); 
-		System.out.println("SOMETEST"); System.out.println("SOMETEST"); System.out.println("SOMETEST"); System.out.println("SOMETEST"); System.out.println("SOMETEST");
+		System.out.println("SOMETESTL"); System.out.println("SOMETEST"); System.out.println("SOMETEST"); System.out.println("SOMETEST"); System.out.println("SOMETESTL"); 
+		System.out.println("SOMETESTL"); System.out.println("SOMETEST"); System.out.println("SOMETEST"); System.out.println("SOMETEST"); System.out.println("SOMETESTL");
 	}
 	
 	public void anotherTest() {
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
+		System.out.println("SOMETEST0");
+		System.out.println("SOMETEST1");
+		System.out.println("SOMETEST2");
+		System.out.println("SOMETEST3");
+		System.out.println("SOMETEST4");
+		System.out.println("SOMETEST5");
+		System.out.println("SOMETEST6");
+		System.out.println("SOMETEST7");
+		System.out.println("SOMETEST8");
+		System.out.println("SOMETEST10");
 		int a = 1
 		/*
 		 * *
@@ -35,16 +35,16 @@ public class Main {
 				+
 				/////
 				1;
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
-		System.out.println("SOMETEST");
+		System.out.println("SOMETEST0");
+		System.out.println("SOMETEST1");
+		System.out.println("SOMETEST2");
+		System.out.println("SOMETEST3");
+		System.out.println("SOMETEST4");
+		System.out.println("SOMETEST5");
+		System.out.println("SOMETEST6");
+		System.out.println("SOMETEST7");
+		System.out.println("SOMETEST8");
+		System.out.println("SOMETEST10");
 	}
 	
 	private class innerClass {
