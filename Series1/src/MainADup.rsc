@@ -67,7 +67,7 @@ public void main(loc project = prLoc) {
 						blockSize = 6;
 						while (v+blockSize in theList[indexOf(domain(theList), tup.lnNumber+blockSize)].dupLs) {
 							theDuplicate += theList[indexOf(domain(theList), tup.lnNumber+blockSize)].dupStr;
-							blockSize += 1;
+ 							blockSize += 1;
 						}
 						// The final check for real duplicates...
 						if (v notin [tup.lnNumber..tup.lnNumber+blockSize-1]) {
@@ -83,11 +83,7 @@ public void main(loc project = prLoc) {
 			}
 			i+=1;
 			if (maxValue != 0) {
-			curLnNumber = maxValue;
-			//println("Max:<maxValue>|i:<i>");
-			//	i = maxValue;
-			//} else {
-			//	i+=1;
+				curLnNumber = maxValue;
 			}
 		} else {
 			i+=1;
@@ -95,7 +91,7 @@ public void main(loc project = prLoc) {
 	}
 }
 
-private str createBigFile(set[loc] files) {
+public str createBigFile(set[loc] files) {
 // Remove tabs, remove comments
 // if startswith /*, inComment = true;
 // if contains */ inComment = false;
@@ -103,8 +99,19 @@ private str createBigFile(set[loc] files) {
 // something like that
 	str result = "";
 	for (f <- files) {
+		//str lines = readFile(f);
 		result += readFile(f);
-		println("File: <f.path>");
+		//for (l <- split("\r\n", lines)) {
+		//	//println("Checking line: <l>/<size(lines)>");
+		//	if (!isEmpty(trim(l)) // Remove empty lines 
+		//		&& !startsWith(trim(l), "//") // Remove single comment lines
+		//		&& !startsWith(l, "package") // Remove package lines
+		//		&& !startsWith(l, "import") // Remove import lines
+		//		) {
+		//		result += l + "\r\n";
+		//	}
+		//}
+		
 		if (!endsWith(result, "\r\n")) {
 			result += "\r\n";
 		}
@@ -113,8 +120,7 @@ private str createBigFile(set[loc] files) {
 }
 
 private list[tuple[int, list[int], str]] findDuplications2(str src) {
-	//list[str] lines = split("\r\n", src); // All lines
-	list[str] lines = [trim(l) | l <- split("\r\n", src), !isEmpty(trim(l))]; // Lines without enters etc.
+	list[str] lines = [trim(l) | l <- split("\r\n", src)]; 
 	int c1 = 0;
 	int theSize = size(lines);
 	println("Size: <theSize>");
