@@ -33,28 +33,54 @@ public void main(loc project = prLoc) {
 	str theBigSrcFile = createBigFile(files(m));
 	
 	// Find duplication lines
-	theList = findDuplications2(theBigSrcFile);
+	list[tuple[int lnNumber, list[int] dupLs, str dupStr]] theList = findDuplications2(theBigSrcFile);
 	iprintln(sort(theList));
 	
 	// Find the duplications of 6 lines or higher
-	for (int key <- theList) {
-		list[int] val = theList[key];
-		
-		for (v <- val) {
-			if (key+6 in theList && v+6 in theList[key+6]) {
-				if (key+5 in theList && v+5 in theList[key+5] && 
-					key+4 in theList && v+4 in theList[key+4] && 
-					key+3 in theList && v+3 in theList[key+3] && 
-					key+2 in theList && v+2 in theList[key+2] && 
-					key+1 in theList && v+1 in theList[key+1] ) {
+	println("Starting our logic");
+	for (tup <- theList) {
+		tupKey = indexOf(theList, tup);
+		//println("Tuple: <tup> | <theList[tupKey]>");
+		//list[int] val = theList[key];
+		//
+		for (v <- theList[tupKey].dupLs) {
+			//println("- <v>");
+			checkIndex = indexOf(domain(theList), tup.lnNumber+6);
+			if (checkIndex != -1, v+6 in theList[checkIndex].dupLs) {
+				checkIndex5 = indexOf(domain(theList), tup.lnNumber+5);
+				checkIndex4 = indexOf(domain(theList), tup.lnNumber+4);
+				checkIndex3 = indexOf(domain(theList), tup.lnNumber+3);
+				checkIndex2 = indexOf(domain(theList), tup.lnNumber+2);
+				checkIndex1 = indexOf(domain(theList), tup.lnNumber+1);
+				if (checkIndex != -1, v+5 in theList[checkIndex5].dupLs &&
+					checkIndex != -1, v+4 in theList[checkIndex4].dupLs &&
+					checkIndex != -1, v+3 in theList[checkIndex3].dupLs &&
+					checkIndex != -1, v+2 in theList[checkIndex2].dupLs &&
+					checkIndex != -1, v+1 in theList[checkIndex1].dupLs ) {
 					
+					theDuplicate = theList[checkIndex1].dupStr + theList[checkIndex2].dupStr + theList[checkIndex3].dupStr + theList[checkIndex4].dupStr + theList[checkIndex5].dupStr + theList[checkIndex].dupStr;
 					blockSize = 7;
-					while (key+blockSize in theList && v+blockSize in theList[key+blockSize] ) {
+					while (indexOf(domain(theList), tup.lnNumber+blockSize) != -1, v+blockSize in theList[indexOf(domain(theList), tup.lnNumber+blockSize)].dupLs) {
 						blockSize += 1;
-					}
-					println("Found dupl. block at <key> for <v> : size <blockSize>");
+					} 
+					println("Found block! <tup.lnNumber> | <blockSize-1> | <theDuplicate>");
 				}
 			}
+		//	if (key+6 in theList && v+6 in theList[key+6]) {
+		//		if (key+5 in theList && v+5 in theList[key+5] && 
+		//			key+4 in theList && v+4 in theList[key+4] && 
+		//			key+3 in theList && v+3 in theList[key+3] && 
+		//			key+2 in theList && v+2 in theList[key+2] && 
+		//			key+1 in theList && v+1 in theList[key+1] ) {
+		//			
+		//			blockSize = 7;
+		//			while (key+blockSize in theList && v+blockSize in theList[key+blockSize] ) {
+		//				blockSize += 1;
+		//			}
+		//			println("Found dupl. block at <key> for <v> : size <blockSize>");
+		//		}
+		//	}
+			;
 		}
 	}
 	//println(theBigSrcFile);
@@ -85,7 +111,7 @@ private list[tuple[int, list[int], str]] findDuplications2(str src) {
 	println("Size: <theSize>");
 	str checkingLine, tmpLine;
 	
-	list[tuple[int, list[int], str]] thelist = [];
+	list[tuple[int lnNumber, list[int] dupLs, str dupStr]] thelist = [];
 	
 	while (c1 < theSize) {
 		checkingLine = lines[c1];
@@ -97,16 +123,12 @@ private list[tuple[int, list[int], str]] findDuplications2(str src) {
 			if (checkingLine == tmpLine) {
 				//println("Found duplicate line <c1>|<c2> | <checkingLine>");
 				if (c1 in domain(thelist)) {
-					theList = for (<k, vs, strv> <- thelist) {
-						if (k == c1) {
-							vs += c2;
-						}
-					}
+					tupKey = indexOf(domain(thelist), c1);
+					thelist[tupKey] = <c1, thelist[tupKey].dupLs + c2, checkingLine>;
 				} else {
 					thelist += <c1, [c2], checkingLine>;
 				}
 			}
-			//theMap[c1] = (c1 in theMap) ? theMap[c1] + c2 : [c2];
 			
 			c2 += 1;
 		}

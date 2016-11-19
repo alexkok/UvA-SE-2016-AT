@@ -21,8 +21,8 @@ import util::LOC;
 import lang::java::\syntax::Java15;
 import Set;
 
-public loc prLoc = |project://MetricsTests2/src|;
-//public loc prLoc = |project://smallsql0.21_src/src|;
+//public loc prLoc = |project://MetricsTests2/src|;
+public loc prLoc = |project://smallsql0.21_src/src|;
 //public M3 m = createM3FromEclipseProject(prLoc);
 //public M3 m = createM3FromEclipseProject(|project://MetricsTests2|);
 //public Declaration d = getMethodASTEclipse(|java+method:///main/Main/main(java.lang.String%5B%5D)|, model=m);
