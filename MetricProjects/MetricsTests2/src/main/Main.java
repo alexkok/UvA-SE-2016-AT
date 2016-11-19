@@ -59,18 +59,13 @@ public class Main {
 	
 	private class innerClass {
 		public void justAmethod() {
-			System.out.println("ADSDDDDD");
-			System.out.println("ADSDDDDD");
-			System.out.println("ADSDDDDD");
-			System.out.println("ADSDDDDD");
-			System.out.println("ADSDDDDD");
-			System.out.println("ADSDDDDD");
-			System.out.println("ADSDDDDD");
-			System.out.println("ADSDDDDD");
-			System.out.println("ADSDDDDD");
-			System.out.println("ADSDDDDD");
-			System.out.println("ADSDDDDD");
-			System.out.println("ADSDDDDD");
+			System.out.println("ADSDDDDD1");
+			System.out.println("ADSDDDDD2");
+			System.out.println("ADSDDDDD3");
+			System.out.println("ADSDDDDD4");
+			System.out.println("ADSDDDDD5");
+			System.out.println("ADSDDDDD6");
+			System.out.println("ADSDDDDD7");
 		}
 	}
 

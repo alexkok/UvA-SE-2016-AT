@@ -63,16 +63,19 @@ public void main(loc project = prLoc) {
 						v+2 in theList[checkIndex2].dupLs &&
 						v+1 in theList[checkIndex1].dupLs ) {
 						
-						str theDuplicate = theList[checkIndex1].dupStr + theList[checkIndex2].dupStr + theList[checkIndex3].dupStr + theList[checkIndex4].dupStr + theList[checkIndex].dupStr;
+						str theDuplicate = tup.dupStr + theList[checkIndex1].dupStr + theList[checkIndex2].dupStr + theList[checkIndex3].dupStr + theList[checkIndex4].dupStr + theList[checkIndex].dupStr;
 						blockSize = 6;
 						while (v+blockSize in theList[indexOf(domain(theList), tup.lnNumber+blockSize)].dupLs) {
 							theDuplicate += theList[indexOf(domain(theList), tup.lnNumber+blockSize)].dupStr;
 							blockSize += 1;
 						}
-						println("<tup.lnNumber>:<tup.lnNumber+blockSize-1>|<v>-<v+blockSize-1>| Found block! <tup.lnNumber> | <blockSize-1> | <substring(theDuplicate, 0, (size(theDuplicate) > 100) ? 100 : size(theDuplicate))>");
-						j += blockSize-1;
-						if (tup.lnNumber+blockSize-1 > maxValue) {
-							maxValue = tup.lnNumber+blockSize-1;
+						// The final check for real duplicates...
+						if (v notin [tup.lnNumber..tup.lnNumber+blockSize-1]) {
+							println("<tup.lnNumber>:<tup.lnNumber+blockSize-1>|<v>-<v+blockSize-1>| Found block! <tup.lnNumber> | <blockSize-1> | <substring(theDuplicate, 0, (size(theDuplicate) > 150) ? 150 : size(theDuplicate))>");
+							j += blockSize-1;
+							if (tup.lnNumber+blockSize-1 > maxValue) {
+								maxValue = tup.lnNumber+blockSize-1;
+							}
 						}
 					}
 				}
