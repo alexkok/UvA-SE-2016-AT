@@ -53,19 +53,19 @@ public void main(loc project = prLoc) {
 			while (j < size(theList[tupKey].dupLs)) {
 				v = theList[tupKey].dupLs[j];
 				checkIndex = indexOf(domain(theList), tup.lnNumber+5);
-				if (checkIndex != -1, v+5 in theList[checkIndex].dupLs) {
+				if (v+5 in theList[checkIndex].dupLs) {
 					checkIndex4 = indexOf(domain(theList), tup.lnNumber+4);
 					checkIndex3 = indexOf(domain(theList), tup.lnNumber+3);
 					checkIndex2 = indexOf(domain(theList), tup.lnNumber+2);
 					checkIndex1 = indexOf(domain(theList), tup.lnNumber+1);
-					if (checkIndex4 != -1, v+4 in theList[checkIndex4].dupLs &&
-						checkIndex3 != -1, v+3 in theList[checkIndex3].dupLs &&
-						checkIndex2 != -1, v+2 in theList[checkIndex2].dupLs &&
-						checkIndex1 != -1, v+1 in theList[checkIndex1].dupLs ) {
+					if (v+4 in theList[checkIndex4].dupLs &&
+						v+3 in theList[checkIndex3].dupLs &&
+						v+2 in theList[checkIndex2].dupLs &&
+						v+1 in theList[checkIndex1].dupLs ) {
 						
 						str theDuplicate = theList[checkIndex1].dupStr + theList[checkIndex2].dupStr + theList[checkIndex3].dupStr + theList[checkIndex4].dupStr + theList[checkIndex].dupStr;
 						blockSize = 6;
-						while (indexOf(domain(theList), tup.lnNumber+blockSize) != -1, v+blockSize in theList[indexOf(domain(theList), tup.lnNumber+blockSize)].dupLs) {
+						while (v+blockSize in theList[indexOf(domain(theList), tup.lnNumber+blockSize)].dupLs) {
 							theDuplicate += theList[indexOf(domain(theList), tup.lnNumber+blockSize)].dupStr;
 							blockSize += 1;
 						}
