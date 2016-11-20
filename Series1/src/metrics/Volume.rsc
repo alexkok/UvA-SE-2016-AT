@@ -3,22 +3,26 @@ module metrics::Volume
 import lang::java::m3::Core;
 
 import MetricsUtil;
-
+/** 
+ * Calculate Volume: for each file calculate the LOC and return the sum of this.
+ */
 public int calculateVolume(M3 projectModel) {
 	set[loc] files = files(projectModel);
 	return (0 | it + n | <_, n> <- filesLOC(files), n != -1); // -1 means it was an error, so we should ignore it here.
 }
 
 /**
+ * Calculate Volume result: From the result, return the actual score.
+ *
  * Since we only parse java files currently, we can take over the man years table from SIG for the Java language
  * The table: 
- * Rank | Man years  | KLOC Java
- * ----------------------------
- *  + + |   0 - 8    |   0 - 66
- *   +  |   8 - 30   |  66 - 246
- *   0  |  30 - 80   | 245 - 665
- *   -  |  80 - 160  | 655 - 1310
- *  - - |   > 160    |   > 1310
+ * Rank | Man years  | KLOC in Java
+ * --------------------------------
+ *  + + |   0 - 8    |    0 - 66
+ *   +  |   8 - 30   |   66 - 246
+ *   0  |  30 - 80   |  245 - 665
+ *   -  |  80 - 160  |  655 - 1310
+ *  - - |   > 160    |    > 1310
  */
 public str calculateVolumeResult(int linesOfCode) {
 	if (linesOfCode < 66000) {
