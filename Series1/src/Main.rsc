@@ -9,6 +9,7 @@ import lang::java::jdt::m3::Core;
 // Our metrics modules
 import metrics::Volume;
 import metrics::UnitSize;
+import metrics::UnitComplexity;
 
 /**
  * Alex Kok
@@ -26,10 +27,14 @@ public list[loc] projectLocations = [
 ];
 
 // Values to keep track of the analysis of the current project
+private datetime analysisStartTime, analysisEndTime;
 private M3 projectM3Model;
 private int metricTotalVolume;
 private str metricVolumeResult;
-private list[tuple[loc, int]] metricTotalUnitSize;
+private list[tuple[loc, int, int]] metricTotalUnitSize;
+private str metricUnitSizeResult;
+private list[tuple[loc, int, int]] metricTotalUnitComplexity;
+private str metricUnitComplexityResult;
 
 
 /**
@@ -37,7 +42,7 @@ private list[tuple[loc, int]] metricTotalUnitSize;
  * Starting the analyzer and computing each metric on the given project.
  */
 public void main(loc projectLocation = projectLocations[0]) {
-	startTime = now();
+	analysisStartTime = now();
 	println("*************** Metrics Analyzer ***************");
 	println("* Alex Kok                                     *");
 	println("* Thanusijan Tharumarajah                      *");
@@ -48,7 +53,7 @@ public void main(loc projectLocation = projectLocations[0]) {
 	println("*   shouldn\'t remove package and import       *");
 	println("*   statements in this case then)              *");
 	println("************************************************");
-	println("- Start time:\t\t <startTime>");
+	println("- Start time:\t\t <printDateTime(analysisStartTime)>");
 	println("- Project location:\t <projectLocation>");
 	println("- Metrics to calculate:\t Volume, Unit Size, Unity Complexity and Duplication");
 	println("- Tables used to compute the metrics can be found in the source. Those tables will also be printed here in the meantime when the result is being computed for a specific metric.");
@@ -58,6 +63,7 @@ public void main(loc projectLocation = projectLocations[0]) {
 	prepareProjectData(projectLocation);
 	println("- Files: <size(files(projectM3Model))>");
 	println("- Methods: <size(methods(projectM3Model))>");
+	println();
 	
 	println("** Phase 2: Calculating metric: Volume");
 	println("- Will be computed based on the SIG Volume metric");
@@ -110,7 +116,18 @@ public void main(loc projectLocation = projectLocations[0]) {
 	println();
 	
 	println("** Phase 4: Calculating metric: Unit Complexity");
-	println("## TODO ##");
+	metricTotalUnitComplexity = calculateUnitComplexity(metricTotalUnitSize, projectM3Model);
+	metricUnitComplexityResult = calculateUnitComplexityResult(metricTotalUnitComplexity, metricTotalVolume);
+	println("\n- The LOC of each method will be categorized in the following categories:");
+	println("\> Metric table (Source: SIG):");
+	println("\> ----------------");
+	println("\> Category |  LOC");
+	println("\> ----------------");
+	println("\> Very high| \> 50 ");
+	println("\> High     | 21-50");
+	println("\> Medium   | 11-20");
+	println("\> Low      |  1-10");
+	println("- Each category will be compared to the following table to compute the result:");
 	println("\> Metric table (Source: SIG):");
 	println("\> --------- Maximum relative LOC ---");
 	println("\> Rank | Moderate | High | Very high ");
@@ -121,7 +138,7 @@ public void main(loc projectLocation = projectLocations[0]) {
 	println("\>   -  |   50%    | 15%  |   5%");
 	println("\>  - - |    -     |  -   |    -");
 	println("- The total LOC that is used here is the Volume calculated earlier.");
-	println("- Resulting in:\t __");
+	println("- Resulting in:\t <metricUnitComplexityResult>");
 	println();
 	
 	println("** Phase 5: Calculating metric: Duplication");
@@ -135,8 +152,13 @@ public void main(loc projectLocation = projectLocations[0]) {
 	println("|--------------------------------|");
 	println("\> Volume: \t\t <metricVolumeResult> \t | LOC: <metricTotalVolume>");
 	println("\> Unit Size: \t\t <metricUnitSizeResult> \t |");
-	println("\> Unit Complexity: \t N/A \t | ## TODO ##");
+	println("\> Unit Complexity: \t <metricUnitComplexityResult> \t |");
 	println("\> Duplication: \t\t N/A \t | ## TODO ##");
+	analysisEndTime = now();
+	println();
+	
+	println("- End time: <printDateTime(analysisEndTime)>");
+	println("- Analysis duration (y,m,d,h,m,s,ms): <createDuration(analysisStartTime, analysisEndTime)>");
 }
 
 private void prepareProjectData(loc project) {

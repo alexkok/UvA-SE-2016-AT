@@ -8,14 +8,14 @@ import MetricsUtil;
 /**
  * Calculate Unit Size: For each method calculate the LOC.
  */
-public list[tuple[loc, int]] calculateUnitSize(M3 projectModel) {
-	return [<l,calculateLOC(#MethodDec, l)> | l <- methods(projectModel)];
+public list[tuple[loc, int, int]] calculateUnitSize(M3 projectModel) {
+	return [<l,calculateLOC(#MethodDec, l),0> | l <- methods(projectModel)]; // Adding the third argument here so we can reuse this for the complexity 
 }
 
 /**
  * Calculate Unit Size result: From the result, return the actual score.
  */
-public str calculateUnitSizeResult(list[tuple[loc, int]] methodsLOC, int totalVolume) {
+public str calculateUnitSizeResult(list[tuple[loc, int, int]] methodsLOC, int totalVolume) {
 	map[int, int] categories = getCategoriesForMethodLOC(methodsLOC);
 	
 	return calculateResultFromCategories(categories, totalVolume);
@@ -36,9 +36,9 @@ public str calculateUnitSizeResult(list[tuple[loc, int]] methodsLOC, int totalVo
  * Medium   | > 10
  * Low      | > 0
  */
-private map[int, int] getCategoriesForMethodLOC(list[tuple[loc, int]] methodsLOC) {
+private map[int, int] getCategoriesForMethodLOC(list[tuple[loc, int, int]] methodsLOC) {
 	map[int, int] amountPerCategory = (1: 0, 2: 0, 3: 0, 4: 0);
-	for (<_,n> <- methodsLOC) { // We are not interested in the method location here, only interested in the amount LOC.
+	for (<_,n,_> <- methodsLOC) { // We are not interested in the method location here, only interested in the amount LOC.
 		if (n > 0) {
 			if (n <= 10) {
 				amountPerCategory[1] += n;

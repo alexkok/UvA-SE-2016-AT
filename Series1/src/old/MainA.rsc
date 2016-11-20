@@ -148,7 +148,7 @@ public void calculateUnitComplexity(loc project) {
 	iprintln(methodsLOC);
 	// EndDuplicate!
 	
-	for (<ml,n,d> <- methodsLOC) { // ml unused atm
+	for (<ml,n,d> <- methodsLOC) { 
 		// calcluate complexity for this method
 		int complexity = 1;
 		Declaration d = getMethodASTEclipse(ml, model=m);
