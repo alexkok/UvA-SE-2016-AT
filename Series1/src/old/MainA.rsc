@@ -74,23 +74,6 @@ public int calculateLOC(theType, loc location) { // Not sure what the type is of
 	}
 }
 
-/**
- * Calculating the value of the volume.
- * 
- * By calculating the LOC of the programme and check these according to the ranking scheme that SIG uses.
- * Note that since we talk about Java projects, we can compare the values of man years based on their Java specifications. 
- * See the ranking scheme below.
- *
- ****************************************
- * // TODO: THE TABLE					*
- ****************************************
- * 
- * The metrics we use to evaluate the LOC
- * - Not comments or blank lines (SIG)
- * Some samples:
- * > /* ^/ + // aaa - Will be considered as a LOC >> (where ^ will be a *)
- * > When a { or } is found as their own on a line, it will still be considered as a LOC. 
- */
 public list[tuple[loc, int]] filesLOC(loc root) {
 	list[tuple[loc, int]] result = [<ls, calculateLOC(#start[CompilationUnit], ls)> | ls <- root.ls, !isDirectory(ls)];
 	for (nl <- [rst | rst <- root.ls, isDirectory(rst)]) { // The dirs

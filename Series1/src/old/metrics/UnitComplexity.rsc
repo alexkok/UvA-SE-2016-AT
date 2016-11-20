@@ -1,4 +1,4 @@
-module metrics::UnitComplexity
+module oldmetrics::UnitComplexity
 
 import Prelude;
 import ParseTree;
