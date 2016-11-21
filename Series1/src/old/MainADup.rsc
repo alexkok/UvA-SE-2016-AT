@@ -22,15 +22,15 @@ import lang::java::\syntax::Java15;
 import Set;
 import Map;
 
-//public loc prLoc = |project://MetricsTests2/src|;
-public loc prLoc = |project://smallsql0.21_src/src|;
+public loc prLoc = |project://MetricsTests2/src|;
+//public loc prLoc = |project://smallsql0.21_src/src|;
 
 public void main(loc project = prLoc) {
 	println("Starting metrics analysis for duplication");
 	
 	M3 m = createM3FromEclipseProject(project);
 	
-	str theBigSrcFile = createBigFile(files(m));
+	str theBigSrcFile = createBigFilev2(files(m));
 	
 	// Find duplication lines
 	list[tuple[int lnNumber, list[int] dupLs, str dupStr]] theList = findDuplications2(theBigSrcFile);
@@ -156,21 +156,18 @@ public str createBigFilev2(set[loc] files) {
 
 public list[tuple[int, list[int], str]] findDuplications2(str src) {
 	list[str] lines = [trim(l) | l <- split("\r\n", src)]; 
-	int c1 = 0;
 	int theSize = size(lines);
 	println("Size: <theSize>");
-	str checkingLine, tmpLine;
+	str checkingLine;
 	
 	list[tuple[int lnNumber, list[int] dupLs, str dupStr]] thelist = [];
 	
-	while (c1 < theSize) {
+	for (c1 <- [0..theSize]) {
 		checkingLine = lines[c1];
 		println("Checking line [<c1>/<theSize>]");
 		
-		c2 = c1 + 1;
-		while (c2 < theSize) {
-			tmpLine = lines[c2];
-			if (checkingLine == tmpLine) {
+		for (c2 <- [c1+1..theSize]) {
+			if (checkingLine == lines[c2]) {
 				//println("Found duplicate line <c1>|<c2> | <checkingLine>");
 				if (c1 in domain(thelist)) {
 					tupKey = indexOf(domain(thelist), c1);
@@ -179,12 +176,7 @@ public list[tuple[int, list[int], str]] findDuplications2(str src) {
 					thelist += <c1, [c2], checkingLine>;
 				}
 			}
-			
-			c2 += 1;
 		}
-		
-		
-		c1 += 1;
 	}
 	
 	return thelist;
