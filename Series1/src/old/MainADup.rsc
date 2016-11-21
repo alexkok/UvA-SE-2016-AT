@@ -123,8 +123,8 @@ public str createBigFilev2(set[loc] files) {
 	int i = 0;
 	str result = "";
 	bool inMultiComment = false;
-	for (l <- [l | f <- files, l <- split("\r\n", readFile(f))]) {
-		// Remove comment lines immediately (starting with "//" and not containing "*//*")
+	for (l <- [trim(l) | f <- files, l <- split("\r\n", readFile(f)), !isEmpty(trim(l)), !startsWith(trim(l), "//")]) { // Remove lines with only comments immediately
+		// Remove comment lines immediately (containing "//" and not containing "*//*")
 		if (contains(l, "//") && !contains(l, "*//*")) {
 			l = split("//", l)[0];
 		}
