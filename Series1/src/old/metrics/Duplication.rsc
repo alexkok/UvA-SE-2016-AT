@@ -1,4 +1,4 @@
-module metrics::Duplication
+module oldmetrics::Duplication
 
 /**
  * Alex Kok

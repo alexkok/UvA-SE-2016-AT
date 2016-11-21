@@ -21,7 +21,8 @@ import util::LOC;
 import lang::java::\syntax::Java15;
 import Set;
 
-public loc prLoc = |project://MetricsTests2/src|;
+//public loc prLoc = |project://MetricsTests2/src|;
+public loc prLoc = |project://smallsql0.21_src/src|;
 //public M3 m = createM3FromEclipseProject(prLoc);
 //public M3 m = createM3FromEclipseProject(|project://MetricsTests2|);
 //public Declaration d = getMethodASTEclipse(|java+method:///main/Main/main(java.lang.String%5B%5D)|, model=m);
@@ -67,29 +68,12 @@ public int calculateLOC(theType, loc location) { // Not sure what the type is of
 		countSLOC(t);
 		return countSLOC(t);
 	} catch ParseError(loc l): {
-		println("<readFile(l)>");
+		println("<l>");
 		println("Found a parse error at line <l.begin.line>, column <l.begin.column>");
 		return -1;
 	}
 }
 
-/**
- * Calculating the value of the volume.
- * 
- * By calculating the LOC of the programme and check these according to the ranking scheme that SIG uses.
- * Note that since we talk about Java projects, we can compare the values of man years based on their Java specifications. 
- * See the ranking scheme below.
- *
- ****************************************
- * // TODO: THE TABLE					*
- ****************************************
- * 
- * The metrics we use to evaluate the LOC
- * - Not comments or blank lines (SIG)
- * Some samples:
- * > /* ^/ + // aaa - Will be considered as a LOC >> (where ^ will be a *)
- * > When a { or } is found as their own on a line, it will still be considered as a LOC. 
- */
 public list[tuple[loc, int]] filesLOC(loc root) {
 	list[tuple[loc, int]] result = [<ls, calculateLOC(#start[CompilationUnit], ls)> | ls <- root.ls, !isDirectory(ls)];
 	for (nl <- [rst | rst <- root.ls, isDirectory(rst)]) { // The dirs
@@ -164,9 +148,9 @@ public void calculateUnitComplexity(loc project) {
 	iprintln(methodsLOC);
 	// EndDuplicate!
 	
-	for (<ml,n,d> <- methodsLOC) { // ml unused atm
+	for (<ml,n,d> <- methodsLOC) { 
 		// calcluate complexity for this method
-		int complexity = 0;
+		int complexity = 1;
 		Declaration d = getMethodASTEclipse(ml, model=m);
 		
 		int ifStatements = 0, 
