@@ -1,4 +1,4 @@
-module MainADup
+module old::MainADup
 
 /**
  * Alex Kok
@@ -22,8 +22,8 @@ import lang::java::\syntax::Java15;
 import Set;
 import Map;
 
-public loc prLoc = |project://MetricsTests2/src|;
-//public loc prLoc = |project://smallsql0.21_src/src|;
+//public loc prLoc = |project://MetricsTests2/src|;
+public loc prLoc = |project://smallsql0.21_src/src|;
 
 public void main(loc project = prLoc) {
 	println("Starting metrics analysis for duplication");
@@ -119,7 +119,42 @@ public str createBigFile(set[loc] files) {
 	return result; 
 }
 
-private list[tuple[int, list[int], str]] findDuplications2(str src) {
+public str createBigFilev2(set[loc] files) {
+	int i = 0;
+	str result = "";
+	bool inMultiComment = false;
+	for (l <- [l | f <- files, l <- split("\r\n", readFile(f))]) {
+		// Remove comment lines immediately (starting with "//" and not containing "*//*")
+		if (contains(l, "//") && !contains(l, "*//*")) {
+			l = split("//", l)[0];
+		}
+		if (!inMultiComment && contains(l, "/*")) {
+			// Opening a multi line comment
+			inMultiComment = true;
+			if (!startsWith(trim(l), "/*")) {
+				// Multi line comment is started on a LOC
+				result += split("/*", l)[0] + "\r\n";
+			}
+		} else if (inMultiComment && contains(l, "*/")) {
+			inMultiComment = false;
+			if (size(split(l, "\\*/")) > 1 && contains(split("\\*/")[1], "/*")) {
+				// Closing, but also starting another multi comment
+				commentOpen = true;
+				if (startsWith(trim(split("\\*/", l)[1]), "/*")) {
+					// Not starting with /*, so it has a LOC. Add it.
+					result += l  + "\r\n";
+				}
+			}
+		} else if (!inMultiComment) {
+			result += l + "\r\n";
+		} // Else: Comment is open, ignore this line
+		println("[<i>]");
+		i += 1;
+	}
+	return result;
+}
+
+public list[tuple[int, list[int], str]] findDuplications2(str src) {
 	list[str] lines = [trim(l) | l <- split("\r\n", src)]; 
 	int c1 = 0;
 	int theSize = size(lines);

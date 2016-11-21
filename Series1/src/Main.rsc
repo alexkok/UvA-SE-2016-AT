@@ -41,7 +41,7 @@ private str metricUnitComplexityResult;
  * The main method.
  * Starting the analyzer and computing each metric on the given project.
  */
-public void main(loc projectLocation = projectLocations[0]) {
+public void main(loc projectLocation = projectLocations[1]) {
 	analysisStartTime = now();
 	println("*************** Metrics Analyzer ***************");
 	println("* Alex Kok                                     *");
