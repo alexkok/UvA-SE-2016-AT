@@ -92,34 +92,6 @@ public void main(loc project = prLoc) {
 	}
 }
 
-public str createBigFile(set[loc] files) {
-// Remove tabs, remove comments
-// if startswith /*, inComment = true;
-// if contains */ inComment = false;
-// ifstartswith // , removeline
-// something like that
-	str result = "";
-	for (f <- files) {
-		//str lines = readFile(f);
-		result += readFile(f);
-		//for (l <- split("\r\n", lines)) {
-		//	//println("Checking line: <l>/<size(lines)>");
-		//	if (!isEmpty(trim(l)) // Remove empty lines 
-		//		&& !startsWith(trim(l), "//") // Remove single comment lines
-		//		&& !startsWith(l, "package") // Remove package lines
-		//		&& !startsWith(l, "import") // Remove import lines
-		//		) {
-		//		result += l + "\r\n";
-		//	}
-		//}
-		
-		if (!endsWith(result, "\r\n")) {
-			result += "\r\n";
-		}
-	}
-	return result; 
-}
-
 public str createBigFilev2(set[loc] files) {
 	int i = 0;
 	str result = "";
@@ -172,40 +144,20 @@ public list[tuple[int, list[int], str]] findDuplications2(str src) {
 	
 	int lastC1 = 0;
 	for (<c1,c2> <- [<c1,c2> | c1 <- [0..theSize], c2 <- [c1+1..theSize], lines[c1] == lines[c2]]) {
-		//checkingLine = lines[c1];
 		if (lastC1 != c1) {
 			println("Checking line [<c1>/<theSize>]");
 			lastC1 = c1;
 		}
 		
-		//for (c2 <- [c1+1..theSize], checkingLine == lines[c2]) {
-			//println("Found duplicate line <c1>|<c2> | <checkingLine>");
-			//if (c1 in domain(thelist)) {
-			tupKey = getIndexOf(thelist, c1);
-			if (tupKey != -1) { 
-				// If found, merge this value in the list
-				thelist[tupKey] = <c1, thelist[tupKey].dupLs + c2, lines[c1]>;
-			} else {
-				// -1 means "not found", add new value to the list
-				thelist += <c1, [c2], lines[c1]>;
-			}
-		//}
+		tupKey = getIndexOf(thelist, c1);
+		if (tupKey != -1) { 
+			// If found, merge this value in the list
+			thelist[tupKey] = <c1, thelist[tupKey].dupLs + c2, lines[c1]>;
+		} else {
+			// -1 means "not found", add new value to the list
+			thelist += <c1, [c2], lines[c1]>;
+		}
 	}
-	
-	//for (c1 <- [0..theSize]) {
-	//	checkingLine = lines[c1];
-	//	println("Checking line [<c1>/<theSize>]");
-	//	
-	//	for (c2 <- [c1+1..theSize], checkingLine == lines[c2]) {
-	//		//println("Found duplicate line <c1>|<c2> | <checkingLine>");
-	//		if (c1 in domain(thelist)) {
-	//			tupKey = indexOf(domain(thelist), c1);
-	//			thelist[tupKey] = <c1, thelist[tupKey].dupLs + c2, checkingLine>;
-	//		} else {
-	//			thelist += <c1, [c2], checkingLine>;
-	//		}
-	//	}
-	//}
 	
 	return thelist;
 }
@@ -215,63 +167,4 @@ private int getIndexOf(list[tuple[int lnNumber, list[int] dupLs, str dupStr]] tu
 		if (tupleList[i].lnNumber == lineNumber) return i;
 	}
 	return -1;
-}
-
-private void findDuplications(str src, int lineNrCount = 6) {
-	//list[str] lines = split("\r\n", src); // All lines
-	list[str] lines = [trim(l) | l <- split("\r\n", src), !isEmpty(trim(l))]; // Lines without enters etc.
-	int c1 = 0;
-	int theSize = size(lines);
-	println("Size: <theSize>");
-	str block1, block2;
-	
-	map[int, list[int]] theMap = ();
-	
-	while (c1 + lineNrCount < theSize) {
-		block1 = createBlock(lines, theSize, c1, c1 + lineNrCount);
-		//println("Checking block <c1>:<c1+lineNrCount>\t| <block1>");
-		println("[<c1>/<theSize-lineNrCount>]");
-		
-		c2 = c1 + lineNrCount;
-		while (c2 + lineNrCount < theSize) {
-			print(".");
-			block2 = createBlock(lines, theSize, c2, c2 + lineNrCount);
-			//println("With block: \t\t\t| <block2>");
-			if (block1 == block2) {
-				print("\nFound duplicate <c1>:<c1+lineNrCount>|<c2>:<c2+lineNrCount> | <block1>");
-				if (c1 in theMap) {
-					theMap[c1] = theMap[c1] + c2;
-					;
-				} else {
-					//theMap[c1] = [c2];
-					theMap[c1] = [c2];
-					;
-				}
-			}
-			//theMap[c1] = (c1 in theMap) ? theMap[c1] + c2 : [c2];
-			
-			
-			c2 += 1;
-		}
-		print("\n");
-		
-		
-		c1 += 1;
-	}
-	
-	iprintln(theMap);
-	println("Map 133 : <theMap[133]>");
-}
-
-
-private str createBlock(lines, int theSize, c1, c2) {
-	str result = "";
-	for (i <- [0..theSize]) {
-		// c1 <= i <= c2
-		if (c1 <= i && i < c2) {
-			result += lines[i];// + "\r\n";
-		}
-	}
-	return result;
-	
 }
