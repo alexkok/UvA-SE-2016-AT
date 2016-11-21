@@ -22,11 +22,15 @@ import lang::java::\syntax::Java15;
 import Set;
 import Map;
 
-public loc prLoc = |project://MetricsTests2/src|;
-//public loc prLoc = |project://smallsql0.21_src/src|;
+//public loc prLoc = |project://MetricsTests2/src|;
+public loc prLoc = |project://smallsql0.21_src/src|;
 
 public void main(loc project = prLoc) {
 	println("Starting metrics analysis for duplication");
+	
+	// Print time
+	analysisStartTime = now();
+	println("- Start time:\t\t <printDateTime(analysisStartTime)>");
 	
 	M3 m = createM3FromEclipseProject(project);
 	
@@ -34,62 +38,70 @@ public void main(loc project = prLoc) {
 	
 	// Find duplication lines
 	list[tuple[int lnNumber, list[int] dupLs, str dupStr]] theList = findDuplications2(theBigSrcFile);
-	println("Got duplications, sorting the list");
-	//iprintln(sort(theList));
+	println("Got duplications list:");
 	iprintln(theList);
 	
-	// Find the duplications of 6 lines or higher
-	println("Starting our logic");
-	int curLnNumber = 0;
-	int i = 0;
-	while (i < size(theList)) {
-		tup = theList[i];
+	println("Starting our logic...");
+	duplicates = calculateDuplicationBlocks(theList);
+	println("Done, the duplicates:");
+	for (str s <- duplicates) {
+		println(s);
+	}
+	
+	// Print time + duration
+	println("\nDone");
+	println("- Start time:\t\t <printDateTime(analysisStartTime)>");
+	analysisEndTime = now();
+	println("- End time: <printDateTime(analysisEndTime)>");
+	println("- Analysis duration (y,m,d,h,m,s,ms): <createDuration(analysisStartTime, analysisEndTime)>");
+}
 
-		if (tup.lnNumber >= curLnNumber) {
-			tupKey = indexOf(theList, tup);
-			//println("Tuple: <tup> | <theList[tupKey]>");
-			//println("Ln:<tup.lnNumber>|i:<i>");
-			int maxValue = 0;
-			int j = 0;
-			while (j < size(theList[tupKey].dupLs)) {
-				v = theList[tupKey].dupLs[j];
-				checkIndex = indexOf(domain(theList), tup.lnNumber+5);
-				if (v+5 in theList[checkIndex].dupLs) {
-					checkIndex4 = indexOf(domain(theList), tup.lnNumber+4);
-					checkIndex3 = indexOf(domain(theList), tup.lnNumber+3);
-					checkIndex2 = indexOf(domain(theList), tup.lnNumber+2);
-					checkIndex1 = indexOf(domain(theList), tup.lnNumber+1);
-					if (v+4 in theList[checkIndex4].dupLs &&
-						v+3 in theList[checkIndex3].dupLs &&
-						v+2 in theList[checkIndex2].dupLs &&
-						v+1 in theList[checkIndex1].dupLs ) {
-						
-						str theDuplicate = tup.dupStr + theList[checkIndex1].dupStr + theList[checkIndex2].dupStr + theList[checkIndex3].dupStr + theList[checkIndex4].dupStr + theList[checkIndex].dupStr;
-						blockSize = 6;
-						while (v+blockSize in theList[indexOf(domain(theList), tup.lnNumber+blockSize)].dupLs) {
-							theDuplicate += theList[indexOf(domain(theList), tup.lnNumber+blockSize)].dupStr;
- 							blockSize += 1;
-						}
-						// The final check for real duplicates...
-						if (v notin [tup.lnNumber..tup.lnNumber+blockSize-1]) {
-							println("<tup.lnNumber>:<tup.lnNumber+blockSize-1>|<v>-<v+blockSize-1>| Found block! <tup.lnNumber> | <blockSize-1> | <substring(theDuplicate, 0, (size(theDuplicate) > 150) ? 150 : size(theDuplicate))>");
-							j += blockSize-1;
-							if (tup.lnNumber+blockSize-1 > maxValue) {
-								maxValue = tup.lnNumber+blockSize-1;
-							}
+public list[str] calculateDuplicationBlocks(list[tuple[int lnNumber, list[int] dupLs, str dupStr]] theList)  {
+	list[str] duplicates = [];
+	int curLnNumber = 0;
+	for (i <- [0..size(theList)], theList[i].lnNumber >= curLnNumber) {
+		tup = theList[i];
+		println("[<i>/<size(theList)>]");
+
+		int maxValue = 0;
+		int j = 0;
+		while (j < size(theList[i].dupLs)) {
+			v = theList[i].dupLs[j];
+			checkIndex = getIndexOf(theList, tup.lnNumber+5);
+			if (v+5 in theList[checkIndex].dupLs) {
+				checkIndex4 = getIndexOf(theList, tup.lnNumber+4);
+				checkIndex3 = getIndexOf(theList, tup.lnNumber+3);
+				checkIndex2 = getIndexOf(theList, tup.lnNumber+2);
+				checkIndex1 = getIndexOf(theList, tup.lnNumber+1);
+				if (v+4 in theList[checkIndex4].dupLs &&
+					v+3 in theList[checkIndex3].dupLs &&
+					v+2 in theList[checkIndex2].dupLs &&
+					v+1 in theList[checkIndex1].dupLs ) {
+					
+					str theDuplicate = tup.dupStr + theList[checkIndex1].dupStr + theList[checkIndex2].dupStr + theList[checkIndex3].dupStr + theList[checkIndex4].dupStr + theList[checkIndex].dupStr;
+					blockSize = 6;
+					while (v+blockSize in theList[getIndexOf(theList, tup.lnNumber+blockSize)].dupLs) {
+						theDuplicate += theList[getIndexOf(theList, tup.lnNumber+blockSize)].dupStr;
+						blockSize += 1;
+					}
+					// The final check for real duplicates...
+					if (v notin [tup.lnNumber..tup.lnNumber+blockSize-1]) {
+						println("<tup.lnNumber>:<tup.lnNumber+blockSize-1>|<v>-<v+blockSize-1>| Found block! <tup.lnNumber> | <blockSize-1> | <substring(theDuplicate, 0, (size(theDuplicate) > 150) ? 150 : size(theDuplicate))>");
+						duplicates += theDuplicate;
+						j += blockSize-1;
+						if (tup.lnNumber+blockSize-1 > maxValue) {
+							maxValue = tup.lnNumber+blockSize-1;
 						}
 					}
 				}
-				j += 1;
 			}
-			i+=1;
-			if (maxValue != 0) {
-				curLnNumber = maxValue;
-			}
-		} else {
-			i+=1;
+			j += 1;
+		}
+		if (maxValue != 0) {
+			curLnNumber = maxValue;
 		}
 	}
+	return duplicates;
 }
 
 public str createBigFilev2(set[loc] files) {
