@@ -22,8 +22,8 @@ import lang::java::\syntax::Java15;
 import Set;
 import Map;
 
-public loc prLoc = |project://MetricsTests2/src|;
-//public loc prLoc = |project://smallsql0.21_src/src|;
+//public loc prLoc = |project://MetricsTests2/src|;
+public loc prLoc = |project://smallsql0.21_src/src|;
 
 public void main(loc project = prLoc) {
 	println("Starting metrics analysis for duplication");
@@ -162,20 +162,39 @@ public list[tuple[int, list[int], str]] findDuplications2(str src) {
 	
 	list[tuple[int lnNumber, list[int] dupLs, str dupStr]] thelist = [];
 	
-	for (c1 <- [0..theSize]) {
-		checkingLine = lines[c1];
-		println("Checking line [<c1>/<theSize>]");
+	int lastC1 = 0;
+	for (<c1,c2> <- [<c1,c2> | c1 <- [0..theSize], c2 <- [c1+1..theSize], lines[c1] == lines[c2]]) {
+		//checkingLine = lines[c1];
+		if (lastC1 != c1) {
+			println("Checking line [<c1>/<theSize>]");
+			lastC1 = c1;
+		}
 		
-		for (c2 <- [c1+1..theSize], checkingLine == lines[c2]) {
+		//for (c2 <- [c1+1..theSize], checkingLine == lines[c2]) {
 			//println("Found duplicate line <c1>|<c2> | <checkingLine>");
 			if (c1 in domain(thelist)) {
 				tupKey = indexOf(domain(thelist), c1);
-				thelist[tupKey] = <c1, thelist[tupKey].dupLs + c2, checkingLine>;
+				thelist[tupKey] = <c1, thelist[tupKey].dupLs + c2, lines[c1]>;
 			} else {
-				thelist += <c1, [c2], checkingLine>;
+				thelist += <c1, [c2], lines[c1]>;
 			}
-		}
+		//}
 	}
+	
+	//for (c1 <- [0..theSize]) {
+	//	checkingLine = lines[c1];
+	//	println("Checking line [<c1>/<theSize>]");
+	//	
+	//	for (c2 <- [c1+1..theSize], checkingLine == lines[c2]) {
+	//		//println("Found duplicate line <c1>|<c2> | <checkingLine>");
+	//		if (c1 in domain(thelist)) {
+	//			tupKey = indexOf(domain(thelist), c1);
+	//			thelist[tupKey] = <c1, thelist[tupKey].dupLs + c2, checkingLine>;
+	//		} else {
+	//			thelist += <c1, [c2], checkingLine>;
+	//		}
+	//	}
+	//}
 	
 	return thelist;
 }
