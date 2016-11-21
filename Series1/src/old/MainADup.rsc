@@ -166,15 +166,13 @@ public list[tuple[int, list[int], str]] findDuplications2(str src) {
 		checkingLine = lines[c1];
 		println("Checking line [<c1>/<theSize>]");
 		
-		for (c2 <- [c1+1..theSize]) {
-			if (checkingLine == lines[c2]) {
-				//println("Found duplicate line <c1>|<c2> | <checkingLine>");
-				if (c1 in domain(thelist)) {
-					tupKey = indexOf(domain(thelist), c1);
-					thelist[tupKey] = <c1, thelist[tupKey].dupLs + c2, checkingLine>;
-				} else {
-					thelist += <c1, [c2], checkingLine>;
-				}
+		for (c2 <- [c1+1..theSize], checkingLine == lines[c2]) {
+			//println("Found duplicate line <c1>|<c2> | <checkingLine>");
+			if (c1 in domain(thelist)) {
+				tupKey = indexOf(domain(thelist), c1);
+				thelist[tupKey] = <c1, thelist[tupKey].dupLs + c2, checkingLine>;
+			} else {
+				thelist += <c1, [c2], checkingLine>;
 			}
 		}
 	}
