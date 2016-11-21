@@ -22,8 +22,8 @@ import lang::java::\syntax::Java15;
 import Set;
 import Map;
 
-//public loc prLoc = |project://MetricsTests2/src|;
-public loc prLoc = |project://smallsql0.21_src/src|;
+public loc prLoc = |project://MetricsTests2/src|;
+//public loc prLoc = |project://smallsql0.21_src/src|;
 
 public void main(loc project = prLoc) {
 	println("Starting metrics analysis for duplication");
@@ -34,7 +34,9 @@ public void main(loc project = prLoc) {
 	
 	// Find duplication lines
 	list[tuple[int lnNumber, list[int] dupLs, str dupStr]] theList = findDuplications2(theBigSrcFile);
-	iprintln(sort(theList));
+	println("Got duplications, sorting the list");
+	//iprintln(sort(theList));
+	iprintln(theList);
 	
 	// Find the duplications of 6 lines or higher
 	println("Starting our logic");
@@ -42,11 +44,10 @@ public void main(loc project = prLoc) {
 	int i = 0;
 	while (i < size(theList)) {
 		tup = theList[i];
-		tupKey = indexOf(theList, tup);
-		//println("Tuple: <tup> | <theList[tupKey]>");
-		//list[int] val = theList[key];
-		//
+
 		if (tup.lnNumber >= curLnNumber) {
+			tupKey = indexOf(theList, tup);
+			//println("Tuple: <tup> | <theList[tupKey]>");
 			//println("Ln:<tup.lnNumber>|i:<i>");
 			int maxValue = 0;
 			int j = 0;
@@ -123,7 +124,14 @@ public str createBigFilev2(set[loc] files) {
 	int i = 0;
 	str result = "";
 	bool inMultiComment = false;
-	for (l <- [trim(l) | f <- files, l <- split("\r\n", readFile(f)), !isEmpty(trim(l)), !startsWith(trim(l), "//")]) { // Remove lines with only comments immediately
+	for (l <- [trim(l) | f <- files, 
+						 l <- split("\r\n", readFile(f)), 
+						 !isEmpty(trim(l)), 
+						 !startsWith(trim(l), "//"),  // Remove lines with only comments immediately 
+						 trim(l) != "}", // Remove lines that only consist of a "}" 
+						 !startsWith(trim(l), "package"), // Remove package lines 
+						 !startsWith(trim(l), "import") // Remove import lines
+						 ]) {
 		// Remove comment lines immediately (containing "//" and not containing "*//*")
 		if (contains(l, "//") && !contains(l, "*//*")) {
 			l = split("//", l)[0];
@@ -172,10 +180,13 @@ public list[tuple[int, list[int], str]] findDuplications2(str src) {
 		
 		//for (c2 <- [c1+1..theSize], checkingLine == lines[c2]) {
 			//println("Found duplicate line <c1>|<c2> | <checkingLine>");
-			if (c1 in domain(thelist)) {
-				tupKey = indexOf(domain(thelist), c1);
+			//if (c1 in domain(thelist)) {
+			tupKey = getIndexOf(thelist, c1);
+			if (tupKey != -1) { 
+				// If found, merge this value in the list
 				thelist[tupKey] = <c1, thelist[tupKey].dupLs + c2, lines[c1]>;
 			} else {
+				// -1 means "not found", add new value to the list
 				thelist += <c1, [c2], lines[c1]>;
 			}
 		//}
@@ -197,6 +208,13 @@ public list[tuple[int, list[int], str]] findDuplications2(str src) {
 	//}
 	
 	return thelist;
+}
+
+private int getIndexOf(list[tuple[int lnNumber, list[int] dupLs, str dupStr]] tupleList, int lineNumber) {
+	for (int i <- [0..size(tupleList)]) {
+		if (tupleList[i].lnNumber == lineNumber) return i;
+	}
+	return -1;
 }
 
 private void findDuplications(str src, int lineNrCount = 6) {
