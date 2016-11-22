@@ -13,9 +13,9 @@ public list[tuple[int, list[int], str]] findDuplications(str src, bool isDebug) 
 	
 	int lastC1 = 0;
 	for (<c1,c2> <- [<c1,c2> | c1 <- [0..theSize], c2 <- [c1+1..theSize], lines[c1] == lines[c2]]) {
-		if (lastC1 != c1) {
-			//println("Checking line [<c1>/<theSize>]");
-			if (isDebug) print(".");
+		if (isDebug && lastC1 != c1) {
+			println("Checking line [<c1>/<theSize>]");
+			//print(".");
 			lastC1 = c1;
 		}
 		
@@ -55,7 +55,7 @@ public list[tuple[str, int]] calculateDuplicationBlocks(list[tuple[int lnNumber,
 					v+2 in theList[checkIndex2].dupLs &&
 					v+1 in theList[checkIndex1].dupLs ) {
 					
-					// TODO: Add \r\n if wanted...
+					// * Note: We do not add \r\n here, add this if needed...
 					str theDuplicate = tup.dupStr + 
 						theList[checkIndex1].dupStr + 
 						theList[checkIndex2].dupStr + 

@@ -50,6 +50,7 @@ private tuple[loc, int, int] calculateMethodComplexity(tuple[loc location, int l
 		case conditional(_,_,_): ternaryStatements+= 1; // ? | ternary operator
 		case \assert(_): 		assertStatements +=1; // Assert
 		case \assert(_,_): 		assertStatements +=1; // Assert
+		// * Note: We do not take "return" statements into account.
 	}
 	
 	complexity += ifStatements 
