@@ -7,9 +7,11 @@ import lang::java::m3::Core;
 import lang::java::jdt::m3::Core;
 
 // Our metrics modules
+import MetricsUtil;
 import metrics::Volume;
 import metrics::UnitSize;
 import metrics::UnitComplexity;
+import metrics::Duplication;
 
 /**
  * Alex Kok
@@ -29,12 +31,13 @@ public list[loc] projectLocations = [
 // Values to keep track of the analysis of the current project
 private datetime analysisStartTime, analysisEndTime;
 private M3 projectM3Model;
+private str bigFileOfProject;
 private int metricTotalVolume;
-private str metricVolumeResult;
+private int metricVolumeResult;
 private list[tuple[loc, int, int]] metricTotalUnitSize;
-private str metricUnitSizeResult;
+private int metricUnitSizeResult;
 private list[tuple[loc, int, int]] metricTotalUnitComplexity;
-private str metricUnitComplexityResult;
+private int metricUnitComplexityResult;
 
 
 /**
@@ -60,8 +63,10 @@ public void main(loc projectLocation = projectLocations[1]) {
 	println();
 	
 	println("** Phase 1: Preparing project data");
-	prepareProjectData(projectLocation);
-	println("- Files: <size(files(projectM3Model))>");
+	print("- Progress: ");
+	projectM3Model = createM3FromEclipseProject(projectLocation);
+	bigFileOfProject = createBigFile(files(projectM3Model));
+	println("\n- Files: <size(files(projectM3Model))>");
 	println("- Methods: <size(methods(projectM3Model))>");
 	println();
 	
@@ -142,8 +147,14 @@ public void main(loc projectLocation = projectLocations[1]) {
 	println();
 	
 	println("** Phase 5: Calculating metric: Duplication");
-	println("## TODO ##");
-	println("- Resulting in:\t __");
+	print("- Progress: ");
+	metricDuplications = findDuplications(bigFileOfProject);
+	print("- Duplicated lines found. Calculating blocks...");
+	print("- Progress: ");
+	metricDuplicationBlocks = calculateDuplicationBlocks(metricDuplications);
+	metricDuplicationsTotalLines = (0 | it + n | <_,n> <- metricDuplicationBlocks);
+	metricDuplicationResult = calculateDuplicationResult(metricDuplicationsTotalLines, metricTotalVolume);
+	println("\n- Resulting in:\t <metricDuplicationResult>");
 	println();
 	
 	println("** Result");
@@ -153,14 +164,10 @@ public void main(loc projectLocation = projectLocations[1]) {
 	println("\> Volume: \t\t <metricVolumeResult> \t | LOC: <metricTotalVolume>");
 	println("\> Unit Size: \t\t <metricUnitSizeResult> \t |");
 	println("\> Unit Complexity: \t <metricUnitComplexityResult> \t |");
-	println("\> Duplication: \t\t N/A \t | ## TODO ##");
+	println("\> Duplication: \t\t <metricDuplicationResult> \t | DLOC: <metricDuplicationsTotalLines>");
 	analysisEndTime = now();
 	println();
 	
 	println("- End time: <printDateTime(analysisEndTime)>");
 	println("- Analysis duration (y,m,d,h,m,s,ms): <createDuration(analysisStartTime, analysisEndTime)>");
-}
-
-private void prepareProjectData(loc project) {
-	projectM3Model = createM3FromEclipseProject(project);
 }

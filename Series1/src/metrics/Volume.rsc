@@ -25,18 +25,17 @@ public int calculateVolume(M3 projectModel) {
  *   -  |  80 - 160  |  655 - 1310
  *  - - |   > 160    |    > 1310
  */
-public str calculateVolumeResult(int linesOfCode) {
-	if (linesOfCode < 66000) {
-		return "++";
-	} else if (linesOfCode < 246000) {
-		return "+";
-	} else if (linesOfCode < 665000) {
-		return "0";
-	} else if (linesOfCode < 1310000) {
-		return "-";
-	} else {
-		return "--";
-	}
+public int calculateVolumeResult(int linesOfCode) {
+	if (linesOfCode < 66000)
+		return 5;
+	else if (linesOfCode < 246000)
+		return 4;
+	else if (linesOfCode < 665000)
+		return 3;
+	else if (linesOfCode < 1310000)
+		return 2;
+	else 
+		return 1;
 }
 
 private list[tuple[loc, int]] filesLOC(set[loc] files) {
