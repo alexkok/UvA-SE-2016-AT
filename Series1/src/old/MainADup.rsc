@@ -23,8 +23,8 @@ import Set;
 import Map;
 
 //public loc prLoc = |project://MetricsTests2/src|;
-public loc prLoc = |project://smallsql0.21_src/src|;
-//public loc prLoc = |project://hsqldb-2.3.1/hsqldb|;
+//public loc prLoc = |project://smallsql0.21_src/src|;
+public loc prLoc = |project://hsqldb-2.3.1/hsqldb|;
 
 public void main(loc project = prLoc) {
 	println("Starting metrics analysis for duplication");

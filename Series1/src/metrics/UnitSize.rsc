@@ -15,7 +15,7 @@ public list[tuple[loc, int, int]] calculateUnitSize(M3 projectModel) {
 /**
  * Calculate Unit Size result: From the result, return the actual score.
  */
-public str calculateUnitSizeResult(list[tuple[loc, int, int]] methodsLOC, int totalVolume) {
+public int calculateUnitSizeResult(list[tuple[loc, int, int]] methodsLOC, int totalVolume) {
 	map[int, int] categories = getCategoriesForMethodLOC(methodsLOC);
 	
 	return calculateResultFromCategories(categories, totalVolume);
@@ -69,7 +69,7 @@ private map[int, int] getCategoriesForMethodLOC(list[tuple[loc, int, int]] metho
  *   -  |   50%    | 15%  |   5%
  *  - - |    -     |  -   |    -
  */
-private str calculateResultFromCategories(map[int, int] categories, int totalVolume) {
+private int calculateResultFromCategories(map[int, int] categories, int totalVolume) {
 	map[int, int] percentsPerCategory = (
 		1: categories[1] * 100 / totalVolume, 
 		2: categories[2] * 100 / totalVolume, 
@@ -78,15 +78,14 @@ private str calculateResultFromCategories(map[int, int] categories, int totalVol
 		);
 	
 	// Now we know the LOC per category, we can define the result.
-	if (percentsPerCategory[2] <= 25 && percentsPerCategory[3] == 0 && percentsPerCategory[4] == 0) {
-	 	return "++";
-	} else if (percentsPerCategory[2] <= 30 && percentsPerCategory[3] <= 5 && percentsPerCategory[4] == 0) {
-	 	return "+";
-	} else if (percentsPerCategory[2] <= 40 && percentsPerCategory[3] <= 10 && percentsPerCategory[4] == 0) {
-	 	return "0";
-	} else if (percentsPerCategory[2] <= 50 && percentsPerCategory[3] <= 15 && percentsPerCategory[4] <= 5) {
-	 	return "-";
-	} else {
-	 	return "--";
-	}
+	if (percentsPerCategory[2] <= 25 && percentsPerCategory[3] == 0 && percentsPerCategory[4] == 0)
+	 	return 5;
+	else if (percentsPerCategory[2] <= 30 && percentsPerCategory[3] <= 5 && percentsPerCategory[4] == 0)
+	 	return 4;
+	else if (percentsPerCategory[2] <= 40 && percentsPerCategory[3] <= 10 && percentsPerCategory[4] == 0)
+	 	return 3;
+	else if (percentsPerCategory[2] <= 50 && percentsPerCategory[3] <= 15 && percentsPerCategory[4] <= 5)
+	 	return 2;
+	else
+	 	return 1;
 }
