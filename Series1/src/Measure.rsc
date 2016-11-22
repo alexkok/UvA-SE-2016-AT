@@ -2,24 +2,29 @@ module Measure
 
 import Prelude;
 import util::Webserver;
+import IO;
 import metrics::UnitSize;
 
-public void server() {
-	str html = " \<!DOCTYPE html\>
-\<html\>
-\<head\>
-\<title\>Page Title\</title\>
-\</head\>
-\<body\>
+public str head() {
+	list[str] lines = readFileLines(|project://MetricsAnalyzer/src/ui/head.txt|);
+	return ("" | it + l | l <- lines);
+}
 
-\<h1\>This is a Heading\</h1\>
-\<p\>This is a paragraph.\</p\>
+public str body() {
+	list[str] lines = readFileLines(|project://MetricsAnalyzer/src/ui/body.txt|);
+	return ("" | it + l | l <- lines);
+}
 
-\</body\>
-\</html\>";
+public void server(loc local) {
+	str html = "\<!DOCTYPE html\>
+		\<html lang=\"en\"\>
+			" + head() +"
+			" + body() +"
+		\</html\>";
 
 	//str myFunction(map[str,str] params) = "\<div\>Hello Rascal\</div\>";
 	str myFunction(map[str,str] params) = html;
-	serve(|http://localhost:8090|, functionserver(("/index.html": myFunction, "/volume.html": myFunction)));
+	//serve(|http://localhost:8091|, functionserver(("/index.html": myFunction, "/volume.html": myFunction)));
+	serve(local, functionserver(("/index.html": myFunction, "/volume.html": myFunction)));
 	//serve(|http://localhost:8092|, fileserver(|project://MetricsTests2/src/main/test.json|));
 }
