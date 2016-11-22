@@ -4,9 +4,22 @@ import lang::java::m3::Core;
 import lang::java::jdt::m3::Core;
 import lang::java::jdt::m3::AST;
 
+/**
+ * Calculate Unit Complexity: For each method calculate the LOC.
+ */
 public list[tuple[loc, int, int]] calculateUnitComplexity(list[tuple[loc, int, int]] methodsLOC, M3 projectModel) {
 	return [calculateMethodComplexity(<ml,nl,c>, projectModel) | <ml, nl, c> <- methodsLOC];
 }
+
+/**
+ * Calculate Unit Complexity result: From the result, return the actual score.
+ */
+public str calculateUnitComplexityResult(list[tuple[loc, int, int]] methodsLOC, int totalVolume) {
+	map[int, int] categories = getCategoriesForMethodLOC(methodsLOC);
+	
+	return calculateResultFromCategories(categories, totalVolume);
+}
+
 
 private tuple[loc, int, int] calculateMethodComplexity(tuple[loc location, int lines, int complexity] methodData, M3 projectModel) {
 	int complexity = 1;
@@ -51,15 +64,6 @@ private tuple[loc, int, int] calculateMethodComplexity(tuple[loc location, int l
 			   ;
 	methodData.complexity= complexity;
 	return methodData;
-}
-
-/**
- * Calculate Unit Complexity result: From the result, return the actual score.
- */
-public str calculateUnitComplexityResult(list[tuple[loc, int, int]] methodsLOC, int totalVolume) {
-	map[int, int] categories = getCategoriesForMethodLOC(methodsLOC);
-	
-	return calculateResultFromCategories(categories, totalVolume);
 }
 
 /** 

@@ -24,6 +24,7 @@ import Map;
 
 //public loc prLoc = |project://MetricsTests2/src|;
 public loc prLoc = |project://smallsql0.21_src/src|;
+//public loc prLoc = |project://hsqldb-2.3.1/hsqldb|;
 
 public void main(loc project = prLoc) {
 	println("Starting metrics analysis for duplication");
@@ -140,7 +141,7 @@ public str createBigFilev2(set[loc] files) {
 		} else if (!inMultiComment) {
 			result += l + "\r\n";
 		} // Else: Comment is open, ignore this line
-		println("[<i>]");
+		println("[<i>] <l>");
 		i += 1;
 	}
 	return result;

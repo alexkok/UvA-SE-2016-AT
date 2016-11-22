@@ -48,7 +48,7 @@ import java.util.Set;
  */
 public class ValidatingResourceBundle {
     protected boolean validated = false;
-    protected Class<? extends Enum<?>> enumType;
+    protected Class enumType;
 
     public static final int THROW_BEHAVIOR =
             RefCapablePropertyResourceBundle.THROW_BEHAVIOR;
@@ -164,7 +164,7 @@ public class ValidatingResourceBundle {
         if (validated) return;
         validated = true;
         Set<String> resKeysFromEls = new HashSet<String>();
-        for (Enum<?> e : enumType.getEnumConstants())
+        for (Object e : enumType.getEnumConstants())
             resKeysFromEls.add(e.toString());
         Enumeration<String> allKeys = wrappedRCPRB.getKeys();
         while (allKeys.hasMoreElements()) {
