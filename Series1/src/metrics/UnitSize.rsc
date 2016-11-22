@@ -2,6 +2,7 @@ module metrics::UnitSize
 
 import lang::java::m3::Core;
 import lang::java::\syntax::Java15;
+import IO;
 
 import MetricsUtil;
 
@@ -9,7 +10,7 @@ import MetricsUtil;
  * Calculate Unit Size: For each method calculate the LOC.
  */
 public list[tuple[loc, int, int]] calculateUnitSize(M3 projectModel, bool isDebug) {
-	return [<l,calculateLOC(#ClassBodyDec, l, isDebug),0> | l <- methods(projectModel)]; // Adding the third argument here so we can reuse this for the complexity 
+	return [<l,calculateLOC(#ClassBodyDec, readFile(l), isDebug),0> | l <- methods(projectModel)]; // Adding the third argument here so we can reuse this for the complexity 
 }
 
 /**

@@ -1,6 +1,7 @@
 module metrics::Volume
 
 import lang::java::m3::Core;
+import IO;
 
 import MetricsUtil;
 
@@ -45,5 +46,5 @@ private list[tuple[loc, int]] filesLOC(set[loc] files, bool isDebug) {
 	//type[&T<:Tree]  
 	theType = #start[CompilationUnit]; 
 	
-	return [<f, calculateLOC(theType, f, isDebug)> | f <- files];
+	return [<f, calculateLOC(theType, readFile(f), isDebug)> | f <- files];
 }

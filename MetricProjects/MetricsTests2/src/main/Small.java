@@ -10,7 +10,9 @@ public class Small {
 		System.out.println("AAAAA");
 		System.out.println("AAAAA");
 	}
-	
+	/**
+	 * AAA
+	 */
 	public void aMethod() {
 		System.out.println("BBBBB");
 		System.out.println("AAAAA");
