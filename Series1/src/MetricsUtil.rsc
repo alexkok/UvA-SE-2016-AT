@@ -54,7 +54,7 @@ public int calculateLOC(type[&T<:Tree] theType, loc location, bool isDebug) {
 	try {
 		t = parse(theType, location);
 		return countSLOC(t);
-	} catch ParseError(loc l): {
+	} catch ParseError(l): {
 		if (isDebug) println("\nFound a parse error in <l> at line <l.begin.line>, column <l.begin.column>");
 		if (isDebug) println("	Method: <readFile(location)>");
 		return -1;
@@ -67,7 +67,7 @@ public str convertResult(int result) {
 		case 4: return "+";
 		case 3: return "0";
 		case 2: return "-";
-		case 1: return "-";
+		case 1: return "--";
 		default: return "N/A";
 	}
 }
