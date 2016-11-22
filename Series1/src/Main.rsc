@@ -9,6 +9,7 @@ import lang::java::jdt::m3::Core;
 
 // Our metrics modules
 import MetricsUtil;
+import Measure;
 import metrics::Volume;
 import metrics::UnitSize;
 import metrics::UnitComplexity;
@@ -222,6 +223,8 @@ private void showMetricResults() {
 	metricMaintainability = sum([metricAnalysability, metricChangeability, metricTestability])/3;
 	println("|--------------------------------|");
 	println("\> Maintainability: \t <convertResultStars(metricMaintainability)> \t | Analysability, Changeability, Testability");
+	
+	server(|http://localhost:8088|, metricAnalysability, metricChangeability, metricTestability, metricMaintainability);
 }
 
 private void tearDownAnalyzer() {
