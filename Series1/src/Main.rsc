@@ -226,7 +226,9 @@ private void showMetricResults() {
 	println("|--------------------------------|");
 	println("\> Maintainability: \t <convertResultStars(metricMaintainability)> \t | Analysability, Changeability, Testability");
 	
-	server(|http://localhost:8088|, metricAnalysability, metricChangeability, metricTestability, metricMaintainability);
+	loc local = |http://localhost:8080|;
+	server(local, metricAnalysability, metricChangeability, metricTestability, metricMaintainability);
+	println("Server started at <local>");
 }
 
 private void tearDownAnalyzer() {
