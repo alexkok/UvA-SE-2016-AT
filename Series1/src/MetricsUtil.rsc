@@ -67,7 +67,7 @@ public str convertResult(int result) {
 		case 4: return "+";
 		case 3: return "0";
 		case 2: return "-";
-		case 1: return "-";
+		case 1: return "--";
 		default: return "N/A";
 	}
 }
@@ -79,6 +79,17 @@ public str convertResultStars(int result) {
 		case 3: return "\u2605\u2605\u2605" + "\u2606\u2606";
 		case 2: return "\u2605\u2605" + "\u2606\u2606\u2606";
 		case 1: return "\u2605" + "\u2606\u2606\u2606\u2606";
+		default: return "N/A";
+	}
+}
+
+public str convertResultUI(int result) {
+	switch (result) {
+		case 5: return "\<div class=\"count green\"\>" + convertResult(result) + "\</div\>";
+		case 4: return "\<div class=\"count green\"\>" + convertResult(result) + "\</div\>";
+		case 3: return "\<div class=\"count\"\>" + convertResult(result) + "\</div\>";
+		case 2: return "\<div class=\"count red\"\>" + convertResult(result) + "\</div\>";
+		case 1: return "\<div class=\"count red\"\>" + convertResult(result) + "\</div\>";
 		default: return "N/A";
 	}
 }
