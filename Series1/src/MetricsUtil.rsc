@@ -82,3 +82,14 @@ public str convertResultStars(int result) {
 		default: return "N/A";
 	}
 }
+
+public str convertResultUI(int result) {
+	switch (result) {
+		case 5: return "\<div class=\"count green\"\>" + convertResult(result) + "\</div\>";
+		case 4: return "\<div class=\"count green\"\>" + convertResult(result) + "\</div\>";
+		case 3: return "\<div class=\"count\"\>" + convertResult(result) + "\</div\>";
+		case 2: return "\<div class=\"count red\"\>" + convertResult(result) + "\</div\>";
+		case 1: return "\<div class=\"count red\"\>" + convertResult(result) + "\</div\>";
+		default: return "N/A";
+	}
+}
