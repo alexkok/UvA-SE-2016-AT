@@ -27,7 +27,7 @@ import metrics::Duplication;
 public list[loc] projectLocations = [
 	|project://MetricsTests2/src|, // Our project with some defined tests
 	|project://smallsql0.21_src/src|, // The SmallSQL project
-	|project://hsqldb-2.3.1/hsqldp/src| // The hsqldb project
+	|project://hsqldb-2.3.1/hsqldb| // The hsqldb project
 ];
 
 // Values to keep track of the analysis of the current project
@@ -55,9 +55,10 @@ private int metricMaintainability;
  * The main method.
  * Starting the analyzer and computing each metric on the given project.
  */
-public void main(loc projectLocation = projectLocations[1], bool isDebug = false) {
+public void main(loc projectLocation = projectLocations[1]) {
+	analysysIsDebug = true;
 	
-	initAnalyzer(projectLocation, isDebug);
+	initAnalyzer(projectLocation);
 	println();
 	
 	doPhase1_Prepare();
@@ -76,9 +77,8 @@ public void main(loc projectLocation = projectLocations[1], bool isDebug = false
 	tearDownAnalyzer();
 }
 
-private void initAnalyzer(loc projectLocation, bool debug) {
+private void initAnalyzer(loc projectLocation) {
 	analysysProjectLocation = projectLocation;
-	analysysIsDebug = debug;
 	analysisStartTime = now();
 	println("*************** Metrics Analyzer ***************");
 	println("* Alex Kok                                     *");
@@ -89,7 +89,7 @@ private void initAnalyzer(loc projectLocation, bool debug) {
 	println("************************************************");
 	println("- Start time:\t\t <printDateTime(analysisStartTime)>");
 	println("- Project location:\t <analysysProjectLocation>");
-	println("- Debug modus:\t <analysysIsDebug>");
+	println("- Debug modus:\t\t <analysysIsDebug>");
 	println("- Metrics to calculate:\t Volume, Unit Size, Unity Complexity and Duplication");
 	println("- Tables used to compute the metrics can be found in the source. Those tables will also be printed here in the meantime when the result is being computed for a specific metric.");
 }
@@ -125,11 +125,12 @@ private void doPhase2_Volume() {
 	println("\>   0  |  30 - 80   |  245 - 665");
 	println("\>   -  |  80 - 160  |  655 - 1310");
 	println("\>  - - |   \> 160    |    \> 1310");
-	println("- Resulting in:\t <metricVolumeResult> (<convertResult(metricVolumeResult)>)");
+	println("- Resulting in:\t <convertResult(metricVolumeResult)> (<convertResultStars(metricVolumeResult)>))");
 }
 
 private void doPhase3_UnitSize() {
 	println("** Phase 3: Calculating metric: Unit Size");
+	println("- Will be computed based on the SIG Unit Size metric");
 	if (analysysIsDebug) print("- Progress: ");
 	metricTotalUnitSize = calculateUnitSize(projectM3Model, analysysIsDebug);
 	metricUnitSizeResult = calculateUnitSizeResult(metricTotalUnitSize, metricTotalVolume);
@@ -154,10 +155,11 @@ private void doPhase3_UnitSize() {
 	println("\>   -  |   50%    | 15%  |   5%");
 	println("\>  - - |    -     |  -   |    -");
 	println("- The total LOC that is used here is the Volume calculated earlier.");
-	println("- Resulting in:\t <metricUnitSizeResult> (<convertResult(metricUnitSizeResult)>)");
+	println("- Resulting in:\t <convertResult(metricUnitSizeResult)> (<convertResultStars(metricUnitSizeResult)>))");
 }
 private void doPhase4_UnitComplexity() {
 	println("** Phase 4: Calculating metric: Unit Complexity");
+	println("- Will be computed based on the SIG Unit Complexity metric");
 	metricTotalUnitComplexity = calculateUnitComplexity(metricTotalUnitSize, projectM3Model);
 	metricUnitComplexityResult = calculateUnitComplexityResult(metricTotalUnitComplexity, metricTotalVolume);
 	println("- The LOC of each method will be categorized in the following categories:");
@@ -180,7 +182,7 @@ private void doPhase4_UnitComplexity() {
 	println("\>   -  |   50%    | 15%  |   5%");
 	println("\>  - - |    -     |  -   |    -");
 	println("- The total LOC that is used here is the Volume calculated earlier.");
-	println("- Resulting in:\t <metricUnitComplexityResult> (<convertResult(metricUnitComplexityResult)>)");
+	println("- Resulting in:\t <convertResult(metricUnitComplexityResult)> (<convertResultStars(metricUnitComplexityResult)>))");
 }
 
 private void doPhase5_Duplication() {
@@ -194,7 +196,7 @@ private void doPhase5_Duplication() {
 	metricDuplicationsTotalLines = (0 | it + n | <_,n> <- metricDuplicationBlocks);
 	metricDuplicationResult = calculateDuplicationResult(metricDuplicationsTotalLines, metricTotalVolume);
 	if (analysysIsDebug) println();
-	println("- Resulting in:\t <metricDuplicationResult> (<convertResult(metricDuplicationResult)>)");
+	println("- Resulting in:\t <convertResult(metricDuplicationResult)> (<convertResultStars(metricDuplicationResult)>))");
 }
 
 private void showMetricResults() {
