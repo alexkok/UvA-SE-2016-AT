@@ -161,10 +161,10 @@ public void main(loc projectLocation = projectLocations[1]) {
 	println("|--------------------------------|");
 	println("| Metric \t\tResult\t | Extra comment");
 	println("|--------------------------------|");
-	println("\> Volume: \t\t <metricVolumeResult> \t | LOC: <metricTotalVolume>");
-	println("\> Unit Size: \t\t <metricUnitSizeResult> \t |");
-	println("\> Unit Complexity: \t <metricUnitComplexityResult> \t |");
-	println("\> Duplication: \t\t <metricDuplicationResult> \t | DLOC: <metricDuplicationsTotalLines>");
+	println("\> Volume: \t\t <convertResult(metricVolumeResult)> \t | LOC: <metricTotalVolume>");
+	println("\> Unit Size: \t\t <convertResult(metricUnitSizeResult)> \t |");
+	println("\> Unit Complexity: \t <convertResult(metricUnitComplexityResult)> \t |");
+	println("\> Duplication: \t\t <convertResult(metricDuplicationResult)> \t | DLOC: <metricDuplicationsTotalLines>");
 	analysisEndTime = now();
 	println();
 	

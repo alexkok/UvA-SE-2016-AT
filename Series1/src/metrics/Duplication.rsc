@@ -42,7 +42,7 @@ public list[tuple[str, int]] calculateDuplicationBlocks(list[tuple[int lnNumber,
 					
 					// The final check for real duplicates...
 					if (v notin [tup.lnNumber..tup.lnNumber+blockSize-1]) {
-						println("<tup.lnNumber>:<tup.lnNumber+blockSize-1>|<v>-<v+blockSize-1>| Found block! <tup.lnNumber> | <blockSize-1> | <substring(theDuplicate, 0, (size(theDuplicate) > 150) ? 150 : size(theDuplicate))>");
+						//println("\n<tup.lnNumber>:<tup.lnNumber+blockSize-1>|<v>-<v+blockSize-1>| Found block! <tup.lnNumber> | <blockSize-1> | <substring(theDuplicate, 0, (size(theDuplicate) > 150) ? 150 : size(theDuplicate))>");
 						duplicatesList += <theDuplicate, blockSize-1>;
 						j += blockSize-1;
 						if (tup.lnNumber+blockSize-1 > maxValue) {

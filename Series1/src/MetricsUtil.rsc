@@ -59,3 +59,14 @@ public int calculateLOC(type[&T<:Tree] theType, loc location) {
 		return -1;
 	}
 }
+
+public str convertResult(int result) {
+	switch (result) {
+		case 5: return "++";
+		case 4: return "+";
+		case 3: return "0";
+		case 2: return "-";
+		case 1: return "-";
+		default: return "N/A";
+	}
+}
