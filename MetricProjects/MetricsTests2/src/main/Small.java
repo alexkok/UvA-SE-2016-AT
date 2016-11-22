@@ -1,6 +1,7 @@
 package main;
 
 public class Small {
+	
 	public Small() {
 		System.out.println("AAAAA");
 		System.out.println("AAAAA");

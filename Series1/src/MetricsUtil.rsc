@@ -6,7 +6,7 @@ import util::LOC;
 import IO;
 import String;
 
-public str createBigFile(set[loc] files) {
+public str createBigFile(set[loc] files, bool isDebug) {
 	int i = 0;
 	str result = "";
 	bool inMultiComment = false;
@@ -42,20 +42,21 @@ public str createBigFile(set[loc] files) {
 		} else if (!inMultiComment) {
 			result += l + "\r\n";
 		} // Else: Comment is open, ignore this line
-		//println("[<i>] <l>");
-		print(".");
+		if (isDebug) println("[<i>] <l>");
+		//if (isDebug) print(".");
 		i += 1;
 	}
 	return result;
 }
 
-public int calculateLOC(type[&T<:Tree] theType, loc location) {
-	print(".");
+public int calculateLOC(type[&T<:Tree] theType, loc location, bool isDebug) {
+	if (isDebug) print(".");
 	try {
 		t = parse(theType, location);
 		return countSLOC(t);
 	} catch ParseError(loc l): {
-		println("\nFound a parse error in <l> at line <l.begin.line>, column <l.begin.column>");
+		if (isDebug) println("\nFound a parse error in <l> at line <l.begin.line>, column <l.begin.column>");
+		if (isDebug) println("	Method: <readFile(location)>");
 		return -1;
 	}
 }

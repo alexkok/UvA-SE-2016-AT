@@ -7,9 +7,9 @@ import MetricsUtil;
 /** 
  * Calculate Volume: for each file calculate the LOC and return the sum of this.
  */
-public int calculateVolume(M3 projectModel) {
+public int calculateVolume(M3 projectModel, bool isDebug) {
 	set[loc] files = files(projectModel);
-	return (0 | it + n | <_, n> <- filesLOC(files), n != -1); // -1 means it was an error, so we should ignore it here.
+	return (0 | it + n | <_, n> <- filesLOC(files, isDebug), n != -1); // -1 means it was an error, so we should ignore it here.
 }
 
 /**
@@ -38,7 +38,7 @@ public int calculateVolumeResult(int linesOfCode) {
 		return 1;
 }
 
-private list[tuple[loc, int]] filesLOC(set[loc] files) {
+private list[tuple[loc, int]] filesLOC(set[loc] files, bool isDebug) {
 	// Defining the type of the tree that the parse tree needs to parse. 
 	// #start | To ignore any layout things before the first element is found (CompilationUnit in this case)
 	// CompilationUnit | Because we are working with files, the files begin with the root, which is CompilationUnit in the defined grammar.
@@ -46,5 +46,5 @@ private list[tuple[loc, int]] filesLOC(set[loc] files) {
 	//type[&T<:Tree]  
 	theType = #start[CompilationUnit]; 
 	
-	return [<f, calculateLOC(theType, f)> | f <- files];
+	return [<f, calculateLOC(theType, f, isDebug)> | f <- files];
 }

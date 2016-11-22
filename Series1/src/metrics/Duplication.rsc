@@ -4,13 +4,41 @@ import String;
 import List;
 import IO;
 
-public list[tuple[str, int]] calculateDuplicationBlocks(list[tuple[int lnNumber, list[int] dupLs, str dupStr]] theList)  {
+public list[tuple[int, list[int], str]] findDuplications(str src, bool isDebug) {
+	list[str] lines = [trim(l) | l <- split("\r\n", src)]; 
+	int theSize = size(lines);
+	str checkingLine;
+	
+	list[tuple[int lnNumber, list[int] dupLs, str dupStr]] thelist = [];
+	
+	int lastC1 = 0;
+	for (<c1,c2> <- [<c1,c2> | c1 <- [0..theSize], c2 <- [c1+1..theSize], lines[c1] == lines[c2]]) {
+		if (lastC1 != c1) {
+			//println("Checking line [<c1>/<theSize>]");
+			if (isDebug) print(".");
+			lastC1 = c1;
+		}
+		
+		tupKey = getIndexOf(thelist, c1);
+		if (tupKey != -1) { 
+			// If found, merge this value in the list
+			thelist[tupKey] = <c1, thelist[tupKey].dupLs + c2, lines[c1]>;
+		} else {
+			// -1 means "not found", add new value to the list
+			thelist += <c1, [c2], lines[c1]>;
+		}
+	}
+	
+	return thelist;
+}
+
+public list[tuple[str, int]] calculateDuplicationBlocks(list[tuple[int lnNumber, list[int] dupLs, str dupStr]] theList, bool isDebug)  {
 	list[tuple[str duplicateBlock, int lines]] duplicatesList = [];
 	int curLnNumber = 0;
 	for (i <- [0..size(theList)], theList[i].lnNumber >= curLnNumber) {
 		tup = theList[i];
-		//println("[<i>/<size(theList)>]");
-		print(".");
+		if (isDebug) println("[<i>/<size(theList)>]");
+		//print(".");
 
 		int maxValue = 0;
 		int j = 0;
@@ -42,7 +70,7 @@ public list[tuple[str, int]] calculateDuplicationBlocks(list[tuple[int lnNumber,
 					
 					// The final check for real duplicates...
 					if (v notin [tup.lnNumber..tup.lnNumber+blockSize-1]) {
-						//println("\n<tup.lnNumber>:<tup.lnNumber+blockSize-1>|<v>-<v+blockSize-1>| Found block! <tup.lnNumber> | <blockSize-1> | <substring(theDuplicate, 0, (size(theDuplicate) > 150) ? 150 : size(theDuplicate))>");
+						if (isDebug) println("\n<tup.lnNumber>:<tup.lnNumber+blockSize-1>|<v>-<v+blockSize-1>| Found block! <tup.lnNumber> | <blockSize-1> | <substring(theDuplicate, 0, (size(theDuplicate) > 150) ? 150 : size(theDuplicate))>");
 						duplicatesList += <theDuplicate, blockSize-1>;
 						j += blockSize-1;
 						if (tup.lnNumber+blockSize-1 > maxValue) {
@@ -72,34 +100,6 @@ public int calculateDuplicationResult(int duplicatedLines, int volume) {
 		return 2;
 	else
 		return 1;
-}
-
-public list[tuple[int, list[int], str]] findDuplications(str src) {
-	list[str] lines = [trim(l) | l <- split("\r\n", src)]; 
-	int theSize = size(lines);
-	str checkingLine;
-	
-	list[tuple[int lnNumber, list[int] dupLs, str dupStr]] thelist = [];
-	
-	int lastC1 = 0;
-	for (<c1,c2> <- [<c1,c2> | c1 <- [0..theSize], c2 <- [c1+1..theSize], lines[c1] == lines[c2]]) {
-		if (lastC1 != c1) {
-			//println("Checking line [<c1>/<theSize>]");
-			print(".");
-			lastC1 = c1;
-		}
-		
-		tupKey = getIndexOf(thelist, c1);
-		if (tupKey != -1) { 
-			// If found, merge this value in the list
-			thelist[tupKey] = <c1, thelist[tupKey].dupLs + c2, lines[c1]>;
-		} else {
-			// -1 means "not found", add new value to the list
-			thelist += <c1, [c2], lines[c1]>;
-		}
-	}
-	
-	return thelist;
 }
 
 private int getIndexOf(list[tuple[int lnNumber, list[int] dupLs, str dupStr]] tupleList, int lineNumber) {
