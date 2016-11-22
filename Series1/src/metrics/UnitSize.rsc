@@ -9,7 +9,7 @@ import MetricsUtil;
  * Calculate Unit Size: For each method calculate the LOC.
  */
 public list[tuple[loc, int, int]] calculateUnitSize(M3 projectModel, bool isDebug) {
-	return [<l,calculateLOC(#AbstractMethodDec, l, isDebug),0> | l <- methods(projectModel)]; // Adding the third argument here so we can reuse this for the complexity 
+	return [<l,calculateLOC(#ClassBodyDec, l, isDebug),0> | l <- methods(projectModel)]; // Adding the third argument here so we can reuse this for the complexity 
 }
 
 /**
