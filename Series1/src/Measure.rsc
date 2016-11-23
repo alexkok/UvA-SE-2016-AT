@@ -10,6 +10,8 @@ loc head = |project://MetricsAnalyzer/src/ui/head.txt|;
 loc body = |project://MetricsAnalyzer/src/ui/body.txt|;
 loc body2 = |project://MetricsAnalyzer/src/ui/body2.txt|;
 loc body3 = |project://MetricsAnalyzer/src/ui/body3.txt|;
+loc body4 = |project://MetricsAnalyzer/src/ui/body4.txt|;
+loc body5 = |project://MetricsAnalyzer/src/ui/body5.txt|;
 
 public str htmlFile(loc project) {
 	list[str] lines = readFileLines(project);
@@ -17,7 +19,7 @@ public str htmlFile(loc project) {
 }
 
 public void server(loc local, int metricAnalysability, int metricChangeability, int metricTestability, int metricMaintainability, 
-					int metricDuplicationsTotalLines, int metricTotalVolume) {
+					int metricDuplicationsTotalLines, int metricTotalVolume, map[int, int] metricUnitSizeCategories) {
 	str html = "\<!DOCTYPE html\>
 		\<html lang=\"en\"\>
 			" + htmlFile(head) +"
@@ -80,6 +82,104 @@ public void server(loc local, int metricAnalysability, int metricChangeability, 
 			
 			" + htmlFile(body3) +"
 			
+			\<table class=\"\" style=\"width:100%\"\>                    
+				\<tr\>                      
+					\<th style=\"width:37%;\"\>                        
+						\<p\>Top 5\</p\>                      
+					\</th\>                      
+					\<th\>                        
+						\<div class=\"col-lg-7 col-md-7 col-sm-7 col-xs-7\"\>                          
+							\<p class=\"\"\>Risk evaluation\</p\>                        
+						\</div\>                        
+						\<div class=\"col-lg-5 col-md-5 col-sm-5 col-xs-5\"\>                          
+							\<p class=\"\"\>LOC\</p\>                        
+						\</div\>                      
+					\</th\>                    
+				\</tr\>                    
+				\<tr\>                      
+					\<td\>                        
+						\<canvas id=\"canvas1\" height=\"140\" width=\"140\" style=\"margin: 15px 10px 10px 0\"\>\</canvas\>                      
+					\</td\>                      
+					\<td\>                        
+						\<table class=\"tile_info\"\>                          
+							\<tr\>                            
+								\<td\>                              
+									\<p\>\<i class=\"fa fa-square blue\"\>\</i\>Simple \</p\>                            
+								\</td\>                            
+								\<td\><metricUnitSizeCategories[1] * 100 / metricTotalVolume>%\</td\>                          
+							\</tr\>                          
+							\<tr\>                            
+								\<td\>                              
+									\<p\>\<i class=\"fa fa-square green\"\>\</i\>More complex \</p\>                            
+								\</td\>                            
+								\<td\><metricUnitSizeCategories[2] * 100 / metricTotalVolume>%\</td\>                          
+							\</tr\>                          
+							\<tr\>                            
+								\<td\>                              
+									\<p\>\<i class=\"fa fa-square purple\"\>\</i\>Complex \</p\>                            
+								\</td\>                            
+								\<td\><metricUnitSizeCategories[3] * 100 / metricTotalVolume>%\</td\>                          
+							\</tr\>                          
+							\<tr\>                            
+								\<td\>                              
+									\<p\>\<i class=\"fa fa-square aero\"\>\</i\>Untestable \</p\>                            
+								\</td\>                            
+								\<td\><metricUnitSizeCategories[4] * 100 / metricTotalVolume>%\</td\>                          
+							\</tr\>                                           
+						\</table\>                      
+					\</td\>                    
+				\</tr\>                  
+			\</table\>                
+		\</div\>              
+	\</div\>            
+\</div\>
+			
+			" + htmlFile(body4) +"
+			
+			\<!-- Doughnut Chart --\>    
+				\<script\>      
+					$(document).ready(function(){        
+						var options = {          
+							legend: false,          
+							responsive: false        
+					};        
+					
+					new Chart(document.getElementById(\"canvas1\"), {          
+						type: \'doughnut\',          
+						tooltipFillColor: \"rgba(51, 51, 51, 0.55)\",          
+						data: {            
+							labels: [              
+								\"Simple\",              
+								\"More complex\",              
+								\"Complex\",              
+								\"Untestable\",                    
+							],            
+							datasets: [{              
+								data: [<metricUnitSizeCategories[1] * 100 / metricTotalVolume>, 
+										<metricUnitSizeCategories[2] * 100 / metricTotalVolume>, 
+										<metricUnitSizeCategories[3] * 100 / metricTotalVolume>, 
+										<metricUnitSizeCategories[4] * 100 / metricTotalVolume>],              
+								backgroundColor: [
+								\"#3498DB\",                
+								\"#26B99A\",                      
+								\"#9B59B6\",
+								\"#BDC3C7\"                        
+							],              
+							hoverBackgroundColor: [
+								\"#49A9EA\",                
+								\"#36CAAB\",                                    
+								\"#B370CF\",
+								\"#CFD4D8\"             
+							 ]            
+							}]          
+						},          
+						options: options        
+						});      
+					});    
+				\</script\>    
+			\<!-- /Doughnut Chart --\>
+			
+			" + htmlFile(body5) +"
 		\</html\>";
 
 	//str myFunction(map[str,str] params) = "\<div\>Hello Rascal\</div\>";
