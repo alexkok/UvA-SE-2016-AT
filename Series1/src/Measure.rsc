@@ -86,14 +86,14 @@ public void server(loc local, int metricAnalysability, int metricChangeability, 
 			\<table class=\"\" style=\"width:100%\"\>                    
 				\<tr\>                      
 					\<th style=\"width:37%;\"\>                        
-						\<p\>Top 5\</p\>                      
+						\<p\>\</p\>                      
 					\</th\>                      
 					\<th\>                        
 						\<div class=\"col-lg-7 col-md-7 col-sm-7 col-xs-7\"\>                          
 							\<p class=\"\"\>Risk evaluation\</p\>                        
 						\</div\>                        
 						\<div class=\"col-lg-5 col-md-5 col-sm-5 col-xs-5\"\>                          
-							\<p class=\"\"\>LOC\</p\>                        
+							\<p class=\"\"\>LOC%\</p\>                        
 						\</div\>                      
 					\</th\>                    
 				\</tr\>                    
@@ -167,7 +167,7 @@ public void server(loc local, int metricAnalysability, int metricChangeability, 
 				},        
 				calculable: true,        
 				series: [{          
-					name: \'Area Mode\',          
+					name: \'LOC (Percentage)\',          
 					type: \'pie\',          
 					radius: [25, 60],          
 					center: [\'50%\', 145],          
