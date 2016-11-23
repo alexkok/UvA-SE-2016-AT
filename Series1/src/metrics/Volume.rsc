@@ -1,6 +1,7 @@
 module metrics::Volume
 
 import lang::java::m3::Core;
+import IO;
 
 import MetricsUtil;
 
@@ -8,8 +9,7 @@ import MetricsUtil;
  * Calculate Volume: for each file calculate the LOC and return the sum of this.
  */
 public int calculateVolume(M3 projectModel, bool isDebug) {
-	set[loc] files = files(projectModel);
-	return (0 | it + n | <_, n> <- filesLOC(files, isDebug), n != -1); // -1 means it was an error, so we should ignore it here.
+	return (0 | it + n | <_, n> <- filesLOC(files(projectModel), isDebug), n != -1); // -1 means it was an error, so we should ignore it here.
 }
 
 /**
@@ -46,5 +46,5 @@ private list[tuple[loc, int]] filesLOC(set[loc] files, bool isDebug) {
 	//type[&T<:Tree]  
 	theType = #start[CompilationUnit]; 
 	
-	return [<f, calculateLOC(theType, f, isDebug)> | f <- files];
+	return [<f, calculateLOC(theType, readFile(f), isDebug)> | f <- files];
 }

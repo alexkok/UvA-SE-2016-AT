@@ -49,14 +49,17 @@ public str createBigFile(set[loc] files, bool isDebug) {
 	return result;
 }
 
-public int calculateLOC(type[&T<:Tree] theType, loc location, bool isDebug) {
+public int calculateLOC(type[&T<:Tree] theType, str codeFragment, bool isDebug) {
 	if (isDebug) print(".");
+	if (startsWith(codeFragment, "/*")) {
+		codeFragment = trim(split("*/", codeFragment)[1]);
+	}
 	try {
-		t = parse(theType, location);
+		t = parse(theType, codeFragment);
 		return countSLOC(t);
-	} catch ParseError(loc l): {
+	} catch ParseError(l): {
 		if (isDebug) println("\nFound a parse error in <l> at line <l.begin.line>, column <l.begin.column>");
-		if (isDebug) println("	Method: <readFile(location)>");
+		if (isDebug) println("	Method: <codeFragment>");
 		return -1;
 	}
 }
