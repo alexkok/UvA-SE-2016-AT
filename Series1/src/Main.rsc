@@ -34,6 +34,7 @@ public list[loc] projectLocations = [
 private datetime analysisStartTime, analysisEndTime;
 private loc analysysProjectLocation;
 private bool analysysIsDebug;
+private bool analysysSkipDuplication;
 private M3 projectM3Model;
 private str bigFileOfProject;
 private int metricTotalVolume;
@@ -57,6 +58,7 @@ private int metricMaintainability;
  */
 public void main(loc projectLocation = projectLocations[1]) {
 	analysysIsDebug = true;
+	analysysSkipDuplication = true;
 	
 	initAnalyzer(projectLocation);
 	println();
@@ -187,16 +189,20 @@ private void doPhase4_UnitComplexity() {
 
 private void doPhase5_Duplication() {
 	println("** Phase 5: Calculating metric: Duplication");
-	if (analysysIsDebug) print("- Progress: ");
-	metricDuplications = findDuplications(bigFileOfProject, analysysIsDebug);
-	if (analysysIsDebug) println();
-	println("- Duplicated lines found. Calculating blocks...");
-	if (analysysIsDebug) print("- Progress: ");
-	metricDuplicationBlocks = calculateDuplicationBlocks(metricDuplications, analysysIsDebug);
-	metricDuplicationsTotalLines = (0 | it + n | <_,n> <- metricDuplicationBlocks);
-	metricDuplicationResult = calculateDuplicationResult(metricDuplicationsTotalLines, metricTotalVolume);
-	if (analysysIsDebug) println();
-	println("- Resulting in:\t <convertResult(metricDuplicationResult)> (<convertResultStars(metricDuplicationResult)>))");
+	if (analysisSkipDuplication) {
+		println("- Skipping duplication due to the setting");
+	} else {
+		if (analysysIsDebug) print("- Progress: ");
+		metricDuplications = findDuplications(bigFileOfProject, analysysIsDebug);
+		if (analysysIsDebug) println();
+		println("- Duplicated lines found. Calculating blocks...");
+		if (analysysIsDebug) print("- Progress: ");
+		metricDuplicationBlocks = calculateDuplicationBlocks(metricDuplications, analysysIsDebug);
+		metricDuplicationsTotalLines = (0 | it + n | <_,n> <- metricDuplicationBlocks);
+		metricDuplicationResult = calculateDuplicationResult(metricDuplicationsTotalLines, metricTotalVolume);
+		if (analysysIsDebug) println();
+		println("- Resulting in:\t <convertResult(metricDuplicationResult)> (<convertResultStars(metricDuplicationResult)>))");
+	}
 }
 
 private void showMetricResults() {

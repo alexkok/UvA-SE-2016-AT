@@ -46,5 +46,5 @@ private list[tuple[loc, int]] filesLOC(set[loc] files, bool isDebug) {
 	//type[&T<:Tree]  
 	theType = #start[CompilationUnit]; 
 	
-	return [<f, calculateLOC(theType, readFile(f), isDebug)> | f <- files];
+	return [<f, calculateLOC(theType, f, isDebug)> | f <- files];
 }

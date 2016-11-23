@@ -33,7 +33,7 @@ public str createBigFile(set[loc] files, bool isDebug) {
 			inMultiComment = false;
 			if (size(split(l, "\\*/")) > 1 && contains(split("\\*/")[1], "/*")) {
 				// Closing, but also starting another multi comment
-				commentOpen = true;
+				inMultiComment = true;
 				if (startsWith(trim(split("\\*/", l)[1]), "/*")) {
 					// Not starting with /*, so it has a LOC. Add it.
 					result += l  + "\r\n";
@@ -49,11 +49,11 @@ public str createBigFile(set[loc] files, bool isDebug) {
 	return result;
 }
 
-public int calculateLOC(type[&T<:Tree] theType, str codeFragment, bool isDebug) {
+public int calculateLOC(type[&T<:Tree] theType, loc codeFragment, bool isDebug) {
 	if (isDebug) print(".");
-	if (startsWith(codeFragment, "/*")) {
-		codeFragment = trim(split("*/", codeFragment)[1]);
-	}
+	//if (startsWith(codeFragment, "/*")) {
+	//	codeFragment = substring(codeFragment, size(trim(split("*/", codeFragment)[0])));
+	//}
 	try {
 		t = parse(theType, codeFragment);
 		return countSLOC(t);
