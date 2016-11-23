@@ -168,8 +168,8 @@ private void doPhase4_UnitComplexity() {
 	println("** Phase 4: Calculating metric: Unit Complexity");
 	println("- Will be computed based on the SIG Unit Complexity metric");
 	metricTotalUnitComplexity = calculateUnitComplexity(metricTotalUnitSize, projectM3Model);
-	metricTotalUnitComplexityCategories = calculateUnitComplexityCategories(metricTotalUnitComplexity);
-	metricUnitComplexityResult = calculateUnitComplexityResult(metricTotalUnitComplexityCategories, metricTotalVolume);
+	metricUnitComplexityCategories = calculateUnitComplexityCategories(metricTotalUnitComplexity);
+	metricUnitComplexityResult = calculateUnitComplexityResult(metricUnitComplexityCategories, metricTotalVolume);
 	println("- The LOC of each method will be categorized in the following categories:");
 	println("\> Metric table (Source: SIG):");
 	println("\> ----------------");
@@ -248,6 +248,6 @@ private void tearDownAnalyzer() {
 	
 	loc local = |http://localhost:8080|;
 	server(local, metricAnalysability, metricChangeability, metricTestability, metricMaintainability, metricDuplicationsTotalLines, 
-		metricTotalVolume, metricUnitSizeCategories);
+		metricTotalVolume, metricUnitSizeCategories, metricUnitComplexityCategories);
 	println("Server started at <local>");
 }

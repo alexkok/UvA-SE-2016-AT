@@ -12,6 +12,7 @@ loc body2 = |project://MetricsAnalyzer/src/ui/body2.txt|;
 loc body3 = |project://MetricsAnalyzer/src/ui/body3.txt|;
 loc body4 = |project://MetricsAnalyzer/src/ui/body4.txt|;
 loc body5 = |project://MetricsAnalyzer/src/ui/body5.txt|;
+loc body6 = |project://MetricsAnalyzer/src/ui/body6.txt|;
 
 public str htmlFile(loc project) {
 	list[str] lines = readFileLines(project);
@@ -19,7 +20,7 @@ public str htmlFile(loc project) {
 }
 
 public void server(loc local, int metricAnalysability, int metricChangeability, int metricTestability, int metricMaintainability, 
-					int metricDuplicationsTotalLines, int metricTotalVolume, map[int, int] metricUnitSizeCategories) {
+					int metricDuplicationsTotalLines, int metricTotalVolume, map[int, int] metricUnitSizeCategories, map[int, int] metricUnitComplexityCategories) {
 	str html = "\<!DOCTYPE html\>
 		\<html lang=\"en\"\>
 			<htmlFile(head)>
@@ -136,6 +137,62 @@ public void server(loc local, int metricAnalysability, int metricChangeability, 
 			
 			<htmlFile(body4)>
 			
+			var echartPieCollapse = echarts.init(document.getElementById(\'echart_pie2\'), theme);            
+			echartPieCollapse.setOption({        
+				tooltip: {          
+					trigger: \'item\',          
+					formatter: \"{a} \<br/\>{b} : {c} ({d}%)\"        
+				},        
+				legend: {          
+					x: \'center\',          
+					y: \'top\',          
+					data: [\'Simple\', \'More complex\', \'Complex\', \'Untestable\']        
+				},        
+				toolbox: {          
+					show: false,          
+					feature: {            
+						magicType: {              
+							show: true,              
+							type: [\'pie\', \'funnel\']            
+						},            
+						restore: {              
+							show: true,              
+							title: \"Restore\"            
+						},            
+						saveAsImage: {              
+							show: true,              
+							title: \"Save Image\"            
+						}          
+					}        
+				},        
+				calculable: true,        
+				series: [{          
+					name: \'Area Mode\',          
+					type: \'pie\',          
+					radius: [25, 60],          
+					center: [\'50%\', 145],          
+					roseType: \'area\',          
+					x: \'50%\',          
+					max: <metricTotalVolume>,          
+					sort: \'ascending\',          
+					data: [{            
+						value: <metricUnitComplexityCategories[1]>,            
+						name: \'Simple\'          
+					}, {            
+						value: <metricUnitComplexityCategories[2]>,            
+						name: \'More complex\'          
+					}, {            
+						value: <metricUnitComplexityCategories[3]>,            
+						name: \'Complex\'          
+					}, {            
+						value: <metricUnitComplexityCategories[4]>,            
+						name: \'Untestable\'          
+					}]        
+				}]      
+			});
+			
+			<htmlFile(body5)>
+			
 			\<!-- Doughnut Chart --\>    
 				\<script\>      
 					$(document).ready(function(){        
@@ -179,7 +236,7 @@ public void server(loc local, int metricAnalysability, int metricChangeability, 
 				\</script\>    
 			\<!-- /Doughnut Chart --\>
 			
-			<htmlFile(body5)>
+			<htmlFile(body6)>
 		\</html\>";
 
 	//str myFunction(map[str,str] params) = "\<div\>Hello Rascal\</div\>";
