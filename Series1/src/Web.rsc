@@ -1,4 +1,4 @@
-module Measure
+module Web
 
 import Prelude;
 import util::Webserver;

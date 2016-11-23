@@ -10,7 +10,7 @@ import lang::java::jdt::m3::Core;
 
 // Our metrics modules
 import MetricsUtil;
-import Measure;
+import Web;
 import metrics::Volume;
 import metrics::UnitSize;
 import metrics::UnitComplexity;
@@ -250,7 +250,7 @@ private void tearDownAnalyzer() {
 	iprintln(metricUnitSizeCategories);
 	iprintln(metricUnitComplexityCategories);
 	
-	loc local = |http://localhost:8090|;
+	loc local = |http://localhost:8080|;
 	server(local, metricAnalysability, metricChangeability, metricTestability, metricMaintainability, metricDuplicationsTotalLines, 
 		metricTotalVolume, metricUnitSizeCategories, metricUnitComplexityCategories);
 	println("Server started at <local + "index.html">");
