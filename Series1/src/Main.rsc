@@ -37,7 +37,7 @@ private loc analysysProjectLocation;
 private bool analysysIsDebug;
 private bool analysysSkipDuplication;
 private M3 projectM3Model;
-private str bigFileOfProject;
+private tuple[str source, int extraVolumeLoc] bigFileOfProject;
 private int metricTotalVolume;
 private int metricVolumeResult;
 private list[tuple[loc, int, int]] metricTotalUnitSize;
@@ -60,8 +60,8 @@ private int metricMaintainability;
  * Starting the analyzer and computing each metric on the given project.
  */
 public void main(loc projectLocation = projectLocations[1]) {
-	analysysIsDebug = false;
-	analysysSkipDuplication = true;
+	analysysIsDebug = true;
+	analysysSkipDuplication = false;
 	
 	initAnalyzer(projectLocation);
 	println();
@@ -107,7 +107,7 @@ private void doPhase1_Prepare() {
 	if (analysysIsDebug) println();
 	println("- Files: <size(files(projectM3Model))>");
 	println("- Methods: <size(methods(projectM3Model))>");
-	println("- Lines of big file: <size(split("\r\n", bigFileOfProject))>");
+	
 }
 
 private void doPhase2_Volume() {
@@ -119,7 +119,8 @@ private void doPhase2_Volume() {
 	println("  - Comments will NOT be considered as a LOC");
 	println("  - Empty lines will NOT be considered as a LOC");
 	if (analysysIsDebug) print("- Progress: ");
-	metricTotalVolume = calculateVolume(projectM3Model, analysysIsDebug);
+	//metricTotalVolume = calculateVolume(projectM3Model, analysysIsDebug); // 24050
+	metricTotalVolume = size(split("\r\n", bigFileOfProject.source)) + bigFileOfProject.extraVolumeLoc;
 	metricVolumeResult = calculateVolumeResult(metricTotalVolume);
 	println("\n- Volume:\t <metricTotalVolume>");
 	println("\> Metric table (Source: SIG):");
@@ -168,8 +169,8 @@ private void doPhase4_UnitComplexity() {
 	println("** Phase 4: Calculating metric: Unit Complexity");
 	println("- Will be computed based on the SIG Unit Complexity metric");
 	metricTotalUnitComplexity = calculateUnitComplexity(metricTotalUnitSize, projectM3Model);
-	metricTotalUnitComplexityCategories = calculateUnitComplexityCategories(metricTotalUnitComplexity);
-	metricUnitComplexityResult = calculateUnitComplexityResult(metricTotalUnitComplexityCategories, metricTotalVolume);
+	metricUnitComplexityCategories = calculateUnitComplexityCategories(metricTotalUnitComplexity);
+	metricUnitComplexityResult = calculateUnitComplexityResult(metricUnitComplexityCategories, metricTotalVolume);
 	println("- The LOC of each method will be categorized in the following categories:");
 	println("\> Metric table (Source: SIG):");
 	println("\> ----------------");
@@ -201,7 +202,7 @@ private void doPhase5_Duplication() {
 		metricDuplicationResult = 0;
 	} else {
 		if (analysysIsDebug) print("- Progress: ");
-		metricDuplications = findDuplications(bigFileOfProject, analysysIsDebug);
+		metricDuplications = findDuplications(bigFileOfProject.source, analysysIsDebug);
 		if (analysysIsDebug) println();
 		println("- Duplicated lines found. Calculating blocks...");
 		if (analysysIsDebug) print("- Progress: ");
@@ -246,7 +247,10 @@ private void tearDownAnalyzer() {
 	println("- End time: <printDateTime(analysisEndTime)>");
 	println("- Analysis duration (y,m,d,h,m,s,ms): <createDuration(analysisStartTime, analysisEndTime)>");
 	
-	loc local = |http://localhost:8080|;
+	iprintln(metricUnitSizeCategories);
+	iprintln(metricUnitComplexityCategories);
+	
+	loc local = |http://localhost:8090|;
 	server(local, metricAnalysability, metricChangeability, metricTestability, metricMaintainability, metricDuplicationsTotalLines, metricTotalVolume);
-	println("Server started at <local>");
+	println("Server started at <local + "index.html">");
 }

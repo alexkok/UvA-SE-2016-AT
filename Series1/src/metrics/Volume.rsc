@@ -9,7 +9,7 @@ import MetricsUtil;
  * Calculate Volume: for each file calculate the LOC and return the sum of this.
  */
 public int calculateVolume(M3 projectModel, bool isDebug) {
-	return (0 | it + n | <_, n> <- filesLOC(files(projectModel), isDebug), n != -1); // -1 means it was an error, so we should ignore it here.
+	return (0 | it + n | <_, n> <- filesLOC(files(projectModel), isDebug));
 }
 
 /**

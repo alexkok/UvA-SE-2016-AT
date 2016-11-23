@@ -6,11 +6,10 @@ import IO;
 
 public list[tuple[int, list[int], str]] findDuplications(str src, bool isDebug) {
 	list[str] lines = [trim(l) | l <- split("\r\n", src)]; 
+	
 	int theSize = size(lines);
-	str checkingLine;
 	
 	list[tuple[int lnNumber, list[int] dupLs, str dupStr]] thelist = [];
-	
 	int lastC1 = 0;
 	for (<c1,c2> <- [<c1,c2> | c1 <- [0..theSize], c2 <- [c1+1..theSize], lines[c1] == lines[c2]]) {
 		if (isDebug && lastC1 != c1) {
@@ -22,7 +21,7 @@ public list[tuple[int, list[int], str]] findDuplications(str src, bool isDebug) 
 		tupKey = getIndexOf(thelist, c1);
 		if (tupKey != -1) { 
 			// If found, merge this value in the list
-			thelist[tupKey] = <c1, thelist[tupKey].dupLs + c2, lines[c1]>;
+			thelist[tupKey].dupLs = thelist[tupKey].dupLs + c2;
 		} else {
 			// -1 means "not found", add new value to the list
 			thelist += <c1, [c2], lines[c1]>;
@@ -37,13 +36,14 @@ public list[tuple[str, int]] calculateDuplicationBlocks(list[tuple[int lnNumber,
 	int curLnNumber = 0;
 	for (i <- [0..size(theList)], theList[i].lnNumber >= curLnNumber) {
 		tup = theList[i];
-		if (isDebug) println("[<i>/<size(theList)>]");
-		//print(".");
+		//if (isDebug) println("[<i>/<size(theList)>]");
+		print(".");
 
 		int maxValue = 0;
 		int j = 0;
 		while (j < size(theList[i].dupLs)) {
 			v = theList[i].dupLs[j];
+			
 			checkIndex = getIndexOf(theList, tup.lnNumber+5);
 			if (v+5 in theList[checkIndex].dupLs) {
 				checkIndex4 = getIndexOf(theList, tup.lnNumber+4);
@@ -62,6 +62,7 @@ public list[tuple[str, int]] calculateDuplicationBlocks(list[tuple[int lnNumber,
 						theList[checkIndex3].dupStr + 
 						theList[checkIndex4].dupStr + 
 						theList[checkIndex].dupStr;
+						
 					blockSize = 6;
 					while (v+blockSize in theList[getIndexOf(theList, tup.lnNumber+blockSize)].dupLs) {
 						theDuplicate += theList[getIndexOf(theList, tup.lnNumber+blockSize)].dupStr;
@@ -104,7 +105,7 @@ public int calculateDuplicationResult(int duplicatedLines, int volume) {
 
 private int getIndexOf(list[tuple[int lnNumber, list[int] dupLs, str dupStr]] tupleList, int lineNumber) {
 	for (int i <- [0..size(tupleList)]) {
-		if (tupleList[i].lnNumber == lineNumber) return i;
+		if (lineNumber == tupleList[i].lnNumber) return i;
 	}
 	return -1;
 }

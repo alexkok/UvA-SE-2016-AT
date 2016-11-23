@@ -111,10 +111,10 @@ public class TestTokenizer extends BasicTestCase {
 	
 	public void testMultiLine() throws SQLException {
 		final String SQL_1 = 
-			"SELECT 10/2, id, SUM(myint) /* comment, 'ignore it.   \n" +
-			" */ FROM /* -- comment */" + TABLE_NAME + " -- my comment /* \n\r" +
-			" /* comment */ GROUP BY id ORDER BY id\r" +
-			"/* comment */ -- somment\r\n";
+			"SELECT 10/2, id, SUM(myint) /* */ comment, 'ignore it.   \n" +
+			" */ FROM /*  */ -- comment */" + TABLE_NAME + " -- my comment /*  */ \n\r" +
+			" /*  */ comment */ GROUP BY id ORDER BY id\r" +
+			"/*  */ comment */ -- somment\r\n";
 
 		successTest(SQL_1);
 		
@@ -124,7 +124,7 @@ public class TestTokenizer extends BasicTestCase {
 		failureTest(SQL_2, "Tokenized not-comment as a multiline-comment.");
 
 		final String SQL_3 = 
-			"SELECT 10/2 /* this must fail ";
+			"SELECT 10/2 /* */ this must fail ";
 		
 		failureTest(SQL_3, 
 				"Uncomplete end multiline comment not recognized.",
