@@ -239,9 +239,6 @@ public void server(loc local, int metricAnalysability, int metricChangeability, 
 			<htmlFile(body6)>
 		\</html\>";
 
-	//str myFunction(map[str,str] params) = "\<div\>Hello Rascal\</div\>";
 	str myFunction(map[str,str] params) = html;
-	//serve(|http://localhost:8091|, functionserver(("/index.html": myFunction, "/volume.html": myFunction)));
-	serve(local, functionserver(("/index.html": myFunction, "/volume.html": myFunction)));
-	//serve(|http://localhost:8092|, fileserver(|project://MetricsTests2/src/main/test.json|));
+	serve(local, functionserver(("/index.html": myFunction)));
 }
