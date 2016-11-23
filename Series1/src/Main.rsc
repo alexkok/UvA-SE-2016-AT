@@ -241,6 +241,6 @@ private void tearDownAnalyzer() {
 	println("- Analysis duration (y,m,d,h,m,s,ms): <createDuration(analysisStartTime, analysisEndTime)>");
 	
 	loc local = |http://localhost:8080|;
-	server(local, metricAnalysability, metricChangeability, metricTestability, metricMaintainability);
+	server(local, metricAnalysability, metricChangeability, metricTestability, metricMaintainability, metricDuplicationsTotalLines, metricTotalVolume);
 	println("Server started at <local>");
 }
