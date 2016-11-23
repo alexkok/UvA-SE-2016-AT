@@ -22,7 +22,7 @@ public void server(loc local, int metricAnalysability, int metricChangeability, 
 			" + htmlFile(body) +"
 			
 			\<div class=\"col-md-3 col-sm-4 col-xs-6 tile_stats_count\"\>              
-				\<span class=\"count_top\"\>\<i class=\"fa fa-user\"\>\</i\> Maintainability\</span\>              
+				\<span class=\"count_top\"\>\<i class=\"fa fa-clock-o\"\>\</i\> Maintainability\</span\>              
 				" + convertResultUI(metricMaintainability) + "            
 			\</div\>            
 			\<div class=\"col-md-3 col-sm-4 col-xs-6 tile_stats_count\"\>              
@@ -30,11 +30,11 @@ public void server(loc local, int metricAnalysability, int metricChangeability, 
 				" + convertResultUI(metricAnalysability) + "            
 			\</div\>            
 			\<div class=\"col-md-3 col-sm-4 col-xs-6 tile_stats_count\"\>              
-				\<span class=\"count_top\"\>\<i class=\"fa fa-user\"\>\</i\> Changeability\</span\>              
+				\<span class=\"count_top\"\>\<i class=\"fa fa-clock-o\"\>\</i\> Changeability\</span\>              
 				" + convertResultUI(metricChangeability) + "            
 			\</div\>            
 			\<div class=\"col-md-3 col-sm-4 col-xs-6 tile_stats_count\"\>              
-				\<span class=\"count_top\"\>\<i class=\"fa fa-user\"\>\</i\> Testability\</span\>              
+				\<span class=\"count_top\"\>\<i class=\"fa fa-clock-o\"\>\</i\> Testability\</span\>              
 				" + convertResultUI(metricTestability) + "            
 			\</div\>
 			
