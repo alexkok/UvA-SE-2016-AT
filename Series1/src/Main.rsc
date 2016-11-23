@@ -59,7 +59,7 @@ private int metricMaintainability;
  * The main method.
  * Starting the analyzer and computing each metric on the given project.
  */
-public void main(loc projectLocation = projectLocations[1]) {
+public void main(loc projectLocation = projectLocations[0]) {
 	analysysIsDebug = true;
 	analysysSkipDuplication = false;
 	
@@ -251,6 +251,7 @@ private void tearDownAnalyzer() {
 	iprintln(metricUnitComplexityCategories);
 	
 	loc local = |http://localhost:8090|;
-	server(local, metricAnalysability, metricChangeability, metricTestability, metricMaintainability, metricDuplicationsTotalLines, metricTotalVolume);
+	server(local, metricAnalysability, metricChangeability, metricTestability, metricMaintainability, metricDuplicationsTotalLines, 
+		metricTotalVolume, metricUnitSizeCategories, metricUnitComplexityCategories);
 	println("Server started at <local + "index.html">");
 }
