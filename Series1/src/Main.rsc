@@ -189,8 +189,10 @@ private void doPhase4_UnitComplexity() {
 
 private void doPhase5_Duplication() {
 	println("** Phase 5: Calculating metric: Duplication");
-	if (analysisSkipDuplication) {
+	if (analysysSkipDuplication) {
 		println("- Skipping duplication due to the setting");
+		metricDuplicationsTotalLines = 0;
+		metricDuplicationResult = 0;
 	} else {
 		if (analysysIsDebug) print("- Progress: ");
 		metricDuplications = findDuplications(bigFileOfProject, analysysIsDebug);
