@@ -22,27 +22,27 @@ public void server(loc local, int metricAnalysability, int metricChangeability, 
 					int metricDuplicationsTotalLines, int metricTotalVolume, map[int, int] metricUnitSizeCategories) {
 	str html = "\<!DOCTYPE html\>
 		\<html lang=\"en\"\>
-			" + htmlFile(head) +"
-			" + htmlFile(body) +"
+			<htmlFile(head)>
+			<htmlFile(body)>
 			
 			\<div class=\"col-md-3 col-sm-4 col-xs-6 tile_stats_count\"\>              
 				\<span class=\"count_top\"\>\<i class=\"fa fa-clock-o\"\>\</i\> Maintainability\</span\>              
-				" + convertResultUI(metricMaintainability) + "            
+				<convertResultUI(metricMaintainability)>            
 			\</div\>            
 			\<div class=\"col-md-3 col-sm-4 col-xs-6 tile_stats_count\"\>              
 				\<span class=\"count_top\"\>\<i class=\"fa fa-clock-o\"\>\</i\> Analysability\</span\>              
-				" + convertResultUI(metricAnalysability) + "            
+				<convertResultUI(metricAnalysability)>            
 			\</div\>            
 			\<div class=\"col-md-3 col-sm-4 col-xs-6 tile_stats_count\"\>              
 				\<span class=\"count_top\"\>\<i class=\"fa fa-clock-o\"\>\</i\> Changeability\</span\>              
-				" + convertResultUI(metricChangeability) + "            
+				<convertResultUI(metricChangeability)>            
 			\</div\>            
 			\<div class=\"col-md-3 col-sm-4 col-xs-6 tile_stats_count\"\>              
 				\<span class=\"count_top\"\>\<i class=\"fa fa-clock-o\"\>\</i\> Testability\</span\>              
-				" + convertResultUI(metricTestability) + "            
+				<convertResultUI(metricTestability)>            
 			\</div\>
 			
-			" + htmlFile(body2) +"
+			<htmlFile(body2)>
 			
 			\<div class=\"widget_summary\"\>                    
 				\<div class=\"w_left w_25\"\>                      
@@ -51,13 +51,13 @@ public void server(loc local, int metricAnalysability, int metricChangeability, 
 				\<div class=\"w_center w_55\"\>                      
 					\<div class=\"progress\"\>                        
 						\<div class=\"progress-bar bg-green\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" 
-							style=\"width: " + toString(metricTotalVolume * 100 / 1310000) + "%;\"\>                          
+							style=\"width: <metricTotalVolume * 100 / 1310000>%;\"\>                          
 							\<span class=\"sr-only\"\>60% Complete\</span\>                        
 						\</div\>                      
 					\</div\>                    
 				\</div\>                    
 				\<div class=\"w_right w_20\"\>                      
-					\<span\>" + toString(metricTotalVolume) + "\</span\>                    
+					\<span\><metricTotalVolume>\</span\>                    
 				\</div\>                    
 				\<div class=\"clearfix\"\>\</div\>                  
 			\</div\>
@@ -69,18 +69,18 @@ public void server(loc local, int metricAnalysability, int metricChangeability, 
 				\<div class=\"w_center w_55\"\>                      
 					\<div class=\"progress\"\>                        
 						\<div class=\"progress-bar bg-green\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" 
-							style=\"width: " + toString(metricDuplicationsTotalLines * 100 / metricTotalVolume) + "%;\"\>                          
+							style=\"width: <metricDuplicationsTotalLines * 100 / metricTotalVolume>%;\"\>                          
 							\<span class=\"sr-only\"\>60% Complete\</span\>                        
 						\</div\>                      
 					\</div\>                    
 				\</div\>                    
 				\<div class=\"w_right w_20\"\>                      
-					\<span\>" + toString(metricDuplicationsTotalLines) + "\</span\>                    
+					\<span\><metricDuplicationsTotalLines>\</span\>                    
 				\</div\>                    
 				\<div class=\"clearfix\"\>\</div\>                  
 			\</div\>
 			
-			" + htmlFile(body3) +"
+			<htmlFile(body3)>
 			
 			\<table class=\"\" style=\"width:100%\"\>                    
 				\<tr\>                      
@@ -134,7 +134,7 @@ public void server(loc local, int metricAnalysability, int metricChangeability, 
 	\</div\>            
 \</div\>
 			
-			" + htmlFile(body4) +"
+			<htmlFile(body4)>
 			
 			\<!-- Doughnut Chart --\>    
 				\<script\>      
@@ -179,7 +179,7 @@ public void server(loc local, int metricAnalysability, int metricChangeability, 
 				\</script\>    
 			\<!-- /Doughnut Chart --\>
 			
-			" + htmlFile(body5) +"
+			<htmlFile(body5)>
 		\</html\>";
 
 	//str myFunction(map[str,str] params) = "\<div\>Hello Rascal\</div\>";
