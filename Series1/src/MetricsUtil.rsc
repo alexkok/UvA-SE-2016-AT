@@ -105,3 +105,14 @@ public str convertResultUI(int result) {
 		default: return "N/A";
 	}
 }
+
+public str convertResultUIStars(int result) {
+	switch (result) {
+		case 5: return "\<i class=\"fa fa-star\"\>\</i\>\<i class=\"fa fa-star\"\>\</i\>\<i class=\"fa fa-star\"\>\</i\>\<i class=\"fa fa-star\"\>\</i\>\<i class=\"fa fa-star\"\>\</i\>";
+		case 4: return "\<i class=\"fa fa-star\"\>\</i\>\<i class=\"fa fa-star\"\>\</i\>\<i class=\"fa fa-star\"\>\</i\>\<i class=\"fa fa-star\"\>\</i\>" + "\<i class=\"fa fa-star-o\"\>\</i\>";
+		case 3: return "\<i class=\"fa fa-star\"\>\</i\>\<i class=\"fa fa-star\"\>\</i\>\<i class=\"fa fa-star\"\>\</i\>" + "\<i class=\"fa fa-star-o\"\>\</i\>\<i class=\"fa fa-star-o\"\>\</i\>";
+		case 2: return "\<i class=\"fa fa-star\"\>\</i\>\<i class=\"fa fa-star\"\>\</i\>" + "\<i class=\"fa fa-star-o\"\>\</i\>\<i class=\"fa fa-star-o\"\>\</i\>\<i class=\"fa fa-star-o\"\>\</i\>";
+		case 1: return "\<i class=\"fa fa-star\"\>\</i\>" + "\<i class=\"fa fa-star-o\"\>\</i\>\<i class=\"fa fa-star-o\"\>\</i\>\<i class=\"fa fa-star-o\"\>\</i\>\<i class=\"fa fa-star-o\"\>\</i\>";
+		default: return "N/A";
+	}
+}

@@ -252,6 +252,7 @@ private void tearDownAnalyzer() {
 	
 	loc local = |http://localhost:8080|;
 	server(local, metricAnalysability, metricChangeability, metricTestability, metricMaintainability, metricDuplicationsTotalLines, 
-		metricTotalVolume, metricUnitSizeCategories, metricUnitComplexityCategories);
+		metricTotalVolume, metricUnitSizeCategories, metricUnitComplexityCategories, metricVolumeResult, metricUnitSizeResult, 
+		metricUnitComplexityResult, metricDuplicationResult);
 	println("Server started at <local + "index.html">");
 }
