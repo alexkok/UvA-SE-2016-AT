@@ -225,14 +225,14 @@ private void showMetricResults() {
 	metricMaintainability = sum([metricAnalysability, metricChangeability, metricTestability])/3;
 	println("|--------------------------------|");
 	println("\> Maintainability: \t <convertResultStars(metricMaintainability)> \t | Analysability, Changeability, Testability");
-	
-	loc local = |http://localhost:8080|;
-	server(local, metricAnalysability, metricChangeability, metricTestability, metricMaintainability);
-	println("Server started at <local>");
 }
 
 private void tearDownAnalyzer() {
 	analysisEndTime = now();
 	println("- End time: <printDateTime(analysisEndTime)>");
 	println("- Analysis duration (y,m,d,h,m,s,ms): <createDuration(analysisStartTime, analysisEndTime)>");
+	
+	loc local = |http://localhost:8080|;
+	server(local, metricAnalysability, metricChangeability, metricTestability, metricMaintainability);
+	println("Server started at <local>");
 }
