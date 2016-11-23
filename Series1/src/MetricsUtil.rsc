@@ -11,7 +11,7 @@ public str createBigFile(set[loc] files, bool isDebug) {
 	str result = "";
 	bool inMultiComment = false;
 	for (l <- [trim(l) | f <- files, 
-						 l <- split("\r\n", readFile(f)), 
+						 l <- readFileLines(f), 
 						 !isEmpty(trim(l)), 
 						 !startsWith(trim(l), "//"),  // Remove lines with only comments immediately 
 						 trim(l) != "}", // Remove lines that only consist of a "}" 

@@ -2,6 +2,7 @@ module Main
 
 import Set;
 import List;
+import String;
 import DateTime;
 import IO;
 import lang::java::m3::Core;
@@ -40,8 +41,10 @@ private str bigFileOfProject;
 private int metricTotalVolume;
 private int metricVolumeResult;
 private list[tuple[loc, int, int]] metricTotalUnitSize;
+private map[int, int] metricUnitSizeCategories;
 private int metricUnitSizeResult;
 private list[tuple[loc, int, int]] metricTotalUnitComplexity;
+private map[int, int] metricUnitComplexityCategories;
 private int metricUnitComplexityResult;
 public list[tuple[int, list[int], str]] metricDuplications;
 private int metricDuplicationsTotalLines;
@@ -57,7 +60,7 @@ private int metricMaintainability;
  * Starting the analyzer and computing each metric on the given project.
  */
 public void main(loc projectLocation = projectLocations[1]) {
-	analysysIsDebug = true;
+	analysysIsDebug = false;
 	analysysSkipDuplication = true;
 	
 	initAnalyzer(projectLocation);
@@ -104,6 +107,7 @@ private void doPhase1_Prepare() {
 	if (analysysIsDebug) println();
 	println("- Files: <size(files(projectM3Model))>");
 	println("- Methods: <size(methods(projectM3Model))>");
+	println("- Lines of big file: <size(split("\r\n", bigFileOfProject))>");
 }
 
 private void doPhase2_Volume() {
@@ -135,7 +139,8 @@ private void doPhase3_UnitSize() {
 	println("- Will be computed based on the SIG Unit Size metric");
 	if (analysysIsDebug) print("- Progress: ");
 	metricTotalUnitSize = calculateUnitSize(projectM3Model, analysysIsDebug);
-	metricUnitSizeResult = calculateUnitSizeResult(metricTotalUnitSize, metricTotalVolume);
+	metricUnitSizeCategories = calculateUnitSizeCategories(metricTotalUnitSize);
+	metricUnitSizeResult = calculateUnitSizeResult(metricUnitSizeCategories, metricTotalVolume);
 	if (analysysIsDebug) println();
 	println("- The LOC of each method will be categorized in the following categories:");
 	println("\> Metric table (Source: <|http://docs.sonarqube.org/display/SONARQUBE45/SIG+Maintainability+Model+Plugin|>):");
@@ -163,7 +168,8 @@ private void doPhase4_UnitComplexity() {
 	println("** Phase 4: Calculating metric: Unit Complexity");
 	println("- Will be computed based on the SIG Unit Complexity metric");
 	metricTotalUnitComplexity = calculateUnitComplexity(metricTotalUnitSize, projectM3Model);
-	metricUnitComplexityResult = calculateUnitComplexityResult(metricTotalUnitComplexity, metricTotalVolume);
+	metricTotalUnitComplexityCategories = calculateUnitComplexityCategories(metricTotalUnitComplexity);
+	metricUnitComplexityResult = calculateUnitComplexityResult(metricTotalUnitComplexityCategories, metricTotalVolume);
 	println("- The LOC of each method will be categorized in the following categories:");
 	println("\> Metric table (Source: SIG):");
 	println("\> ----------------");
@@ -240,7 +246,7 @@ private void tearDownAnalyzer() {
 	println("- End time: <printDateTime(analysisEndTime)>");
 	println("- Analysis duration (y,m,d,h,m,s,ms): <createDuration(analysisStartTime, analysisEndTime)>");
 	
-	loc local = |http://localhost:8080|;
+	loc local = |http://localhost:8083|;
 	server(local, metricAnalysability, metricChangeability, metricTestability, metricMaintainability);
 	println("Server started at <local>");
 }

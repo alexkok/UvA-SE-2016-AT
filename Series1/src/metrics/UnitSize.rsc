@@ -13,15 +13,6 @@ public list[tuple[loc, int, int]] calculateUnitSize(M3 projectModel, bool isDebu
 	return [<l,calculateLOC(#ClassBodyDec, l, isDebug),0> | l <- methods(projectModel)]; // Adding the third argument here so we can reuse this for the complexity 
 }
 
-/**
- * Calculate Unit Size result: From the result, return the actual score.
- */
-public int calculateUnitSizeResult(list[tuple[loc, int, int]] methodsLOC, int totalVolume) {
-	map[int, int] categories = getCategoriesForMethodLOC(methodsLOC);
-	
-	return calculateResultFromCategories(categories, totalVolume);
-}
-
 /** 
  * Divide the methods with their LOC in the categories that we need
  * 
@@ -37,7 +28,7 @@ public int calculateUnitSizeResult(list[tuple[loc, int, int]] methodsLOC, int to
  * Medium   | > 10
  * Low      | > 0
  */
-private map[int, int] getCategoriesForMethodLOC(list[tuple[loc, int, int]] methodsLOC) {
+public map[int, int] calculateUnitSizeCategories(list[tuple[loc, int, int]] methodsLOC) {
 	map[int, int] amountPerCategory = (1: 0, 2: 0, 3: 0, 4: 0);
 	for (<_,n,_> <- methodsLOC) { // We are not interested in the method location here, only interested in the amount LOC.
 		if (n > 0) {
@@ -55,6 +46,13 @@ private map[int, int] getCategoriesForMethodLOC(list[tuple[loc, int, int]] metho
 		// Else: We had a parse error for this file, ignoring this
 	}
 	return amountPerCategory;
+}
+
+/**
+ * Calculate Unit Size result: From the result, return the actual score.
+ */
+public int calculateUnitSizeResult(map[int, int] categories, int totalVolume) {
+	return calculateResultFromCategories(categories, totalVolume);
 }
 
 /**

@@ -11,12 +11,43 @@ public list[tuple[loc, int, int]] calculateUnitComplexity(list[tuple[loc, int, i
 	return [calculateMethodComplexity(<ml,nl,c>, projectModel) | <ml, nl, c> <- methodsLOC];
 }
 
+/** 
+ * Divide the methods with their LOC in the categories that we need
+ * 
+ * These categories are the same as SIG uses in their paper.
+ * Every method has atleast a complexity of 1.
+ * The table:
+ * ----------------
+ * Category |  LOC
+ * ----------------
+ * Very high| > 50
+ * High     | 21-50
+ * Medium   | 11-20
+ * Low      |  1-10
+ */
+public map[int, int] calculateUnitComplexityCategories(list[tuple[loc, int, int]] methodsLOC) {
+	map[int, int] amountPerCategory = (1: 0, 2: 0, 3: 0, 4: 0);
+	for (<_,n,_> <- methodsLOC) { // We are not interested in the method location here, only interested in the amount LOC.
+		if (n > 0) {
+			if (n <= 10) {
+				amountPerCategory[1] += n;
+			} else if (n <= 20) {
+				amountPerCategory[2] += n;
+			} else if (n <= 50) {
+				amountPerCategory[3] += n;
+			} else {
+				// It's above 50!
+				amountPerCategory[4] += n;
+			}
+		} 
+		// Else: We had a parse error for this file, ignoring this
+	}
+	return amountPerCategory;
+}
 /**
  * Calculate Unit Complexity result: From the result, return the actual score.
  */
-public int calculateUnitComplexityResult(list[tuple[loc, int, int]] methodsLOC, int totalVolume) {
-	map[int, int] categories = getCategoriesForMethodLOC(methodsLOC);
-	
+public int calculateUnitComplexityResult(map[int, int] categories, int totalVolume) {
 	return calculateResultFromCategories(categories, totalVolume);
 }
 
@@ -67,39 +98,6 @@ private tuple[loc, int, int] calculateMethodComplexity(tuple[loc location, int l
 	return methodData;
 }
 
-/** 
- * Divide the methods with their LOC in the categories that we need
- * 
- * These categories are the same as SIG uses in their paper.
- * Every method has atleast a complexity of 1.
- * The table:
- * ----------------
- * Category |  LOC
- * ----------------
- * Very high| > 50
- * High     | 21-50
- * Medium   | 11-20
- * Low      |  1-10
- */
-private map[int, int] getCategoriesForMethodLOC(list[tuple[loc, int, int]] methodsLOC) {
-	map[int, int] amountPerCategory = (1: 0, 2: 0, 3: 0, 4: 0);
-	for (<_,n,_> <- methodsLOC) { // We are not interested in the method location here, only interested in the amount LOC.
-		if (n > 0) {
-			if (n <= 10) {
-				amountPerCategory[1] += n;
-			} else if (n <= 20) {
-				amountPerCategory[2] += n;
-			} else if (n <= 50) {
-				amountPerCategory[3] += n;
-			} else {
-				// It's above 50!
-				amountPerCategory[4] += n;
-			}
-		} 
-		// Else: We had a parse error for this file, ignoring this
-	}
-	return amountPerCategory;
-}
 
 /**
  * Calculate the actual result given the categories
