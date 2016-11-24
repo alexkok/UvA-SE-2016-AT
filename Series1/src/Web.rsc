@@ -1,4 +1,4 @@
-module Measure
+module Web
 
 import Prelude;
 import util::Webserver;
@@ -20,7 +20,10 @@ public str htmlFile(loc project) {
 }
 
 public void server(loc local, int metricAnalysability, int metricChangeability, int metricTestability, int metricMaintainability, 
-					int metricDuplicationsTotalLines, int metricTotalVolume, map[int, int] metricUnitSizeCategories, map[int, int] metricUnitComplexityCategories) {
+					int metricDuplicationsTotalLines, int metricTotalVolume, map[int, int] metricUnitSizeCategories, 
+					map[int, int] metricUnitComplexityCategories, int metricVolumeResult, int metricUnitSizeResult, 
+					int metricUnitComplexityResult, int metricDuplicationResult) {
+					
 	str html = "\<!DOCTYPE html\>
 		\<html lang=\"en\"\>
 			<htmlFile(head)>
@@ -41,6 +44,95 @@ public void server(loc local, int metricAnalysability, int metricChangeability, 
 			\<div class=\"col-md-3 col-sm-4 col-xs-6 tile_stats_count\"\>              
 				\<span class=\"count_top\"\>\<i class=\"fa fa-clock-o\"\>\</i\> Testability\</span\>              
 				<convertResultUI(metricTestability)>            
+			\</div\>
+			
+			\</div\>
+        	\<!-- /top tiles --\>
+        	\<div class=\"row\"\>
+        	
+        	\<div class=\"col-md-4 col-sm-4 col-xs-12\"\>              
+        		\<div class=\"x_panel tile fixed_height_320\"\>                
+        			\<div class=\"x_title\"\>                  
+        				\<h2\>Metrics\</h2\>                  
+        				\<ul class=\"nav navbar-right panel_toolbox\"\>                    
+        					\<li\>
+        						\<a class=\"collapse-link\"\>\<i class=\"fa fa-chevron-up\"\>\</i\>\</a\>                    
+        					\</li\>                    
+        					\<li class=\"dropdown\"\>                      
+        						\<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\"\>\<i class=\"fa fa-wrench\"\>\</i\>\</a\>                      
+        						\<ul class=\"dropdown-menu\" role=\"menu\"\>                        
+        							\<li\>
+        								\<a href=\"#\"\>Settings 1\</a\>                        
+        							\</li\>                        
+        							\<li\>
+        								\<a href=\"#\"\>Settings 2\</a\>                        
+        							\</li\>                      
+        						\</ul\>                    
+        					\</li\>                    
+        						\<li\>\<a class=\"close-link\"\>\<i class=\"fa fa-close\"\>\</i\>\</a\>                    
+        					\</li\>                  
+        				\</ul\>                  
+        				\<div class=\"clearfix\"\>\</div\>                
+        			\</div\>                
+        			\<div class=\"x_content\"\>                  
+        				\<div class=\"widget_summary\"\>                    
+        					\<div class=\"w_left w_25\"\>                      
+        						\<span\>Volume\</span\>                    
+        					\</div\>                    
+        					\<div class=\"w_center w_55\"\>                      
+        						\<div class=\"progress\"\>                        
+        							<convertResultUIStars(metricVolumeResult)>                      
+        						\</div\>                    
+        					\</div\>                    
+        					\<div class=\"w_right w_20\"\>                      
+        					                    
+        					\</div\>                    
+        					\<div class=\"clearfix\"\>\</div\>                  
+        				\</div\>                  
+        				\<div class=\"widget_summary\"\>                    
+        					\<div class=\"w_left w_25\"\>                      
+        						\<span\>Unit size\</span\>                    
+        					\</div\>                    
+        					\<div class=\"w_center w_55\"\>                      
+        						\<div class=\"progress\"\>                        
+        							<convertResultUIStars(metricUnitSizeResult)>                      
+        						\</div\>                    
+        					\</div\>                    
+        					\<div class=\"w_right w_20\"\>                      
+        					                
+        					\</div\>                    
+        					\<div class=\"clearfix\"\>\</div\>                  
+        				\</div\>                  
+        				\<div class=\"widget_summary\"\>                    
+        					\<div class=\"w_left w_25\"\>                      
+        						\<span\>Unit Complexity\</span\>                    
+        					\</div\>                    
+        					\<div class=\"w_center w_55\"\>                     
+        					 	\<div class=\"progress\"\>                        
+        					 		<convertResultUIStars(metricUnitComplexityResult)>
+        						\</div\>                    
+        					\</div\>                    
+        					\<div class=\"w_right w_20\"\>                      
+        					                    
+        					\</div\>                    
+        					\<div class=\"clearfix\"\>\</div\>                  
+        				\</div\>                  
+        				\<div class=\"widget_summary\"\>                    
+        					\<div class=\"w_left w_25\"\>                      
+        						\<span\>Duplication\</span\>                    
+        					\</div\>                    
+        					\<div class=\"w_center w_55\"\>                      
+        						\<div class=\"progress\"\>                        
+        							<convertResultUIStars(metricDuplicationResult)>
+        						\</div\>                    
+        					\</div\>                    
+        					\<div class=\"w_right w_20\"\>                      
+        					               
+        					\</div\>                    
+        					\<div class=\"clearfix\"\>\</div\>                  
+        				\</div\>                
+        			\</div\>              
+        		\</div\>           
 			\</div\>
 			
 			<htmlFile(body2)>
