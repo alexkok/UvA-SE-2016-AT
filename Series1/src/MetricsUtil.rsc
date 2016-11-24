@@ -60,9 +60,6 @@ public tuple[str source, int extraVolumeLoc] createBigFile(set[loc] files,bool i
 
 public int calculateLOC(type[&T<:Tree] theType, loc fragment, bool isDebug) {
 	if (isDebug) print(".");
-	//if (startsWith(codeFragment, "/*")) {
-	//	codeFragment = substring(codeFragment, size(trim(split("*/", codeFragment)[0])));
-	//}
 	try {
 		//t = parse(theType, codeFragment);
 		return countSLOC(parse(theType, fragment));

@@ -59,9 +59,9 @@ private int metricMaintainability;
  * The main method.
  * Starting the analyzer and computing each metric on the given project.
  */
-public void main(loc projectLocation = projectLocations[2]) {
+public void main(loc projectLocation = projectLocations[0]) {
 	analysysIsDebug = false;
-	analysysSkipDuplication = true;
+	analysysSkipDuplication = false;
 	
 	initAnalyzer(projectLocation);
 	println();
