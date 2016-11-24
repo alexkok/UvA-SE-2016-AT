@@ -6,7 +6,7 @@ import List;
 
 import MetricsUtil;
 
-public test bool testDuplication_commentMultiLineAsOneLine() {
+public test bool testVolume_commentMultiLineAsOneLine() {
 	str theSource = "package tests;
 	'
 	'public class DuplicationTests {
@@ -18,7 +18,7 @@ public test bool testDuplication_commentMultiLineAsOneLine() {
 	'
 	'}";
 	
-	loc srcLocation = |project://MetricsTests2/gen/tests/testDuplication_commentMultiLineAsOneLine.java|;
+	loc srcLocation = |project://MetricsTests2/gen/tests/testVolume_commentMultiLineAsOneLine.java|;
 	// Write the file so we can put it into the createBigFile method
 	writeFile(srcLocation, theSource);
 	
@@ -29,7 +29,7 @@ public test bool testDuplication_commentMultiLineAsOneLine() {
 	return result == 5;
 }
 
-public test bool testDuplication_commentMultiLine() {
+public test bool testVolume_commentMultiLine() {
 	str theSource = "package tests;
 	'
 	'public class DuplicationTests {
@@ -42,7 +42,7 @@ public test bool testDuplication_commentMultiLine() {
 	'
 	'}";
 	
-	loc srcLocation = |project://MetricsTests2/gen/tests/testDuplication_commentMultiLine.java|;
+	loc srcLocation = |project://MetricsTests2/gen/tests/testVolume_commentMultiLine.java|;
 	// Write the file so we can put it into the createBigFile method
 	writeFile(srcLocation, theSource);
 	
@@ -53,7 +53,7 @@ public test bool testDuplication_commentMultiLine() {
 	return result == 5;
 }
 
-public test bool testDuplication_commentOneLine() {
+public test bool testVolume_commentOneLine() {
 	str theSource = "package tests;
 	'
 	'public class DuplicationTests {
@@ -65,7 +65,7 @@ public test bool testDuplication_commentOneLine() {
 	'
 	'}";
 	
-	loc srcLocation = |project://MetricsTests2/gen/tests/testDuplication_commentOneLine.java|;
+	loc srcLocation = |project://MetricsTests2/gen/tests/testVolume_commentOneLine.java|;
 	// Write the file so we can put it into the createBigFile method
 	writeFile(srcLocation, theSource);
 	
