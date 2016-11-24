@@ -213,6 +213,16 @@ private void doPhase5_Duplication() {
 		metricDuplicationsTotalLines = (0 | it + n | <_,n> <- metricDuplicationBlocks);
 		metricDuplicationResult = calculateDuplicationResult(metricDuplicationsTotalLines, metricTotalVolume);
 		if (analysysIsDebug) println();
+		println("- The total amount of duplicated LOC (<metricDuplicationsTotalLines>) will be compared to the total volume (<metricTotalVolume>), using the following table:");
+		println("\> Metric table (Source: SIG):");
+		println("\> ----------------------------------");
+		println("\> Rank | Duplication ");
+		println("\> ----------------------------------");
+		println("\>  + + |   0-3%");
+		println("\>   +  |   3-5%");
+		println("\>   0  |   5-10%");
+		println("\>   -  |   10-20%");
+		println("\>  - - |   20-100");
 		println("- Resulting in:\t <convertResult(metricDuplicationResult)> (<convertResultStars(metricDuplicationResult)>))");
 	}
 }

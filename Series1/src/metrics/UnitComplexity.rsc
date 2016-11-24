@@ -46,6 +46,17 @@ public map[int, int] calculateUnitComplexityCategories(list[tuple[loc, int, int]
 }
 /**
  * Calculate Unit Complexity result: From the result, return the actual score.
+ *
+ * The total amount of duplicated LOC will be compared to the total volume, using the following table that SIG also uses:
+ * Table:
+ * ----------------------------------
+ *  Rank | Duplication
+ * ----------------------------------
+ *  + + |   0-3%"
+ *   +  |   3-5%"
+ *   0  |   5-10%"
+ *   -  |   10-20%"
+ *  - - |   20-100"
  */
 public int calculateUnitComplexityResult(map[int, int] categories, int totalVolume) {
 	return calculateResultFromCategories(categories, totalVolume);

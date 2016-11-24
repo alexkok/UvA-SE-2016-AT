@@ -4,6 +4,9 @@ import String;
 import List;
 import IO;
 
+/**
+ * Calculate Duplication: Find exact duplications for each line.
+ */
 public list[tuple[int, list[int], str]] findDuplications(str src, bool isDebug) {
 	list[str] lines = [trim(l) | l <- split("\r\n", src)]; 
 	
@@ -31,6 +34,10 @@ public list[tuple[int, list[int], str]] findDuplications(str src, bool isDebug) 
 	return thelist;
 }
 
+/**
+ * Calculate Duplication blocks: Calculating blocks of a minimum of 6 lines, 
+ * based on the map that has been generated from the findDuplications() method.
+ */
 public list[tuple[str, int]] calculateDuplicationBlocks(list[tuple[int lnNumber, list[int] dupLs, str dupStr]] theList, bool isDebug)  {
 	list[tuple[str duplicateBlock, int lines]] duplicatesList = [];
 	int curLnNumber = 0;
@@ -89,6 +96,10 @@ public list[tuple[str, int]] calculateDuplicationBlocks(list[tuple[int lnNumber,
 	return duplicatesList;
 }
 
+/**
+ * Calculate Duplication blocks: Calculating blocks of a minimum of 6 lines, 
+ * based on the map that has been generated from the findDuplications() method.
+ */
 public int calculateDuplicationResult(int duplicatedLines, int volume) {
 	int percentage = duplicatedLines * 100 / volume;
 	if (percentage <= 3) 
