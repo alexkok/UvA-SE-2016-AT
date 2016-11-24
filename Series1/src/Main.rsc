@@ -89,8 +89,6 @@ private void initAnalyzer(loc projectLocation) {
 	println("* Alex Kok                                     *");
 	println("* Thanusijan Tharumarajah                      *");
 	println("*                                              *");
-	println("* TODOS:                                       *");
-	println("* - Document duplication                       *");
 	println("************************************************");
 	println("- Start time:\t\t <printDateTime(analysisStartTime)>");
 	println("- Project location:\t <analysysProjectLocation>");
