@@ -37,6 +37,10 @@ public list[tuple[int, list[int], str]] findDuplications(str src, bool isDebug) 
 /**
  * Calculate Duplication blocks: Calculating blocks of a minimum of 6 lines, 
  * based on the map that has been generated from the findDuplications() method.
+ 
+ * - Note that if we match that block A and B are the same, we increment the total duplicated LOC only by the amount of block B.
+ * - If then, A matches again with another block C. We again increment the total duplicated LOC by the amount of block B.
+ * - Note that we do not include the LOC from block A in the total duplicated LOC because of this.
  */
 public list[tuple[str, int]] calculateDuplicationBlocks(list[tuple[int lnNumber, list[int] dupLs, str dupStr]] theList, bool isDebug)  {
 	list[tuple[str duplicateBlock, int lines]] duplicatesList = [];
@@ -97,8 +101,17 @@ public list[tuple[str, int]] calculateDuplicationBlocks(list[tuple[int lnNumber,
 }
 
 /**
- * Calculate Duplication blocks: Calculating blocks of a minimum of 6 lines, 
- * based on the map that has been generated from the findDuplications() method.
+ * Calculate Duplication result: The result will be computed by using the table based on SIG.
+ *
+ * Metric table (Source: SIG):
+ * ----------------------------------
+ * Rank | Duplication 
+ * ----------------------------------
+ *  + + |   0-3%
+ *   +  |   3-5%
+ *   0  |   5-10%
+ *   -  |   10-20%
+ *  - - |   20-100%
  */
 public int calculateDuplicationResult(int duplicatedLines, int volume) {
 	int percentage = duplicatedLines * 100 / volume;
