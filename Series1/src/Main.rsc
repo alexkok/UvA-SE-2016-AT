@@ -59,9 +59,9 @@ private int metricMaintainability;
  * The main method.
  * Starting the analyzer and computing each metric on the given project.
  */
-public void main(loc projectLocation = projectLocations[0]) {
-	analysysIsDebug = true;
-	analysysSkipDuplication = false;
+public void main(loc projectLocation = projectLocations[2]) {
+	analysysIsDebug = false;
+	analysysSkipDuplication = true;
 	
 	initAnalyzer(projectLocation);
 	println();
@@ -142,6 +142,8 @@ private void doPhase3_UnitSize() {
 	metricTotalUnitSize = calculateUnitSize(projectM3Model, analysysIsDebug);
 	metricUnitSizeCategories = calculateUnitSizeCategories(metricTotalUnitSize);
 	metricUnitSizeResult = calculateUnitSizeResult(metricUnitSizeCategories, metricTotalVolume);
+	
+	println("- Unit Size categories: <metricUnitSizeCategories>");
 	if (analysysIsDebug) println();
 	println("- The LOC of each method will be categorized in the following categories:");
 	println("\> Metric table (Source: <|http://docs.sonarqube.org/display/SONARQUBE45/SIG+Maintainability+Model+Plugin|>):");
@@ -171,6 +173,7 @@ private void doPhase4_UnitComplexity() {
 	metricTotalUnitComplexity = calculateUnitComplexity(metricTotalUnitSize, projectM3Model);
 	metricUnitComplexityCategories = calculateUnitComplexityCategories(metricTotalUnitComplexity);
 	metricUnitComplexityResult = calculateUnitComplexityResult(metricUnitComplexityCategories, metricTotalVolume);
+	println("- Unit Complexity categories: <metricUnitComplexityCategories>");
 	println("- The LOC of each method will be categorized in the following categories:");
 	println("\> Metric table (Source: SIG):");
 	println("\> ----------------");
@@ -246,9 +249,6 @@ private void tearDownAnalyzer() {
 	analysisEndTime = now();
 	println("- End time: <printDateTime(analysisEndTime)>");
 	println("- Analysis duration (y,m,d,h,m,s,ms): <createDuration(analysisStartTime, analysisEndTime)>");
-	
-	iprintln(metricUnitSizeCategories);
-	iprintln(metricUnitComplexityCategories);
 	
 	loc local = |http://localhost:8090|;
 	server(local, metricAnalysability, metricChangeability, metricTestability, metricMaintainability, metricDuplicationsTotalLines, 

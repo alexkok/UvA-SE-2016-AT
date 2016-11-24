@@ -17,13 +17,13 @@ public class Main {
 		System.out.println("MAIN");
 		System.out.println("MAIN");
 		System.out.println("MAIN");
-		System.out.println("MAIN");/*
 		System.out.println("MAIN");
 		System.out.println("MAIN");
 		System.out.println("MAIN");
 		System.out.println("MAIN");
 		System.out.println("MAIN");
-		System.out.println("MAIN");*/
+		System.out.println("MAIN");
+		System.out.println("MAIN");
 	}
 	
 	public void test() {
