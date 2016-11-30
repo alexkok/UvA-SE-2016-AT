@@ -220,7 +220,7 @@ private void doPhase5_Duplication() {
 		println("\>   +  |   3-5%");
 		println("\>   0  |   5-10%");
 		println("\>   -  |   10-20%");
-		println("\>  - - |   20-100");
+		println("\>  - - |   20-100%");
 		println("- Resulting in:\t <convertResult(metricDuplicationResult)> (<convertResultStars(metricDuplicationResult)>))");
 	}
 }
@@ -262,5 +262,5 @@ private void tearDownAnalyzer() {
 	server(local, metricAnalysability, metricChangeability, metricTestability, metricMaintainability, metricDuplicationsTotalLines, 
 		metricTotalVolume, metricUnitSizeCategories, metricUnitComplexityCategories, metricVolumeResult, metricUnitSizeResult, 
 		metricUnitComplexityResult, metricDuplicationResult);
-	println("Server started at <local + "index.html">");
+	println("- Server started at <local + "index.html">");
 }

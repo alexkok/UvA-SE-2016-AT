@@ -16,7 +16,8 @@ public tuple[str source, int extraVolumeLoc] createBigFile(set[loc] files,bool i
 						 !isEmpty(trim(l)), 
 						 !startsWith(trim(l), "//") // Remove lines with only comments immediately
 						 ]) {
-		if (trim(l) == "}" ||  // Remove lines that only consist of a "}" | Lines with only a "}" should be taken into account for volume, ignored for duplication
+		if (trim(l) == "{" ||  
+			trim(l) == "}" || // Remove lines that only consist of a "{" or "}" | Lines with only a "}" should be taken into account for volume, ignored for duplication
 			startsWith(trim(l), "package") || // Remove package lines | Package lines should be taken into account for volume, ignored for duplication
 			startsWith(trim(l), "import") // Remove import lines | Import lines should be taken into account for volume, ignored for duplication 
 			) {
