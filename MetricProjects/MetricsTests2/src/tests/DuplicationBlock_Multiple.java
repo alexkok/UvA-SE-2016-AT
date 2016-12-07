@@ -1,7 +1,8 @@
-// Should detect 4 duplicated code blocks
+// Should detect 4 duplicate blocks
+// Total: 20 LOC duplication
 package tests;
 
-public class DuplicationSimple_Multiple {
+public class DuplicationBlock_Multiple {
 	public void f ()
 	{
 		int x=0;

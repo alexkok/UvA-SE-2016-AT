@@ -12,7 +12,7 @@ import lang::java::m3::Core;
 import lang::java::jdt::m3::Core;
 import lang::java::jdt::m3::AST;
 
-public loc fileLoc = |project://MetricsTests2/src/tests/DuplicationSimple_Nested.java|;
+public loc fileLoc = |project://MetricsTests2/src/tests/DuplicationBlock_Nested.java|;
 
 public void parseSomeTree() {
 	projectM3Model = createM3FromEclipseProject(fileLoc);
@@ -45,11 +45,37 @@ public void parseSomeTree() {
 	println("TotalNodes: <totalNodes>");
 	println("BucketSize: <bucketSize>");
 	println("BucketListSize: <size(bucketList)>");
+	println("** Finding duplicated blocks **");
 	findDuplicates(bucketList);
 	//println(bucketList[3][0]);
 	//println();
 	//println(bucketList[3][1]);
 	//println(bucketList[2]);
+	println("** Finding duplicated sequences **");
+	findDuplicateSequences(bucketList);
+	
+}
+
+public void findDuplicateSequences(map[int, list[node]] bucketList) {
+
+}
+
+// Input: [1,2,3,4,5]
+// Output: [[1,2], [1,2,3], [1,2,3,4], [1,2,3,4,5], 
+// 		 	[2,3], [2,3,4], [2,3,4,5],
+//			[3,4], [3,4,5],
+//			[4,5]
+//		   ]
+public list[list[int]] createSequencePermutations(list[int] input) {
+	list[list[int]] perms = [];
+	for (i <- [1..size(input)]) {
+		tmpPerm = [i];
+		for (j <- [i..size(input)]) {
+			tmpPerm += j+1;
+			perms += [tmpPerm];
+		}
+	}
+	return perms;
 }
 
 public void findDuplicates(map[int, list[node]] bucketList) {
@@ -78,7 +104,7 @@ public void findDuplicates(map[int, list[node]] bucketList) {
 			}
 			clones += <dup1, dup1@src>;
 			clones += <dup2, dup2@src>;
-			println(dup2@src);
+			//println(dup2@src);
 		}
 	}
 	println("Clones: <size(clones)>");

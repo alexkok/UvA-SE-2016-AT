@@ -1,7 +1,8 @@
-// Should be detected as 3 clone blocks
+// Should detect 3 duplicate blocks
+// Total: 17 LOC duplication
 package tests;
 
-public class DuplicationSimple_Nested {
+public class DuplicationBlock_Nested {
 	public void f ()
 	{
 		int x=0;

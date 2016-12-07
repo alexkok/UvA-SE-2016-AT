@@ -1,6 +1,8 @@
+// Should show 2 duplication blocks
+// Total: 6 LOC duplication
 package tests;
 
-public class DuplicationAdvance {
+public class DuplicationSequence_Middle {
 	public void f ()
 	{
 		int x=0;
