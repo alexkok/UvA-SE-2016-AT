@@ -12,7 +12,7 @@ import lang::java::m3::Core;
 import lang::java::jdt::m3::Core;
 import lang::java::jdt::m3::AST;
 
-public loc fileLoc = |project://MetricsTests2/src/tests/DuplicationSimple.java|;
+public loc fileLoc = |project://MetricsTests2/src/tests/DuplicationSimple_Multiple.java|;
 
 public void parseSomeTree() {
 	projectM3Model = createM3FromEclipseProject(fileLoc);
@@ -57,24 +57,27 @@ public void findDuplicates(map[int, list[node]] bucketList) {
 	for (key <- bucketList) {
 		println("<key> : <size(bucketList[key])>");
 		list[node] treesToCheck = bucketList[key];
-		// Make own forloop I guess..
-		//for (i <- [0..size(treesToCheck)]) {
-		//	for (j <- [i+1..size(treesToCheck)]) {
-		//		if (treesToCheck[i] == treesToCheck[j]) {
-		//			println("Found duplicate!");
-		//			println(treesToCheck[i]);
-		//			//println(treesToCheck[i]@src);
-		//			println(treesToCheck[j]);
-		//			//println(treesToCheck[j]@src);
-		//		}
-		//	}
-		//}
-		for (<dup1, dup2> <- [<treesToCheck[i], treesToCheck[j]> | i <- [0..size(treesToCheck)], j <- [i+1..size(treesToCheck)], treesToCheck[i] == treesToCheck[j]]) {
+		
+		for (<dup1, dup2> <- [<treesToCheck[i], treesToCheck[j]> | i <- [0..size(treesToCheck)], 
+																   j <- [i+1..size(treesToCheck)], 
+																   treesToCheck[i] == treesToCheck[j]]) {
 			println("Found duplicate!");
 			println(dup1@src);
+			// Described in the paper, but not sure (yet) why we should do this...
+			// For each subtree s of dup1
+			// 	if IsMember(clones, s) {
+			// 		RemoveClonePair(s)
+			// 	}
+			// For each subtree s of dup2
+			// 	if IsMember(clones, s) {
+			// 		RemoveClonePair(s)
+			// 	}
+			clones += <dup1, dup1@src>;
+			clones += <dup2, dup2@src>;
 			println(dup2@src);
 		}
 	}
+	println("Clones: <size(clones)>");
 }
 
 public str getNameForSubTree(d) {
