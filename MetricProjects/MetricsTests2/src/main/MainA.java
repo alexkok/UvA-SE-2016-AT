@@ -6,6 +6,8 @@ public class MainA {
 	private String email;
 	
 	public String getUsername() {
+		System.out
+		.println("aaaaa");
 		return username;
 	}
 	public void setUsername(String username) {
