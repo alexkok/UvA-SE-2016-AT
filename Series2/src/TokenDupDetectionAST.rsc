@@ -12,7 +12,10 @@ import lang::java::m3::Core;
 import lang::java::jdt::m3::Core;
 import lang::java::jdt::m3::AST;
 
-public loc fileLoc = |project://MetricsTests2/src/tests/DuplicationBlock_Nested.java|;
+private int TRESHOLD_MIN_SUBTREE_LENGTH = 10; // The minimum length (amount of nodes connected) of a sub-tree in order to detect it as a duplicate. (Described as MassTreshold in the paper)
+private int TRESHOLD_MIN_SEQUENCE_LENGTH = 2; // The minimum sequence length of a block in order to detect duplicates in it
+
+public loc fileLoc = |project://MetricsTests2/src/tests/DuplicationSequence_Middle.java|;
 
 public void parseSomeTree() {
 	projectM3Model = createM3FromEclipseProject(fileLoc);
@@ -30,15 +33,27 @@ public void parseSomeTree() {
 	
 	list[node] emptyNodeList = [];
 	
+	int maxSeqLength = 0;
+	
 	bottom-up visit(d) {
 		case node subTree: {
 			//println(subTree);
 			int subTreeSize = getSizeForSubTree(subTree); 
-			if (subTreeSize > 10) {
+			if (subTreeSize >= TRESHOLD_MIN_SUBTREE_LENGTH) {
 				println("<subTreeSize>");
 				getNameForSubTree(subTree);
 				int theIndex = getBucketIndexOfSubTree(subTreeSize, bucketSize);
                 bucketList[theIndex] ? emptyNodeList += subTree;
+			}
+		}
+		case list[Statement] sts: {
+			int theSize = size(sts);
+			if (theSize >= TRESHOLD_MIN_SEQUENCE_LENGTH) {
+				println("Found a statement list!");
+				println(sts);
+			}
+			if (maxSeqLength < theSize) {
+				maxSeqLength = theSize;
 			}
 		}
 	}
@@ -66,8 +81,8 @@ public void findDuplicateSequences(map[int, list[node]] bucketList) {
 //			[3,4], [3,4,5],
 //			[4,5]
 //		   ]
-public list[list[int]] createSequencePermutations(list[int] input) {
-	list[list[int]] perms = [];
+public list[list[value]] createSequencePermutations(list[value] input) { // Value should be the type you give it. Have to lookup how the <:T was exactly
+	list[list[value]] perms = [];
 	for (i <- [1..size(input)]) {
 		tmpPerm = [i];
 		for (j <- [i..size(input)]) {
