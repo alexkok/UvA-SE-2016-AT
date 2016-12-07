@@ -8,22 +8,36 @@ import ParseTree;
 import vis::ParseTree;
 import lang::java::\syntax::Java15;
 
-private map[int, str] clones;
-
 public void main() {
 	loc project = |project://MetricsTests2/src|;
 	projectM3Model = createM3FromEclipseProject(project);
 	
 	//set[Declaration] asts = createAstsFromEclipseProject(project, true);
 	Declaration asts = createAstsFromEclipseFile(|project://MetricsTests2/src/main/MainA.java|, true);
+	int subtrees = 0;
 	
+	map[int, [node]] bucketList = ();
+	int maxBucketSize = sizeNodes(asts);
+	 
 	//subtree
 	visit(asts) {
-		case a: a;
+		case node subTree: {
+			if (sizeNodes(subTree) > 7 ) {
+				subtrees += 1;
+				
+				int bucketID = bucketIndex(sizeNodes(subTree), maxBucketSize);
+				// add to bucketlist
+				
+				println("bucket ID: <bucketID>");
+			}
+		}
 	}
+	
+	println("subtrees: <subtrees>");
+	println("max bucket size: <maxBucketSize>");
 }
 
-public int sizeNodes(Declaration ast) {
+public int sizeNodes(ast) {
 	int count = 0;
 	
 	visit(ast) {
@@ -36,7 +50,11 @@ public int sizeNodes(Declaration ast) {
 }
 
 public int bucketSize(int nodeSize) {
-	return 10 % nodeSize;
+	return nodeSize / 100 * 10;
+}
+
+public int bucketIndex(depth, maxBucketSize) {
+	return depth % maxBucketSize;
 }
 
 //loc file = |file:///Users/Thanus/Documents/informatica/master/software%20evolution/UvA-SE-2016-AT/MetricProjects/MetricsTests2/src/main/MainA.java|;
