@@ -1,3 +1,4 @@
+// Should be detected as 3 clone blocks
 package tests;
 
 public class DuplicationSimple_Nested {

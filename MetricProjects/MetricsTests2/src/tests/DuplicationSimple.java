@@ -1,3 +1,4 @@
+// Should detect 1 duplicated code block
 package tests;
 
 public class DuplicationSimple {

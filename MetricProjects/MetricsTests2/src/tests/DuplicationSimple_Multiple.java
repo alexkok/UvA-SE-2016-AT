@@ -1,3 +1,4 @@
+// Should detect 4 duplicated code blocks
 package tests;
 
 public class DuplicationSimple_Multiple {
