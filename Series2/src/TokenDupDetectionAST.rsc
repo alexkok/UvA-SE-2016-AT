@@ -12,7 +12,7 @@ import lang::java::m3::Core;
 import lang::java::jdt::m3::Core;
 import lang::java::jdt::m3::AST;
 
-public loc fileLoc = |project://MetricsTests2/src/main/MainA.java|;
+public loc fileLoc = |project://MetricsTests2/src/tests/DuplicationSimple.java|;
 
 public void parseSomeTree() {
 	projectM3Model = createM3FromEclipseProject(fileLoc);
@@ -32,19 +32,39 @@ public void parseSomeTree() {
 	
 	visit(d) {
 		case node subTree: {
-			println(subTree);
+			//println(subTree);
 			int subTreeSize = getSizeForSubTree(subTree); 
-			if (subTreeSize > 5) {
+			if (subTreeSize > 10) {
 				println("<subTreeSize>");
 				int theIndex = getBucketIndexOfSubTree(subTreeSize, bucketSize);
                 bucketList[theIndex] ? emptyNodeList += subTree;
 			}
 		}
 	}
-	println("BucketSize: <bucketSize>");
 	println("TotalNodes: <totalNodes>");
+	println("BucketSize: <bucketSize>");
+	println("BucketListSize: <size(bucketList)>");
+	findDuplicates(bucketList);
+	println(bucketList[3][0]);
+	println();
+	println(bucketList[3][1]);
+	//println(bucketList[2]);
+}
+
+public void findDuplicates(map[int, list[node]] bucketList) {
+	clones = {};
 	for (b <- bucketList) {
-		println("");
+		println("<b> : <size(bucketList[b])>");
+		treesToCheck = bucketList[b];
+		for (<dup1, dup2> <- [<dup, other> | dup <- treesToCheck, other <- treesToCheck - dup, dup == other]) {
+			println("Found a duplicate!");
+			println("<dup1@src>");
+			println("<dup2@src>");
+			// The add/removing progress...
+			for (sub1 <- treesToCheck) {
+				;
+			}
+		}
 	}
 }
 
