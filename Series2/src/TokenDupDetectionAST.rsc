@@ -30,7 +30,7 @@ public void parseSomeTree() {
 	
 	list[node] emptyNodeList = [];
 	
-	visit(d) {
+	bottom-up visit(d) {
 		case node subTree: {
 			//println(subTree);
 			int subTreeSize = getSizeForSubTree(subTree); 
@@ -56,30 +56,23 @@ public void findDuplicates(map[int, list[node]] bucketList) {
 	clones = {};
 	for (key <- bucketList) {
 		println("<key> : <size(bucketList[key])>");
-		treesToCheck = bucketList[key];
-		if (key == 1) {
-			println(treesToCheck[0]);
-			println(treesToCheck[1]);
-		}
+		list[node] treesToCheck = bucketList[key];
 		// Make own forloop I guess..
-		for (<dup1, dup2> <- [<dup, other> | dup <- treesToCheck, other <- treesToCheck - dup]) {//, dup == other]) {
-			if (dup1 == dup2) {
-				println("Duplicate!");
-				println("- <dup1@src>");
-				//println(dup1);
-				println("- <dup2@src>");
-				//println(dup2);
-				// The add/removing progress...
-				for (sub1 <- treesToCheck) {
-					;
-				}
-			} else {
-				println("No duplicate!");
-				println("- <dup1@src>");
-				//println(dup1);
-				println("- <dup2@src>");
-				//println(dup2);
-			}
+		//for (i <- [0..size(treesToCheck)]) {
+		//	for (j <- [i+1..size(treesToCheck)]) {
+		//		if (treesToCheck[i] == treesToCheck[j]) {
+		//			println("Found duplicate!");
+		//			println(treesToCheck[i]);
+		//			//println(treesToCheck[i]@src);
+		//			println(treesToCheck[j]);
+		//			//println(treesToCheck[j]@src);
+		//		}
+		//	}
+		//}
+		for (<dup1, dup2> <- [<treesToCheck[i], treesToCheck[j]> | i <- [0..size(treesToCheck)], j <- [i+1..size(treesToCheck)], treesToCheck[i] == treesToCheck[j]]) {
+			println("Found duplicate!");
+			println(dup1@src);
+			println(dup2@src);
 		}
 	}
 }
