@@ -13,28 +13,47 @@ public void main() {
 	projectM3Model = createM3FromEclipseProject(project);
 	
 	//set[Declaration] asts = createAstsFromEclipseProject(project, true);
-	Declaration asts = createAstsFromEclipseFile(|project://MetricsTests2/src/main/MainA.java|, true);
+	Declaration asts = createAstsFromEclipseFile(|project://MetricsTests2/src/main/Main.java|, true);
 	int subtrees = 0;
 	
-	map[int, [node]] bucketList = ();
-	int maxBucketSize = sizeNodes(asts);
+	map[int, list[node]] bucketList = ();
+	list[node] emptyNodeList = [];
+	
+	map[int, node] clones = ();
+	
+	int maxBucketSize = bucketSize(sizeNodes(asts));
 	 
-	//subtree
+	//creating buckets with subtrees
 	visit(asts) {
 		case node subTree: {
-			if (sizeNodes(subTree) > 7 ) {
+			if (sizeNodes(subTree) > 5) {
 				subtrees += 1;
 				
-				int bucketID = bucketIndex(sizeNodes(subTree), maxBucketSize);
-				// add to bucketlist
-				
-				println("bucket ID: <bucketID>");
+				int bucketId = bucketIndex(sizeNodes(subTree), maxBucketSize);
+				bucketList[bucketId] ? emptyNodeList += subTree;
 			}
 		}
 	}
 	
-	println("subtrees: <subtrees>");
+	//find duplicates in each bucket
+	for (b <- bucketList) {
+		for(st <- bucketList[b]) {
+			if (st in bucketList[b] - st) {
+				println(st);
+				
+				println("dup with:");
+				
+				for(bSt <- bucketList[b] - st) {
+					println(bSt);
+				}
+				
+			}
+		}
+	}
+	
+	println("\nsubtrees: <subtrees>");
 	println("max bucket size: <maxBucketSize>");
+	println("bucketlist <size(bucketList)>");
 }
 
 public int sizeNodes(ast) {
@@ -50,24 +69,9 @@ public int sizeNodes(ast) {
 }
 
 public int bucketSize(int nodeSize) {
-	return nodeSize / 100 * 10;
+	return nodeSize * 10 / 100;
 }
 
 public int bucketIndex(depth, maxBucketSize) {
 	return depth % maxBucketSize;
 }
-
-//loc file = |file:///Users/Thanus/Documents/informatica/master/software%20evolution/UvA-SE-2016-AT/MetricProjects/MetricsTests2/src/main/MainA.java|;
-//	
-//	try {
-//		Tree t = parse(#start[CompilationUnit], file);
-//		
-//		visit(t) {
-//			case ClassMod e: println("<e>");
-//		}
-//		
-//		//renderParsetree(t);
-//		//iprintln(t);
-//} catch ParseError(l): {
-//		println("\nFound a parse error in <l> at line <l.begin.line>, column <l.begin.column>");
-//	}
