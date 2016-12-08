@@ -15,7 +15,7 @@ import lang::java::jdt::m3::AST;
 private int TRESHOLD_MIN_SUBTREE_LENGTH = 10; // The minimum length (amount of nodes connected) of a sub-tree in order to detect it as a duplicate. (Described as MassTreshold in the paper)
 private int TRESHOLD_MIN_SEQUENCE_LENGTH = 2; // The minimum sequence length of a block in order to detect duplicates in it
 
-public loc fileLoc = |project://MetricsTests2/src/tests/DuplicationSequence_Middle.java|;
+public loc fileLoc = |project://MetricsTests2/src/tests/DuplicationSequence_Start.java|;
 
 // Custom data types don't allow us to use in or ? Aliases should fix this...
 //data subSequenceList = subSequenceList(map[int listLength, sequenceHashList content]);
@@ -120,7 +120,7 @@ public str createCustomSequenceHash(list[int] indexes) {
  * Needing the maxSeqLength because we need to access from the starting index till the end index 
  */
 public void findDuplicateSequences(subSequenceList, int maxSeqLength) {
-	set[tuple[node, loc]] clones = {};
+	set[tuple[list[loc], loc]] clones = {};
 	// Note that the first node of each list is just the empty list :( // Not anymore
 	for (subSeqLength <- [TRESHOLD_MIN_SEQUENCE_LENGTH..maxSeqLength+1]) { // [1..5] gives me [1,2,3,4]. That's why +1
 		hashMapEntriesToCheck  = subSequenceList[subSeqLength];
@@ -132,20 +132,60 @@ public void findDuplicateSequences(subSequenceList, int maxSeqLength) {
 																	 , j <- [i+1..size(statementListsToCheck)]
 																	 , statementListsToCheck[i] == statementListsToCheck[j] // TRESHOLD_SIMILARITY
 																	 ]) {
+				loc src1first = dup1[0]@src;
+				loc src1last = last(dup1)@src;
+				loc src2first = dup2[0]@src;
+				loc src2last = last(dup2)@src;
+				// Editing a src works too, but this  modifies the normal source. So we create a new location
+				int fullLocLength = src1last.offset-src1first.offset + src1last.length;
+				loc fullLoc1 = |project://<src1first.authority><src1first.path>|(src1first.offset, fullLocLength, <src1first.begin.line, src1first.begin.column>, <src1last.end.line, src1last.end.column>);
+				loc fullLoc2 = |project://<src2first.authority><src2first.path>|(src2first.offset, fullLocLength, <src2first.begin.line, src2first.begin.column>, <src2last.end.line, src2last.end.column>);
 				println("Found duplicate sequence!");
-				println(dup1[0]@src);
-				println(dup1[1]@src);
-				if (size(dup1) > 2) {
-					println(dup1[2]@src);
+				println("<fullLoc1>  |  <fullLoc2>");
+				
+				possibleCloneToAdd1 = <[ls@src | ls <- dup1],fullLoc1>;
+				possibleCloneToAdd2 = <[ls@src | ls <- dup2],fullLoc2>;
+				hasBeenAdded1 = false;
+				hasBeenAdded2 = false;				
+				
+				// Remove the subtrees because this block already has been found. As described in the paper
+				visit (dup1) {
+					case Statement n:
+						for (<locations, fullLoc> <- clones) {
+							if (size(locations) < size(possibleCloneToAdd1[0])) { 
+								for (i <- [0..size(possibleCloneToAdd1[0])]) { 
+									if (locations[0] == possibleCloneToAdd1[0][i]) { // TRESHOLD_SIMILARITY
+										clones -= <locations, fullLoc>;
+									}
+								}
+							}
+						}
 				}
-				println();
-				println(dup2[0]@src);
-				println(dup2[1]@src);
-				if (size(dup2) > 2) {
-					println(dup2[2]@src);
+				visit (dup2) {
+					case Statement n:
+						for (<locations, fullLoc> <- clones) {
+							if (size(locations) < size(possibleCloneToAdd2[0])) { 
+								for (i <- [0..size(possibleCloneToAdd2[0])]) { 
+									if (locations[0] == possibleCloneToAdd2[0][i]) { // TRESHOLD_SIMILARITY
+										clones -= <locations, fullLoc>;
+									}
+								}
+							}
+						}
 				}
+				
+				// Add this clone pair to our clones
+				clones += possibleCloneToAdd1;
+				clones += possibleCloneToAdd2;
+				
+				//clones += <dup1, dup1@src>;
+				//clones += <dup2, dup2@src>;
 		   }
 	   }
+	}
+	println("Clones: <size(clones)>");
+	for (<dup, srcloc> <- clones) {
+		println(srcloc);
 	}
 }
 
@@ -192,6 +232,7 @@ public void findDuplicates(map[int, list[node]] bucketList) {
 				case Statement n:
 					clones -= <n, n@src>;
 			}
+			// Add this clone pair to our clones
 			clones += <dup1, dup1@src>;
 			clones += <dup2, dup2@src>;
 			//println(dup2@src);
