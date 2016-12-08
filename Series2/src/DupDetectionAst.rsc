@@ -23,12 +23,6 @@ public loc fileLoc = |project://MetricsTests2/src/tests/DuplicationSequence_Star
 //alias Testtttt = str;
 
 public void parseSomeTree() {
-	projectM3Model = createM3FromEclipseProject(fileLoc);
-	set[Declaration] a = createAstsFromFile(files(projectM3Model), true);
-	//for (d <- a) {
-	//	iprintln(d);
-	//	println();
-	//}
 	Declaration d = createAstFromFile(fileLoc, true);
 	
 	int totalNodes = getSizeForSubTree(d);
@@ -59,7 +53,7 @@ public void parseSomeTree() {
                 bucketList[theIndex] ? emptyNodeList += subTree;
 			}
 		}
-		case list[node] sts: { // Statements?
+		case list[node] sts: { // Statements and declarations
 			int theSize = size(sts);
 			if (theSize >= TRESHOLD_MIN_SEQUENCE_LENGTH) {
 				println("Found a statement list! Size: <theSize>");
@@ -112,6 +106,7 @@ public str createCustomSequenceHash(list[int] indexes) {
 	}
 	return customHash;
 }
+
 /**
  * findDuplicateSequences
  * @param subSequenceList: The subsequence list that has been found by traversing the whole AST.
@@ -177,9 +172,6 @@ public void findDuplicateSequences(subSequenceList, int maxSeqLength) {
 				// Add this clone pair to our clones
 				clones += possibleCloneToAdd1;
 				clones += possibleCloneToAdd2;
-				
-				//clones += <dup1, dup1@src>;
-				//clones += <dup2, dup2@src>;
 		   }
 	   }
 	}
