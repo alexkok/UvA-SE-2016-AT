@@ -17,9 +17,10 @@ private int TRESHOLD_MIN_SEQUENCE_LENGTH = 2; // The minimum sequence length of 
 
 public loc fileLoc = |project://MetricsTests2/src/tests/DuplicationSequence_Middle.java|;
 
-// Custom data types don't allow us to use in or ?
+// Custom data types don't allow us to use in or ? Aliases should fix this...
 //data subSequenceList = subSequenceList(map[int listLength, sequenceHashList content]);
 //data sequenceHashList = sequenceHashList(map[str hashId, list[list[node]] statementLists]);
+//alias Testtttt = str;
 
 public void parseSomeTree() {
 	projectM3Model = createM3FromEclipseProject(fileLoc);
@@ -34,6 +35,7 @@ public void parseSomeTree() {
 	int bucketSize = (totalNodes > 9) ? totalNodes / 10 : totalNodes;
 	
 	map[int, list[node]] bucketList = ();
+	// Probably have to document this structure 
 	map[int listLength, 
 		map[str hashId, 
 			list[
@@ -61,9 +63,7 @@ public void parseSomeTree() {
 			int theSize = size(sts);
 			if (theSize >= TRESHOLD_MIN_SEQUENCE_LENGTH) {
 				println("Found a statement list! Size: <theSize>");
-				//println(sts);
 				for (list[int] seq <- createSequencePermutations([1..theSize])) {
-					//int theIndex = getBucketIndexOfSubTree(sts[seq, bucketSize);
 					list[int] indexes = [];
 					list[node] statements = [];
 					//list[str] names = [];
@@ -75,7 +75,6 @@ public void parseSomeTree() {
 					}
 					hash = createCustomSequenceHash(indexes);
 					//println("Adding sequence to list. Seq: <seq> | Indexes: <indexes> | Hash: <hash> | ");
-                	//sequenceList[hash] ? [emptyNodeList] += [statements]; // old version
                 	stsSize = size(statements); 
                 	if (subSequenceList[stsSize]?) { 
                 		if (subSequenceList[stsSize][hash]?) {
@@ -83,11 +82,8 @@ public void parseSomeTree() {
             			} else {
             				subSequenceList[stsSize] += (hash : [statements]);
         				}
-        				;
             		} else {
-            			 //map[str hashId, list[list[node] statements] statementsList] hashMapEntry = (hash : [statements]);
             			subSequenceList += (stsSize : (hash : [statements]));
-            			;
             		} 
 				}
 			}
@@ -104,11 +100,8 @@ public void parseSomeTree() {
 	println("** Finding duplicated blocks **");
 	findDuplicates(bucketList);
 	//println(bucketList);
-	//println();
-	//println(bucketList[3][1]);
-	//println(bucketList[2]);
 	println("** Finding duplicated sequences **");
-	//findDuplicateSequences(subSequenceList, maxSeqLength);
+	findDuplicateSequences(subSequenceList, maxSeqLength);// max not needed?
 	//println(sequenceList);
 }
 
@@ -120,10 +113,35 @@ public str createCustomSequenceHash(list[int] indexes) {
 	return customHash;
 }
 
-public void findDuplicateSequences(map[str, list[list[node]]] sequenceList, int maxSeqLength) {
-	// Note that the first node of each list is just the empty list :( 
-	for (i <- [TRESHOLD_MIN_SEQUENCE_LENGTH..maxSeqLength]) {
-		;
+public void findDuplicateSequences(subSequenceList, int maxSeqLength) { // max not needed?
+	// Note that the first node of each list is just the empty list :( // Not anymore
+	//for (subSeqLength <- subSequenceList) { 
+	for (subSeqLength <- [TRESHOLD_MIN_SEQUENCE_LENGTH..maxSeqLength+1]) { // [1..5] gives me [1,2,3,4]. That's why +1
+		//if (subSequenceList[subSeqLength]?) { // Not sure if this check is required, but probably not.
+		hashMapEntriesToCheck  = subSequenceList[subSeqLength];
+		
+		for (hash <- hashMapEntriesToCheck) { // Order doesn't matter here: Possible clones have the same hash already
+			statementListsToCheck = hashMapEntriesToCheck[hash];
+			// [[Statement, statement], [statement, statement]] | Comparing each [Statement] with the others 
+			for (<dup1, dup2> <- [<statementListsToCheck[i], statementListsToCheck[j]> | i <- [0..size(statementListsToCheck)]
+																	 , j <- [i+1..size(statementListsToCheck)]
+																	 , statementListsToCheck[i] == statementListsToCheck[j]
+																	 ]) {
+				println("Found duplicate sequence!");
+				println(dup1[0]@src);
+				println(dup1[1]@src);
+				if (size(dup1) > 2) {
+					println(dup1[2]@src);
+				}
+				println();
+				println(dup2[0]@src);
+				println(dup2[1]@src);
+				if (size(dup2) > 2) {
+					println(dup2[2]@src);
+				}
+		   }
+	   }
+		//}
 	}
 	
 	
@@ -131,31 +149,31 @@ public void findDuplicateSequences(map[str, list[list[node]]] sequenceList, int 
 	
 	//iprintln(sequenceList["0_0_"][0]);
 	//iprintln(sequenceList["0_0_"][1]);
-	for (key <- sequenceList) {
-		println(key);
-		sequencesToCheck = sequenceList[key];
-		//println(sequencesToCheck[1][0]);
-		//println(sequencesToCheck[1][1]);
-		
-		for (<dup1, dup2> <- [<sequencesToCheck[i], sequencesToCheck[j]> | i <- [1..size(sequencesToCheck)], // 1 to fix the empty list problem 
-																		   j <- [i+1..size(sequencesToCheck)], 
-																		   sequencesToCheck[i] == sequencesToCheck[j]]) {
-			println("Found duplicate sequence!");
-			println(dup1[0]@src);
-			println(dup1[1]@src);
-			if (size(dup1) > 2) {
-				println(dup1[2]@src);
-			}
-			println();
-			println(dup2[0]@src);
-			println(dup2[1]@src);
-			if (size(dup2) > 2) {
-				println(dup2[2]@src);
-			}
-			;
-		}
-		
-	}
+	//for (key <- sequenceList) {
+	//	println(key);
+	//	sequencesToCheck = sequenceList[key];
+	//	//println(sequencesToCheck[1][0]);
+	//	//println(sequencesToCheck[1][1]);
+	//	
+	//	for (<dup1, dup2> <- [<sequencesToCheck[i], sequencesToCheck[j]> | i <- [1..size(sequencesToCheck)], // 1 to fix the empty list problem 
+	//																	   j <- [i+1..size(sequencesToCheck)], 
+	//																	   sequencesToCheck[i] == sequencesToCheck[j]]) {
+	//		println("Found duplicate sequence!");
+	//		println(dup1[0]@src);
+	//		println(dup1[1]@src);
+	//		if (size(dup1) > 2) {
+	//			println(dup1[2]@src);
+	//		}
+	//		println();
+	//		println(dup2[0]@src);
+	//		println(dup2[1]@src);
+	//		if (size(dup2) > 2) {
+	//			println(dup2[2]@src);
+	//		}
+	//		;
+	//	}
+	//	
+	//}
 }
 
 // Input: [1,2,3,4,5]
@@ -178,13 +196,14 @@ public list[list[value]] createSequencePermutations(list[value] input) { // Valu
 
 public void findDuplicates(map[int, list[node]] bucketList) {
 	set[tuple[node, loc]] clones = {};
-	for (key <- bucketList) {
+	for (key <- bucketList) { // Order doesn't matter here: Possible clones have the same hash already
 		println("<key> : <size(bucketList[key])>");
 		list[node] treesToCheck = bucketList[key];
 		
-		for (<dup1, dup2> <- [<treesToCheck[i], treesToCheck[j]> | i <- [0..size(treesToCheck)], 
-																   j <- [i+1..size(treesToCheck)], 
-																   treesToCheck[i] == treesToCheck[j]]) {
+		for (<dup1, dup2> <- [<treesToCheck[i], treesToCheck[j]> | i <- [0..size(treesToCheck)]
+																 , j <- [i+1..size(treesToCheck)]
+																 , treesToCheck[i] == treesToCheck[j]
+																 ]) {
 			println("Found duplicate!");
 			println(dup1@src);
 			// Remove the subtrees because this is the partent. As described in the paper
