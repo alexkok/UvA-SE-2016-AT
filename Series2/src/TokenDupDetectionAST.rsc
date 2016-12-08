@@ -30,6 +30,7 @@ public void parseSomeTree() {
 	int bucketSize = (totalNodes > 9) ? totalNodes / 10 : totalNodes;
 	
 	map[int, list[node]] bucketList = ();
+	map[str, list[node]] sequenceList = ();
 	
 	list[node] emptyNodeList = [];
 	
@@ -46,11 +47,27 @@ public void parseSomeTree() {
                 bucketList[theIndex] ? emptyNodeList += subTree;
 			}
 		}
-		case list[Statement] sts: {
+		case list[node] sts: {
 			int theSize = size(sts);
 			if (theSize >= TRESHOLD_MIN_SEQUENCE_LENGTH) {
-				println("Found a statement list!");
-				println(sts);
+				println("Found a statement list! Size: <theSize>");
+				//println(sts);
+				for (list[int] seq <- createSequencePermutations([1..theSize])) {
+					//int theIndex = getBucketIndexOfSubTree(sts[seq, bucketSize);
+					list[int] indexes = [];
+					list[node] statements = [];
+					list[str] names = [];
+					for (i <- seq) {
+						//println("SubtreeSize: <getSizeForSubTree(sts[i])> | BucketSize: <bucketSize>");
+						indexes += getBucketIndexOfSubTree(getSizeForSubTree(sts[i]), bucketSize);
+						statements += sts[i];
+						getNameForSubTree(sts[i]);
+					}
+					hash = createCustomSequenceHash(indexes);
+					//println("Adding sequence to list. Seq: <seq> | Indexes: <indexes> | Hash: <hash> | ");
+                	sequenceList[hash] ? emptyNodeList += statements;
+     ;
+				}
 			}
 			if (maxSeqLength < theSize) {
 				maxSeqLength = theSize;
@@ -60,18 +77,27 @@ public void parseSomeTree() {
 	println("TotalNodes: <totalNodes>");
 	println("BucketSize: <bucketSize>");
 	println("BucketListSize: <size(bucketList)>");
+	println("SequenceListSize: <size(sequenceList)>");
 	println("** Finding duplicated blocks **");
 	findDuplicates(bucketList);
-	//println(bucketList[3][0]);
+	//println(bucketList);
 	//println();
 	//println(bucketList[3][1]);
 	//println(bucketList[2]);
 	println("** Finding duplicated sequences **");
-	findDuplicateSequences(bucketList);
-	
+	findDuplicateSequences(sequenceList);
+	//println(sequenceList);
 }
 
-public void findDuplicateSequences(map[int, list[node]] bucketList) {
+public str createCustomSequenceHash(list[int] indexes) {
+	str customHash = "";
+	for (i <- indexes) {
+		customHash += "<i>_";
+	}
+	return customHash;
+}
+
+public void findDuplicateSequences(map[str, list[node]] sequenceList) {
 
 }
 
@@ -83,7 +109,7 @@ public void findDuplicateSequences(map[int, list[node]] bucketList) {
 //		   ]
 public list[list[value]] createSequencePermutations(list[value] input) { // Value should be the type you give it. Have to lookup how the <:T was exactly
 	list[list[value]] perms = [];
-	for (i <- [1..size(input)]) {
+	for (i <- [0..size(input)]) {
 		tmpPerm = [i];
 		for (j <- [i..size(input)]) {
 			tmpPerm += j+1;
@@ -131,15 +157,17 @@ public void findDuplicates(map[int, list[node]] bucketList) {
 public str getNameForSubTree(d) {
  	str name = "";
  	visit (d) {
- 		case e:Expression\type:
+ 		case Statement e:
  			try {
- 				//println("<e>\n");
+ 				//println("<readFile(e@\src)>\n");
+ 				name += ("" | it + trim(line) | line <- readFileLines(e@\src));
  				//name += 1;
  				;
 			} catch NoSuchAnnotation (e) : {
  				println("<e>\n");
 			}
  	}
+ 	println(name);
  	return name;
 }
 
