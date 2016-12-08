@@ -30,7 +30,7 @@ public void parseSomeTree() {
 	int bucketSize = (totalNodes > 9) ? totalNodes / 10 : totalNodes;
 	
 	map[int, list[node]] bucketList = ();
-	map[str, list[node]] sequenceList = ();
+	map[str, list[list[node]]] sequenceList = ();
 	
 	list[node] emptyNodeList = [];
 	
@@ -65,7 +65,7 @@ public void parseSomeTree() {
 					}
 					hash = createCustomSequenceHash(indexes);
 					//println("Adding sequence to list. Seq: <seq> | Indexes: <indexes> | Hash: <hash> | ");
-                	sequenceList[hash] ? emptyNodeList += statements;
+                	sequenceList[hash] ? [emptyNodeList] += [statements];
      ;
 				}
 			}
@@ -97,8 +97,40 @@ public str createCustomSequenceHash(list[int] indexes) {
 	return customHash;
 }
 
-public void findDuplicateSequences(map[str, list[node]] sequenceList) {
-
+public void findDuplicateSequences(map[str, list[list[node]]] sequenceList) {
+	// Note that the first node of each list is just the empty list :( 
+	
+	
+	
+	
+	
+	//iprintln(sequenceList["0_0_"][0]);
+	//iprintln(sequenceList["0_0_"][1]);
+	for (key <- sequenceList) {
+		println(key);
+		sequencesToCheck = sequenceList[key];
+		//println(sequencesToCheck[1][0]);
+		//println(sequencesToCheck[1][1]);
+		
+		for (<dup1, dup2> <- [<sequencesToCheck[i], sequencesToCheck[j]> | i <- [1..size(sequencesToCheck)], // 1 to fix the empty list problem 
+																		   j <- [i+1..size(sequencesToCheck)], 
+																		   sequencesToCheck[i] == sequencesToCheck[j]]) {
+			println("Found duplicate sequence!");
+			println(dup1[0]@src);
+			println(dup1[1]@src);
+			if (size(dup1) > 2) {
+				println(dup1[2]@src);
+			}
+			println();
+			println(dup2[0]@src);
+			println(dup2[1]@src);
+			if (size(dup2) > 2) {
+				println(dup2[2]@src);
+			}
+			;
+		}
+		
+	}
 }
 
 // Input: [1,2,3,4,5]
