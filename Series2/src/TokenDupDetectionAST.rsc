@@ -101,7 +101,7 @@ public void parseSomeTree() {
 	findDuplicates(bucketList);
 	//println(bucketList);
 	println("** Finding duplicated sequences **");
-	findDuplicateSequences(subSequenceList, maxSeqLength);// max not needed?
+	findDuplicateSequences(subSequenceList, maxSeqLength);
 	//println(sequenceList);
 }
 
@@ -112,12 +112,17 @@ public str createCustomSequenceHash(list[int] indexes) {
 	}
 	return customHash;
 }
-
-public void findDuplicateSequences(subSequenceList, int maxSeqLength) { // max not needed?
+/**
+ * findDuplicateSequences
+ * @param subSequenceList: The subsequence list that has been found by traversing the whole AST.
+ * @param maxSeqLength: The maximum sequence length that is in the list. 
+ *
+ * Needing the maxSeqLength because we need to access from the starting index till the end index 
+ */
+public void findDuplicateSequences(subSequenceList, int maxSeqLength) {
+	set[tuple[node, loc]] clones = {};
 	// Note that the first node of each list is just the empty list :( // Not anymore
-	//for (subSeqLength <- subSequenceList) { 
 	for (subSeqLength <- [TRESHOLD_MIN_SEQUENCE_LENGTH..maxSeqLength+1]) { // [1..5] gives me [1,2,3,4]. That's why +1
-		//if (subSequenceList[subSeqLength]?) { // Not sure if this check is required, but probably not.
 		hashMapEntriesToCheck  = subSequenceList[subSeqLength];
 		
 		for (hash <- hashMapEntriesToCheck) { // Order doesn't matter here: Possible clones have the same hash already
@@ -125,7 +130,7 @@ public void findDuplicateSequences(subSequenceList, int maxSeqLength) { // max n
 			// [[Statement, statement], [statement, statement]] | Comparing each [Statement] with the others 
 			for (<dup1, dup2> <- [<statementListsToCheck[i], statementListsToCheck[j]> | i <- [0..size(statementListsToCheck)]
 																	 , j <- [i+1..size(statementListsToCheck)]
-																	 , statementListsToCheck[i] == statementListsToCheck[j]
+																	 , statementListsToCheck[i] == statementListsToCheck[j] // TRESHOLD_SIMILARITY
 																	 ]) {
 				println("Found duplicate sequence!");
 				println(dup1[0]@src);
@@ -141,39 +146,7 @@ public void findDuplicateSequences(subSequenceList, int maxSeqLength) { // max n
 				}
 		   }
 	   }
-		//}
 	}
-	
-	
-	
-	
-	//iprintln(sequenceList["0_0_"][0]);
-	//iprintln(sequenceList["0_0_"][1]);
-	//for (key <- sequenceList) {
-	//	println(key);
-	//	sequencesToCheck = sequenceList[key];
-	//	//println(sequencesToCheck[1][0]);
-	//	//println(sequencesToCheck[1][1]);
-	//	
-	//	for (<dup1, dup2> <- [<sequencesToCheck[i], sequencesToCheck[j]> | i <- [1..size(sequencesToCheck)], // 1 to fix the empty list problem 
-	//																	   j <- [i+1..size(sequencesToCheck)], 
-	//																	   sequencesToCheck[i] == sequencesToCheck[j]]) {
-	//		println("Found duplicate sequence!");
-	//		println(dup1[0]@src);
-	//		println(dup1[1]@src);
-	//		if (size(dup1) > 2) {
-	//			println(dup1[2]@src);
-	//		}
-	//		println();
-	//		println(dup2[0]@src);
-	//		println(dup2[1]@src);
-	//		if (size(dup2) > 2) {
-	//			println(dup2[2]@src);
-	//		}
-	//		;
-	//	}
-	//	
-	//}
 }
 
 // Input: [1,2,3,4,5]
@@ -202,11 +175,11 @@ public void findDuplicates(map[int, list[node]] bucketList) {
 		
 		for (<dup1, dup2> <- [<treesToCheck[i], treesToCheck[j]> | i <- [0..size(treesToCheck)]
 																 , j <- [i+1..size(treesToCheck)]
-																 , treesToCheck[i] == treesToCheck[j]
+																 , treesToCheck[i] == treesToCheck[j] // TRESHOLD_SIMILARITY
 																 ]) {
 			println("Found duplicate!");
 			println(dup1@src);
-			// Remove the subtrees because this is the partent. As described in the paper
+			// Remove the subtrees because this is the parent. As described in the paper
 			// For each subtree s of dup1
 			// 	if IsMember(clones, s) { RemoveClonePair(s) }
 			visit (dup1) {
