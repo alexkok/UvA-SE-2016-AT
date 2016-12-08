@@ -1,4 +1,4 @@
-module TokenDupDetection
+module DupDetectionAst
 
 import ParseTree;
 import vis::ParseTree;

@@ -1,4 +1,4 @@
-module TokenDupDetectionAST
+module DupDetectionAst
 
 import ParseTree;
 import vis::ParseTree;
@@ -24,7 +24,7 @@ public loc fileLoc = |project://MetricsTests2/src/tests/DuplicationSequence_Star
 
 public void parseSomeTree() {
 	projectM3Model = createM3FromEclipseProject(fileLoc);
-	//set[Declaration] a = createAstsFromFile(files(projectM3Model), true);
+	set[Declaration] a = createAstsFromFile(files(projectM3Model), true);
 	//for (d <- a) {
 	//	iprintln(d);
 	//	println();
@@ -59,7 +59,7 @@ public void parseSomeTree() {
                 bucketList[theIndex] ? emptyNodeList += subTree;
 			}
 		}
-		case list[node] sts: {
+		case list[node] sts: { // Statements?
 			int theSize = size(sts);
 			if (theSize >= TRESHOLD_MIN_SEQUENCE_LENGTH) {
 				println("Found a statement list! Size: <theSize>");
