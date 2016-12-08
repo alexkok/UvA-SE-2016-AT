@@ -4,6 +4,8 @@ import lang::java::jdt::m3::AST;
 
 import util::Math;
 import List;
+import Set;
+import IO;
 
 alias SubSequenceList = map[int listLength, 
 							map[str hashId, 
@@ -41,7 +43,10 @@ public tuple[SubSequenceList subSequenceList, int maxSequenceLength] findSubSequ
 	SubSequenceList subSequenceList = ();
 	int maxSeqLength = 0;
 	
+	int counter = 0;
 	for (Declaration d <- asts) {
+		counter += 1;
+		print("\r- Progress: <counter>/<size(asts)>");
 		bottom-up visit(d) {
 			case list[node] sts: { 
 				int theSize = size(sts);
@@ -72,6 +77,7 @@ public tuple[SubSequenceList subSequenceList, int maxSequenceLength] findSubSequ
 			}
 		}
 	}
+	println();
 	return <subSequenceList, maxSeqLength>;
 }
 
@@ -90,6 +96,7 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 	set[tuple[list[loc], loc]] clones = {};
 
 	for (subSeqLength <- [tresholdMinSequenceLength..maxSeqLength+1]) { // [1..5] gives me [1,2,3,4]. That's why +1
+		print("\r- Progress: <subSeqLength-tresholdMinSequenceLength>/<maxSeqLength-1>");
 		hashMapEntriesToCheck  = subSequenceList[subSeqLength];
 		
 		for (hash <- hashMapEntriesToCheck) { // Order doesn't matter here: Possible clones have the same hash already
@@ -147,6 +154,7 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 		   }
 	   }
 	}
+	println();
 	return clones;
 }
 

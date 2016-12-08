@@ -74,6 +74,7 @@ private void step2_findCloneSequences() {
 		for (clone <- clones) {
 			println("- Clone: <clone.fullLocation>");
 		}
+		println("- Clones found: <size(clones)>");
 	}
 }
 
