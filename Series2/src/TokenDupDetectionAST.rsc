@@ -17,6 +17,10 @@ private int TRESHOLD_MIN_SEQUENCE_LENGTH = 2; // The minimum sequence length of 
 
 public loc fileLoc = |project://MetricsTests2/src/tests/DuplicationSequence_Middle.java|;
 
+// Custom data types don't allow us to use in or ?
+//data subSequenceList = subSequenceList(map[int listLength, sequenceHashList content]);
+//data sequenceHashList = sequenceHashList(map[str hashId, list[list[node]] statementLists]);
+
 public void parseSomeTree() {
 	projectM3Model = createM3FromEclipseProject(fileLoc);
 	//set[Declaration] a = createAstsFromFile(files(projectM3Model), true);
@@ -30,7 +34,13 @@ public void parseSomeTree() {
 	int bucketSize = (totalNodes > 9) ? totalNodes / 10 : totalNodes;
 	
 	map[int, list[node]] bucketList = ();
-	map[str, list[list[node]]] sequenceList = ();
+	map[int listLength, 
+		map[str hashId, 
+			list[
+				list[node] statements
+				] statementLists
+			] hashMap
+		] subSequenceList = ();
 	
 	list[node] emptyNodeList = [];
 	
@@ -56,17 +66,29 @@ public void parseSomeTree() {
 					//int theIndex = getBucketIndexOfSubTree(sts[seq, bucketSize);
 					list[int] indexes = [];
 					list[node] statements = [];
-					list[str] names = [];
+					//list[str] names = [];
 					for (i <- seq) {
 						//println("SubtreeSize: <getSizeForSubTree(sts[i])> | BucketSize: <bucketSize>");
 						indexes += getBucketIndexOfSubTree(getSizeForSubTree(sts[i]), bucketSize);
 						statements += sts[i];
-						getNameForSubTree(sts[i]);
+						//names += getNameForSubTree(sts[i]);
 					}
 					hash = createCustomSequenceHash(indexes);
 					//println("Adding sequence to list. Seq: <seq> | Indexes: <indexes> | Hash: <hash> | ");
-                	sequenceList[hash] ? [emptyNodeList] += [statements];
-     ;
+                	//sequenceList[hash] ? [emptyNodeList] += [statements]; // old version
+                	stsSize = size(statements); 
+                	if (subSequenceList[stsSize]?) { 
+                		if (subSequenceList[stsSize][hash]?) {
+                			subSequenceList[stsSize][hash] += [statements];
+            			} else {
+            				subSequenceList[stsSize] += (hash : [statements]);
+        				}
+        				;
+            		} else {
+            			 //map[str hashId, list[list[node] statements] statementsList] hashMapEntry = (hash : [statements]);
+            			subSequenceList += (stsSize : (hash : [statements]));
+            			;
+            		} 
 				}
 			}
 			if (maxSeqLength < theSize) {
@@ -77,7 +99,8 @@ public void parseSomeTree() {
 	println("TotalNodes: <totalNodes>");
 	println("BucketSize: <bucketSize>");
 	println("BucketListSize: <size(bucketList)>");
-	println("SequenceListSize: <size(sequenceList)>");
+	println("SequenceListSize: <size(subSequenceList)>"); // Not useful...
+	println("MaxSequenceLength: <maxSeqLength>");
 	println("** Finding duplicated blocks **");
 	findDuplicates(bucketList);
 	//println(bucketList);
@@ -85,7 +108,7 @@ public void parseSomeTree() {
 	//println(bucketList[3][1]);
 	//println(bucketList[2]);
 	println("** Finding duplicated sequences **");
-	findDuplicateSequences(sequenceList);
+	//findDuplicateSequences(subSequenceList, maxSeqLength);
 	//println(sequenceList);
 }
 
@@ -97,9 +120,11 @@ public str createCustomSequenceHash(list[int] indexes) {
 	return customHash;
 }
 
-public void findDuplicateSequences(map[str, list[list[node]]] sequenceList) {
+public void findDuplicateSequences(map[str, list[list[node]]] sequenceList, int maxSeqLength) {
 	// Note that the first node of each list is just the empty list :( 
-	
+	for (i <- [TRESHOLD_MIN_SEQUENCE_LENGTH..maxSeqLength]) {
+		;
+	}
 	
 	
 	
