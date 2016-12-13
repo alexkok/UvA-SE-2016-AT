@@ -11,7 +11,7 @@ import TreeUtil;
 
 bool isDebug = true;
 
-public list[tuple[list[loc statementLocation] statementLocations, loc fullLocation] clone] getClonesForLocation(loc location) {
+public set[tuple[list[loc statementLocation] statementLocations, loc fullLocation] clone] getClonesForLocation(loc location) {
 	Declaration d = createAstFromFileC(location, false);
 	int maximumNodes = getMaxNodesFromTrees({d});
 	int bucketSize = (maximumNodes > 9) ? maximumNodes / 10 : maximumNodes; // 10 % of the maximum nodes
@@ -23,7 +23,7 @@ public list[tuple[list[loc statementLocation] statementLocations, loc fullLocati
 	return findDuplicateSequences(subSequenceList, maxSequenceLength, TRESHOLD_MIN_SEQUENCE_LENGTH);
 }
 
-public tuple[int amountClones, int amountLOC] getSizeAndLocFromClones(list[tuple[list[loc statementLocation] statementLocations, loc fullLocation] clone]  clones) {
+public tuple[int amountClones, int amountLOC] getSizeAndLocFromClones(set[tuple[list[loc statementLocation] statementLocations, loc fullLocation] clone]  clones) {
 	for (<clns, fullLoc> <- clones) {
 		println();
 		println("- First: <clns[0]>");
