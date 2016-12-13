@@ -48,7 +48,7 @@ public tuple[SubSequenceList subSequenceList, int maxSequenceLength] findSubSequ
 		counter += 1;
 		print("\r- Progress: <counter>/<size(asts)>");
 		bottom-up visit(d) {
-			case list[node] sts: { 
+			case list[node] sts: {
 				int theSize = size(sts);
 				if (theSize >= tresholdMinSequenceLength) {
 					for (list[int] seq <- createSequencePermutations([1..theSize])) {
@@ -92,65 +92,68 @@ public tuple[SubSequenceList subSequenceList, int maxSequenceLength] findSubSequ
  *
  * @Returns clones: A set of tuples, containing a list of locations of the statements and a location of the full clone. 
  */
-public set[tuple[list[loc statementLocation] statementLocations, loc fullLocation] clone] findDuplicateSequences(subSequenceList, int maxSeqLength, int tresholdMinSequenceLength) {
-	set[tuple[list[loc], loc]] clones = {};
+public list[tuple[list[loc statementLocation] statementLocations, loc fullLocation] clone] findDuplicateSequences(subSequenceList, int maxSeqLength, int tresholdMinSequenceLength) {
+	list[tuple[list[loc], loc]] clones = [];
 
 	for (subSeqLength <- [tresholdMinSequenceLength..maxSeqLength+1]) { // [1..5] gives me [1,2,3,4]. That's why +1
-		print("\r- Progress: <subSeqLength-tresholdMinSequenceLength>/<maxSeqLength-tresholdMinSequenceLength>");
-		hashMapEntriesToCheck  = subSequenceList[subSeqLength];
-		
-		for (hash <- hashMapEntriesToCheck) { // Order doesn't matter here: Possible clones have the same hash already
-			statementListsToCheck = hashMapEntriesToCheck[hash];
-			// [[Statement, statement], [statement, statement]] | Comparing each [Statement] with the others 
-			for (<dup1, dup2> <- [<statementListsToCheck[i], statementListsToCheck[j]> | i <- [0..size(statementListsToCheck)]
-																	 , j <- [i+1..size(statementListsToCheck)]
-																	 , statementListsToCheck[i] == statementListsToCheck[j] // TRESHOLD_SIMILARITY
-																	 ]) {
-				loc src1first = dup1[0]@src;
-				loc src1last = last(dup1)@src;
-				loc src2first = dup2[0]@src;
-				loc src2last = last(dup2)@src;
-				// Editing a src works too, but this  modifies the normal source. So we create a new location
-				int fullLocLength = src1last.offset-src1first.offset + src1last.length;
-				loc fullLoc1 = |project://<src1first.authority><src1first.path>|(src1first.offset, fullLocLength, <src1first.begin.line, src1first.begin.column>, <src1last.end.line, src1last.end.column>);
-				loc fullLoc2 = |project://<src2first.authority><src2first.path>|(src2first.offset, fullLocLength, <src2first.begin.line, src2first.begin.column>, <src2last.end.line, src2last.end.column>);
-				//println("Found duplicate sequence!");
-				//println("<fullLoc1>  |  <fullLoc2>");
-				
-				possibleCloneToAdd1 = <[ls@src | ls <- dup1],fullLoc1>;
-				possibleCloneToAdd2 = <[ls@src | ls <- dup2],fullLoc2>;
-				hasBeenAdded1 = false;
-				hasBeenAdded2 = false;				
-				
-				// Remove the subtrees because this block already has been found. As described in the paper
-				visit (dup1) {
-					case Statement n:
-						for (<locations, fullLoc> <- clones) {
-							if (size(locations) < size(possibleCloneToAdd1[0])) { 
-								for (i <- [0..size(possibleCloneToAdd1[0])]) { 
-									if (locations[0] == possibleCloneToAdd1[0][i]) { // TRESHOLD_SIMILARITY
-										clones -= <locations, fullLoc>;
+		//print("\r- Progress: <subSeqLength-tresholdMinSequenceLength>/<maxSeqLength-tresholdMinSequenceLength>");
+		println("<subSeqLength>");
+		if (subSequenceList[subSeqLength]?) {
+			hashMapEntriesToCheck  = subSequenceList[subSeqLength];
+			for (hash <- hashMapEntriesToCheck) { // Order doesn't matter here: Possible clones have the same hash already
+				statementListsToCheck = sort(hashMapEntriesToCheck[hash]);
+				// [[Statement, statement], [statement, statement]] | Comparing each [Statement] with the others 
+				for (<dup1, dup2> <- [<statementListsToCheck[i], statementListsToCheck[j]> | i <- [0..size(statementListsToCheck)]
+																		 , j <- [i+1..size(statementListsToCheck)]
+																		 , statementListsToCheck[i] == statementListsToCheck[j] // TRESHOLD_SIMILARITY
+																		 ]) {
+					loc src1first = dup1[0]@src;
+					loc src1last = last(dup1)@src;
+					loc src2first = dup2[0]@src;
+					loc src2last = last(dup2)@src;
+					// Editing a src works too, but this  modifies the normal source. So we create a new location
+					int fullLoc1Length = src1last.offset-src1first.offset + src1last.length;
+					int fullLoc2Length = src2last.offset-src2first.offset + src2last.length;
+					loc fullLoc1 = |project://<src1first.authority><src1first.path>|(src1first.offset, fullLoc1Length, <src1first.begin.line, src1first.begin.column>, <src1last.end.line, src1last.end.column>);
+					loc fullLoc2 = |project://<src2first.authority><src2first.path>|(src2first.offset, fullLoc2Length, <src2first.begin.line, src2first.begin.column>, <src2last.end.line, src2last.end.column>);
+					println("Found duplicate sequence! <fullLoc2>");
+					//println("<fullLoc1>\t|  <fullLoc2>");
+					
+					possibleCloneToAdd1 = <[ls@src | ls <- dup1],fullLoc1>;
+					possibleCloneToAdd2 = <[ls@src | ls <- dup2],fullLoc2>;
+					hasBeenAdded1 = false;
+					hasBeenAdded2 = false;				
+					
+					// Remove the subtrees because this block already has been found. As described in the paper
+					visit (dup1) {
+						case Statement n: 
+							for (<locations, fullLoc> <- clones) {
+								if (size(locations) < size(possibleCloneToAdd1[0])) { 
+									for (i <- [0..size(possibleCloneToAdd1[0])]) { 
+										if (possibleCloneToAdd1[0][i] in locations) { // TRESHOLD_SIMILARITY
+											clones -= <locations, fullLoc>;
+										}
 									}
 								}
 							}
-						}
-				}
-				visit (dup2) {
-					case Statement n:
-						for (<locations, fullLoc> <- clones) {
-							if (size(locations) < size(possibleCloneToAdd2[0])) { 
-								for (i <- [0..size(possibleCloneToAdd2[0])]) { 
-									if (locations[0] == possibleCloneToAdd2[0][i]) { // TRESHOLD_SIMILARITY
-										clones -= <locations, fullLoc>;
+					}
+					visit (dup2) {
+						case Statement n:
+							for (<locations, fullLoc> <- clones) {
+								if (size(locations) < size(possibleCloneToAdd2[0])) {
+									for (i <- [0..size(possibleCloneToAdd2[0])]) { 
+										if (possibleCloneToAdd2[0][i] in locations) { // TRESHOLD_SIMILARITY
+											clones -= <locations, fullLoc>;
+										}
 									}
 								}
 							}
-						}
-				}
-				
-				// Add this clone pair to our clones
-				clones += possibleCloneToAdd1;
-				clones += possibleCloneToAdd2;
+					}
+					
+					// Add this clone pair to our clones
+					clones += possibleCloneToAdd1;
+					clones += possibleCloneToAdd2;
+			   }
 		   }
 	   }
 	}

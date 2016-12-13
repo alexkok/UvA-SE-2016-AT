@@ -1,7 +1,7 @@
 module \test::TestHelper
 
-import Set;
 import List;
+import Set;
 import lang::java::jdt::m3::AST;
 import IO;
 
@@ -11,7 +11,7 @@ import TreeUtil;
 
 bool isDebug = true;
 
-public set[tuple[list[loc statementLocation] statementLocations, loc fullLocation] clone] getClonesForLocation(loc location) {
+public list[tuple[list[loc statementLocation] statementLocations, loc fullLocation] clone] getClonesForLocation(loc location) {
 	Declaration d = createAstFromFileC(location, false);
 	int maximumNodes = getMaxNodesFromTrees({d});
 	int bucketSize = (maximumNodes > 9) ? maximumNodes / 10 : maximumNodes; // 10 % of the maximum nodes
@@ -23,11 +23,11 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 	return findDuplicateSequences(subSequenceList, maxSequenceLength, TRESHOLD_MIN_SEQUENCE_LENGTH);
 }
 
-public tuple[int amountClones, int amountLOC] getSizeAndLocFromClones(set[tuple[list[loc statementLocation] statementLocations, loc fullLocation] clone]  clones) {
+public tuple[int amountClones, int amountLOC] getSizeAndLocFromClones(list[tuple[list[loc statementLocation] statementLocations, loc fullLocation] clone]  clones) {
 	for (<clns, fullLoc> <- clones) {
 		println();
-		println(fullLoc);
-		println();
+		println("- First: <clns[0]>");
+		println("- Full:  <fullLoc>");
 	}
 
 	int amountClones = size(clones);

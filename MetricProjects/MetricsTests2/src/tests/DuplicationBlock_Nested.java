@@ -21,6 +21,9 @@ public class DuplicationBlock_Nested {
 			int c=3;
 			int w=4;
 		}
+		if (true) {
+			return;
+		}
 	}
 	
 	public void h ()
@@ -31,6 +34,9 @@ public class DuplicationBlock_Nested {
 			int b=2;
 			int c=3;
 			int w=4;
+		}
+		if (true) {
+			return;
 		}
 	}
 }

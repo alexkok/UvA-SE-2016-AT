@@ -30,5 +30,5 @@ test bool testBlockNested() {
 	clones = getClonesForLocation(location);
 	<amountClones, amountLOC> = getSizeAndLocFromClones(clones);
 	
-	return (amountClones == 3 && amountLOC == 17);
+	return (amountClones == 3 && amountLOC == 19);
 }
