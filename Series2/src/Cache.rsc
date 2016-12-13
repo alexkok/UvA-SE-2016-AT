@@ -17,7 +17,7 @@ public set[Declaration] createAstsFromProject(loc project, bool useCache, bool d
 	return loadCacheProject(astCacheFile(project), debug);
 }
 
-public Declaration createAstFromFile(loc file, bool useCache, bool debug = false) {
+public Declaration createAstFromFileC(loc file, bool useCache, bool debug = false) {
 	Declaration ast;
 	
 	if (!exists(astCacheFile(file)) || !useCache) {
@@ -34,11 +34,11 @@ public void writeCacheProject(loc project, bool debug) {
 	writeBinaryValueFile(astCacheFile(project), ast);
 }
 
-public void writeCacheFile(loc project, bool debug) {
-	Declaration ast = createAstFromEclipseFile(project, true);
+public void writeCacheFile(loc file, bool debug) {
+	Declaration ast = createAstFromEclipseFile(file, true);
 	
-	if (debug) println("writing cache file to: <astCacheFile(project)>");
-	writeBinaryValueFile(astCacheFile(project), ast);
+	if (debug) println("writing cache file to: <astCacheFile(file)>");
+	writeBinaryValueFile(astCacheFile(file), ast);
 }
 
 public set[Declaration] loadCacheProject(loc file, bool debug) {
@@ -51,6 +51,6 @@ public Declaration loadCacheFile(loc file, bool debug) {
 	return readBinaryValueFile(#Declaration, file);
 }
 
-public loc astCacheFile(loc project) {
-	return cacheLoc + "<project.authority + project.path>.ast";
+public loc astCacheFile(loc file) {
+	return cacheLoc + "<file.authority + file.path>.ast";
 }
