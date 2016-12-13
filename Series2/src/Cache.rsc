@@ -10,7 +10,11 @@ private loc cacheLoc = |project://CloneDetection/src/cache/|;
 public set[Declaration] createAstsFromProject(loc project, bool useCache, bool debug = false) {
 	set[Declaration] ast;
 	
-	if (!exists(astCacheFile(project)) || !useCache) {
+	if(useCache) {
+		if(!exists(astCacheFile(project))) {
+			writeCacheProject(project, debug);
+		}
+	} else {
 		writeCacheProject(project, debug);
 	}
 	
@@ -20,7 +24,11 @@ public set[Declaration] createAstsFromProject(loc project, bool useCache, bool d
 public Declaration createAstFromFileC(loc file, bool useCache, bool debug = false) {
 	Declaration ast;
 	
-	if (!exists(astCacheFile(file)) || !useCache) {
+	if(useCache) {
+		if(!exists(astCacheFile(file))) {
+			writeCacheFile(file, debug);
+		}
+	} else {
 		writeCacheFile(file, debug);
 	}
 	
