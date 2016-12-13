@@ -57,3 +57,6 @@ local.properties
 
 ### OSX ###
 *.DS_Store
+
+# Ast cache
+Series2/src/cache/
