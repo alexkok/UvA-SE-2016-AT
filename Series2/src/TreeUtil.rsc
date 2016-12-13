@@ -1,6 +1,7 @@
 module TreeUtil
 
 import lang::java::jdt::m3::AST;
+import ParseTree;
 
 import util::Math;
 import List;
@@ -24,6 +25,11 @@ public int getNodesForTree(node d) {
  	visit (d) {
  		case node n:
  			nodes += 1;
+		case d:_:
+			//nodes += 1;
+			println("No node?: <d>");
+		default:
+			println("Another node...");
  	}
  	return nodes;
 }
@@ -59,7 +65,7 @@ public tuple[SubSequenceList subSequenceList, int maxSequenceLength] findSubSequ
 							statements += sts[i];
 						}
 						hash = createCustomSequenceHash(indexes);
-	                	stsSize = size(statements); 
+	                	stsSize = (0 | it + getNodesForTree(s) | s <- sts); 
 	                	if (subSequenceList[stsSize]?) { 
 	                		if (subSequenceList[stsSize][hash]?) {
 	                			subSequenceList[stsSize][hash] += [statements];
@@ -69,11 +75,14 @@ public tuple[SubSequenceList subSequenceList, int maxSequenceLength] findSubSequ
 	            		} else {
 	            			subSequenceList += (stsSize : (hash : [statements]));
 	            		} 
+				if (maxSeqLength < stsSize) {
+					maxSeqLength = stsSize;
+				}
+				}
 					}
-				}
-				if (maxSeqLength < theSize) {
-					maxSeqLength = theSize;
-				}
+				//if (maxSeqLength < theSize) {
+				//	maxSeqLength = theSize;
+				//}
 			}
 		}
 	}
@@ -95,9 +104,9 @@ public tuple[SubSequenceList subSequenceList, int maxSequenceLength] findSubSequ
 public set[tuple[list[loc statementLocation] statementLocations, loc fullLocation] clone] findDuplicateSequences(subSequenceList, int maxSeqLength, int tresholdMinSequenceLength) {
 	set[tuple[list[loc], loc]] clones = {};
 
-	for (subSeqLength <- [tresholdMinSequenceLength..maxSeqLength+1]) { // [1..5] gives me [1,2,3,4]. That's why +1
+	for (subSeqLength <- [0..maxSeqLength]) { // [1..5] gives me [1,2,3,4]. That's why +1
 		//print("\r- Progress: <subSeqLength-tresholdMinSequenceLength>/<maxSeqLength-tresholdMinSequenceLength>");
-		//println("<subSeqLength>");
+		println("<subSeqLength>");
 		if (subSequenceList[subSeqLength]?) {
 			hashMapEntriesToCheck  = subSequenceList[subSeqLength];
 			for (hash <- hashMapEntriesToCheck) { // Order doesn't matter here: Possible clones have the same hash already
@@ -116,7 +125,7 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 					int fullLoc2Length = src2last.offset-src2first.offset + src2last.length;
 					loc fullLoc1 = |project://<src1first.authority><src1first.path>|(src1first.offset, fullLoc1Length, <src1first.begin.line, src1first.begin.column>, <src1last.end.line, src1last.end.column>);
 					loc fullLoc2 = |project://<src2first.authority><src2first.path>|(src2first.offset, fullLoc2Length, <src2first.begin.line, src2first.begin.column>, <src2last.end.line, src2last.end.column>);
-					//println("Found duplicate sequence! <fullLoc2>");
+					println("Found duplicate sequence! <fullLoc1>\t| <fullLoc2>");
 					//println("<fullLoc1>\t|  <fullLoc2>");
 					
 					possibleCloneToAdd1 = <[ls@src | ls <- dup1],fullLoc1>;
@@ -127,26 +136,36 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 					// Remove the subtrees because this block already has been found. As described in the paper
 					visit (dup1) {
 						case Statement n: 
-							for (<locations, fullLoc> <- clones) {
-								if (size(locations) < size(possibleCloneToAdd1[0])) { 
-									for (i <- [0..size(possibleCloneToAdd1[0])]) { 
-										if (possibleCloneToAdd1[0][i] in locations) { // TRESHOLD_SIMILARITY
-											clones -= <locations, fullLoc>;
-										}
+							for (<locations, fullLoc> <- clones, size(locations) < size(possibleCloneToAdd1[0])) {
+								for (location <- locations) {
+									if (location in possibleCloneToAdd1[0]) {
+										clones -= <locations, fullLoc>;
 									}
 								}
+								//if (size(locations) < size(possibleCloneToAdd1[0])) { 
+								//	for (i <- [0..size(possibleCloneToAdd1[0])]) { 
+								//		if (possibleCloneToAdd1[0][i] in locations) { // TRESHOLD_SIMILARITY
+								//			clones -= <locations, fullLoc>;
+								//		}
+								//	}
+								//}
 							}
 					}
 					visit (dup2) {
 						case Statement n:
-							for (<locations, fullLoc> <- clones) {
-								if (size(locations) < size(possibleCloneToAdd2[0])) {
-									for (i <- [0..size(possibleCloneToAdd2[0])]) { 
-										if (possibleCloneToAdd2[0][i] in locations) { // TRESHOLD_SIMILARITY
-											clones -= <locations, fullLoc>;
-										}
+							for (<locations, fullLoc> <- clones, size(locations) < size(possibleCloneToAdd2[0])) {
+								for (location <- locations) {
+									if (location in possibleCloneToAdd2[0]) {
+										clones -= <locations, fullLoc>;
 									}
 								}
+								//if (size(locations) < size(possibleCloneToAdd2[0])) {
+								//	for (i <- [0..size(possibleCloneToAdd2[0])]) { 
+								//		if (possibleCloneToAdd2[0][i] in locations) { // TRESHOLD_SIMILARITY
+								//			clones -= <locations, fullLoc>;
+								//		}
+								//	}
+								//}
 							}
 					}
 					
