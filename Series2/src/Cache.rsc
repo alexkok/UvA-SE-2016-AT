@@ -17,14 +17,14 @@ public set[Declaration] createAstsFromProject(loc project, bool useCache, bool d
 	return loadCacheProject(astCacheFile(project), debug);
 }
 
-public Declaration createAstsFromFile(loc project, bool useCache, bool debug = false) {
+public Declaration createAstFromFile(loc file, bool useCache, bool debug = false) {
 	Declaration ast;
 	
-	if (!exists(astCacheFile(project)) || !useCache) {
-		writeCacheFile(project, debug);
+	if (!exists(astCacheFile(file)) || !useCache) {
+		writeCacheFile(file, debug);
 	}
 	
-	return loadCacheFile(astCacheFile(project), debug);
+	return loadCacheFile(astCacheFile(file), debug);
 }
 
 public void writeCacheProject(loc project, bool debug) {
@@ -35,7 +35,7 @@ public void writeCacheProject(loc project, bool debug) {
 }
 
 public void writeCacheFile(loc project, bool debug) {
-	Declaration ast = createAstsFromEclipseFile(project, true);
+	Declaration ast = createAstFromEclipseFile(project, true);
 	
 	if (debug) println("writing cache file to: <astCacheFile(project)>");
 	writeBinaryValueFile(astCacheFile(project), ast);

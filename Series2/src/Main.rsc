@@ -8,13 +8,11 @@ import lang::java::jdt::m3::AST;
 import Set;
 
 // Our modules
+import Config;
 import TreeUtil;
 
-private int TRESHOLD_MIN_SUBTREE_LENGTH = 10; // The minimum length (amount of nodes connected) of a sub-tree in order to detect it as a duplicate. (Described as MassTreshold in the paper)
-private int TRESHOLD_MIN_SEQUENCE_LENGTH = 2; // The minimum sequence length of a block in order to detect duplicates in it
-
-public loc prLoc = |project://MetricsTests2|;
-//public loc prLoc = |project://smallsql0.21_src|;
+//public loc prLoc = |project://MetricsTests2|;
+public loc prLoc = |project://smallsql0.21_src|;
 //public loc prLoc = |project://hsqldb-2.3.1|;
 // Values to keep track of the current analysis
 private loc projectLocation;
@@ -51,6 +49,8 @@ private void initializeDetector(loc prLoc, bool cache, bool debug) {
 	println("* Project location:\t<projectLocation>");
 	println("* Using cache:\t\t<useCache>");
 	println("* Debug mode:\t\t<isDebug>");
+	println("* Tresholds:");
+	println("*  Min sequence length:\t<TRESHOLD_MIN_SEQUENCE_LENGTH>");
 	println("************************************************");
 }
 
@@ -59,11 +59,12 @@ private void step1_createSequencesList(set[Declaration] asts) {
 	int maximumNodes = getMaxNodesFromTrees(asts);
 	int bucketSize = (maximumNodes > 9) ? maximumNodes / 10 : maximumNodes; // 10 % of the maximum nodes
 	println("- Longest tree: <maximumNodes>");
-	println("- Bucket size : <bucketSize>");
+	println("- Bucket size: <bucketSize>");
 	subSequences = findSubSequences(asts, bucketSize, TRESHOLD_MIN_SEQUENCE_LENGTH);
 	subSequenceList = subSequences.subSequenceList;
 	maxSequenceLength = subSequences.maxSequenceLength;
-	println("- Max sequence length : <maxSequenceLength>");
+	println("- Max sequence length: <maxSequenceLength>");
+	println("- Current time: <printDateTime(now())>");
 }
 
 private void step2_findCloneSequences() {
