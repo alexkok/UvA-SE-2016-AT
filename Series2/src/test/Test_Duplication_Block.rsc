@@ -5,6 +5,7 @@ import Set;
 import Config;
 import Cache;
 import TreeUtil;
+import lang::java::jdt::m3::AST;
 
 test bool testBlockSimple() {
 	loc location = |project://MetricsTests2/src/tests/DuplicationBlock_Simple.java|;
