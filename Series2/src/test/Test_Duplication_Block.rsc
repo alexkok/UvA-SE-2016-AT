@@ -1,19 +1,34 @@
 module \test::Test_Duplication_Block
 
-import Set;
+import IO;
 
-import Config;
 import Cache;
-import TreeUtil;
-import lang::java::jdt::m3::AST;
+import \test::TestHelper;
 
 test bool testBlockSimple() {
 	loc location = |project://MetricsTests2/src/tests/DuplicationBlock_Simple.java|;
 	
-	Declaration d = createAstFromFileC(location, false);
-	subSequences = findSubSequences({d}, bucketSize, TRESHOLD_MIN_SEQUENCE_LENGTH);
-	clones = findDuplicateSequences(subSequenceList, maxSequenceLength, TRESHOLD_MIN_SEQUENCE_LENGTH);
+	clones = getClonesForLocation(location);
+	<amountClones, amountLOC> = getSizeAndLocFromClones(clones);
 	
-	return (size(clones) == 2); // && LOC = 10...
+	return (amountClones == 2 && amountLOC == 10);
 }
 
+test bool testBlockMultiple() {
+	loc location = |project://MetricsTests2/src/tests/DuplicationBlock_Multiple.java|;
+	
+	clones = getClonesForLocation(location);
+	<amountClones, amountLOC> = getSizeAndLocFromClones(clones);
+	
+	return (amountClones == 4 && amountLOC == 20);
+}
+
+// Doesn't work...
+test bool testBlockNested() {
+	loc location = |project://MetricsTests2/src/tests/DuplicationBlock_Nested.java|;
+	
+	clones = getClonesForLocation(location);
+	<amountClones, amountLOC> = getSizeAndLocFromClones(clones);
+	
+	return (amountClones == 3 && amountLOC == 17);
+}

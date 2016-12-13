@@ -35,7 +35,7 @@ public void writeCacheProject(loc project, bool debug) {
 }
 
 public void writeCacheFile(loc file, bool debug) {
-	Declaration ast = createAstsFromEclipseFile(file, true);
+	Declaration ast = createAstFromFile(file, true);
 	
 	if (debug) println("writing cache file to: <astCacheFile(file)>");
 	writeBinaryValueFile(astCacheFile(file), ast);

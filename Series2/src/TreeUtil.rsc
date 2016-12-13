@@ -96,7 +96,7 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 	set[tuple[list[loc], loc]] clones = {};
 
 	for (subSeqLength <- [tresholdMinSequenceLength..maxSeqLength+1]) { // [1..5] gives me [1,2,3,4]. That's why +1
-		print("\r- Progress: <subSeqLength-tresholdMinSequenceLength>/<maxSeqLength-1>");
+		print("\r- Progress: <subSeqLength-tresholdMinSequenceLength>/<maxSeqLength-tresholdMinSequenceLength>");
 		hashMapEntriesToCheck  = subSequenceList[subSeqLength];
 		
 		for (hash <- hashMapEntriesToCheck) { // Order doesn't matter here: Possible clones have the same hash already
