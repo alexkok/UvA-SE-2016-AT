@@ -35,26 +35,26 @@ public Declaration createAstFromFileC(loc file, bool useCache, bool debug = fals
 	return loadCacheFile(astCacheFile(file), debug);
 }
 
-public void writeCacheProject(loc project, bool debug) {
+private void writeCacheProject(loc project, bool debug) {
 	set[Declaration] ast = createAstsFromEclipseProject(project, true);
 	
 	if (debug) println("writing cache file to: <astCacheFile(project)>");
 	writeBinaryValueFile(astCacheFile(project), ast);
 }
 
-public void writeCacheFile(loc file, bool debug) {
+private void writeCacheFile(loc file, bool debug) {
 	Declaration ast = createAstFromFile(file, true);
 	
 	if (debug) println("writing cache file to: <astCacheFile(file)>");
 	writeBinaryValueFile(astCacheFile(file), ast);
 }
 
-public set[Declaration] loadCacheProject(loc file, bool debug) {
+private set[Declaration] loadCacheProject(loc file, bool debug) {
 	if (debug) println("load cache file: <file>");
 	return readBinaryValueFile(#set[Declaration], file);
 }
 
-public Declaration loadCacheFile(loc file, bool debug) {
+private Declaration loadCacheFile(loc file, bool debug) {
 	if (debug) println("load cache file: <file>");
 	return readBinaryValueFile(#Declaration, file);
 }
