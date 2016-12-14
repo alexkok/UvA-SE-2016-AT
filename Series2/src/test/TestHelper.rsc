@@ -24,11 +24,11 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 }
 
 public tuple[int amountClones, int amountLOC] getSizeAndLocFromClones(set[tuple[list[loc statementLocation] statementLocations, loc fullLocation] clone]  clones) {
-	for (<clns, fullLoc> <- clones) {
-		println();
-		println("- First: <clns[0]>");
-		println("- Full:  <fullLoc>");
-	}
+	//for (<clns, fullLoc> <- clones) {
+	//	println();
+	//	println("- First: <clns[0]>");
+	//	println("- Full:  <fullLoc>");
+	//}
 
 	int amountClones = size(clones);
 	int amountLOC = (0 | it + size(readFileLines(e)) | <_,e> <- clones);
