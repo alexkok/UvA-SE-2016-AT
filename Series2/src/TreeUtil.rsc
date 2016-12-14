@@ -133,6 +133,7 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 					loc src1last = last(dup1)@src;
 					loc src2first = dup2[0]@src;
 					loc src2last = last(dup2)@src;
+					
 					// Editing a src works too, but this  modifies the normal source. So we create a new location
 					int fullLoc1Length = src1last.offset-src1first.offset + src1last.length;
 					int fullLoc2Length = src2last.offset-src2first.offset + src2last.length;
@@ -141,60 +142,26 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 					//println("Found duplicate sequence! C:<size(clones)> | <fullLoc1>\t| <fullLoc2>");
 					//println("<fullLoc1>\t|  <fullLoc2>");
 					
-					println("Found duplicate sequence!");
-					println("- Current clones: <size(clones)>");
-					for(<_, fullLocOfClone> <- clones) {
-						println("  - Location: <fullLocOfClone>");
-					} 
-					println("- Adding duplication of locations: <fullLoc1>\t| <fullLoc2>");
-					
 					possibleCloneToAdd1 = <[ls@src | ls <- dup1],fullLoc1>;
 					possibleCloneToAdd2 = <[ls@src | ls <- dup2],fullLoc2>;
-					hasBeenAdded1 = false;
-					hasBeenAdded2 = false;				
-					
-					// Remove the subtrees because this block already has been found. As described in the paper
-					//top-down visit (dup1) {
-						//case Statement n: 
-							for (<locations, fullLoc> <- clones) {
-							// if the first line of locations and the last line is in dup1[0], remove it?
-								if (size(locations) < size(possibleCloneToAdd1[0])) { 
-									if (locations[0] in possibleCloneToAdd1[0] && last(locations) in possibleCloneToAdd1[0]) {
-										clones -= <locations, fullLoc>;
-										println("- 1 Removed block <fullLoc>");
-									}
-								}
-								
-								//if (size(locations) < size(possibleCloneToAdd1[0])) { 
-								//	for (i <- [0..size(possibleCloneToAdd1[0])]) { 
-								//		if (possibleCloneToAdd1[0][i] in locations) { // TRESHOLD_SIMILARITY
-								//			clones -= <locations, fullLoc>;
-								//			println("- 1 Removed block <fullLoc>");
-								//		}
-								//	}
-								//}
+							
+					visit(clones) {
+						case <locations, fullLoc>: {
+							//dup1 
+							if (locations[0].begin.line >= possibleCloneToAdd1[1].begin.line && last(locations).end.line <= possibleCloneToAdd1[1].end.line) {
+								clones -= <locations, fullLoc>;
+								println("- 1 Removed block <fullLoc>");
+								println("within <possibleCloneToAdd1[1]>");
 							}
-					//}
-					//top-down visit (dup2) {
-						//case Statement n:
-							for (<locations, fullLoc> <- clones) {
-								if (size(locations) < size(possibleCloneToAdd2[0])) {
-									if (locations[0] in possibleCloneToAdd2[0] && last(locations) in possibleCloneToAdd2[0]) {
-										clones -= <locations, fullLoc>;
-										println("- 2 Removed block <fullLoc>");
-									}
-								}
-								
-								//if (size(locations) < size(possibleCloneToAdd2[0])) {
-								//	for (i <- [0..size(possibleCloneToAdd2[0])]) { 
-								//		if (possibleCloneToAdd2[0][i] in locations) { // TRESHOLD_SIMILARITY
-								//			clones -= <locations, fullLoc>;
-								//			println("- 2 Removed block <fullLoc>");
-								//		}
-								//	}
-								//}
+									
+							//dup2
+							if (locations[0].begin.line >= possibleCloneToAdd2[1].begin.line && last(locations).end.line <= possibleCloneToAdd2[1].end.line) {
+								clones -= <locations, fullLoc>;
+								println("- 2 Removed block <fullLoc>");
+								println("within <possibleCloneToAdd2[1]>");
 							}
-					//}
+						}
+					}
 					
 					// Add this clone pair to our clones
 					clones += possibleCloneToAdd1;
