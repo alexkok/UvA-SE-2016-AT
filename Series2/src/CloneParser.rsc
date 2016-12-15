@@ -39,7 +39,7 @@ public str clonesToJson(set[tuple[list[loc stmntLoc] locations, loc fullLoc] clo
 	}
 	relations += {<"program", r> | r <- top(relations)};
 	str jsonResult = generateJsonObject(["program"], relations, filesData);
-	println(jsonResult);
+	//println(jsonResult);
 	writeFile(RESULT_JSON_FILE, jsonResult);
 	return jsonResult;
 }
