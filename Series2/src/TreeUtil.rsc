@@ -28,12 +28,8 @@ public int getNodesForTree(node d) {
 	 	visit (d) {
 	 		case node n:
 	 			nodes += 1;
-			case d:_:
-				nodes += 1;
-				//println("No node?: <d>");
 			default:
 				nodes += 1;
-				//println("Another node...");
 	 	}
 	 	nodesCache += (d: nodes);
 	} 
@@ -57,47 +53,35 @@ public tuple[SubSequenceList subSequenceList, int maxSequenceLength] findSubSequ
 	
 	int counter = 0;
 	int theSize = getMaxNodesFromTrees(asts);
-	//for (Declaration d <- asts) {
-		//print("\r- Progress: <counter>/<size(asts)>");
-		bottom-up visit(asts) {
-			case list[node] sts: {
-				counter += 1;
-				print("\r- Progress: [<counter>/<theSize>]");
-				int theSize = size(sts);
-				if (theSize >= tresholdMinSequenceLength) {
-					for (list[int] seq <- createSequencePermutations([1..theSize])) {
-						//list[int] indexes = [];
-						//list[node] statements = [];
-						//for (i <- seq) {
-						//	indexes += getBucketIndexOfSubTree(getNodesForTree(sts[i]), bucketSize);
-						//	statements += sts[i];
-						//}
-						list[int] indexes = ([] | it + getBucketIndexOfSubTree(getNodesForTree(sts[i]), bucketSize) | i <- seq);
-						list[node] statements = ([] | it + sts[i] | i <- seq);
-						hash = createCustomSequenceHash(indexes);
-	                	stsSize = (0 | it + getNodesForTree(s) | s <- sts); 
-	                	if (stsSize > 10) { // Min depth
-		                	if (subSequenceList[stsSize]?) { 
-		                		if (subSequenceList[stsSize][hash]?) {
-		                			subSequenceList[stsSize][hash] += [statements];
-		            			} else {
-		            				subSequenceList[stsSize] += (hash : [statements]);
-		        				}
-		            		} else {
-		            			subSequenceList += (stsSize : (hash : [statements]));
-		            		} 
-	            		}
-				if (maxSeqLength < stsSize) {
-					maxSeqLength = stsSize;
-				}
-				}
+	bottom-up visit(asts) {
+		case list[node] sts: {
+			counter += 1;
+			print("\r- Progress: [<counter>/<theSize>]");
+			int theSize = size(sts);
+			if (theSize >= tresholdMinSequenceLength) {
+				for (list[int] seq <- createSequencePermutations([1..theSize])) {
+					list[int] indexes = ([] | it + getBucketIndexOfSubTree(getNodesForTree(sts[i]), bucketSize) | i <- seq);
+					list[node] statements = ([] | it + sts[i] | i <- seq);
+					hash = createCustomSequenceHash(indexes);
+                	stsSize = (0 | it + getNodesForTree(s) | s <- sts); 
+                	if (stsSize > 10) { 
+	                	if (subSequenceList[stsSize]?) { 
+	                		if (subSequenceList[stsSize][hash]?) {
+	                			subSequenceList[stsSize][hash] += [statements];
+	            			} else {
+	            				subSequenceList[stsSize] += (hash : [statements]);
+	        				}
+	            		} else {
+	            			subSequenceList += (stsSize : (hash : [statements]));
+	            		} 
+            		}
+					if (maxSeqLength < stsSize) {
+						maxSeqLength = stsSize;
 					}
-				//if (maxSeqLength < theSize) {
-				//	maxSeqLength = theSize;
-				//}
+				}
 			}
 		}
-	//}
+	}
 	println();
 	return <subSequenceList, maxSeqLength>;
 }
