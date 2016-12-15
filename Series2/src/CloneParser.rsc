@@ -7,6 +7,7 @@ import Set;
 import Relation;
 import analysis::graphs::Graph;
 import Config;
+import Map;
 
 data jsonDataTree = leaf(str name)
 				  | folder(str name, list[jsonDataTree] subTree)
@@ -14,12 +15,27 @@ data jsonDataTree = leaf(str name)
 
 public str clonesToJson(set[tuple[list[loc stmntLoc] locations, loc fullLoc] clone] clones) {
 	relations = {};
-	filesData = ();
+	map[list[str],
+		map[str, 
+			list[tuple[loc, int]]
+			]
+		] filesData = ();
+
 	for (location <- sort([fullLoc | <_,fullLoc> <- clones])) {
 		path = tail(split("/", location.path));
+		name = last(path);
 		folders = prefix(path);
 		relations += getRelations(folders);
-		filesData += (["program"] + folders : <location, size(readFileLines(location))>);
+		fullFolder = ["program"] + folders;
+		if (filesData[fullFolder]?) {
+			if (filesData[fullFolder][name]?) {
+				filesData[fullFolder][name] += <location, size(readFileLines(location))>;
+			} else {
+				filesData[fullFolder] += (name : [<location, size(readFileLines(location))>]);
+			}
+		} else {
+			filesData += (fullFolder : (name : [<location, size(readFileLines(location))>]));
+		}
 	}
 	iprintln(filesData);
 	relations += {<"program", r> | r <- top(relations)};
@@ -47,6 +63,9 @@ private str generateJsonObject(path, relations, filesData) {
 	shouldGenChildren = size(relations[curName]) > 0;
 	shouldGenFiles = filesData[path]?;
 	if (size(path) > 4)
+	println();
+	println("- Rels : <relations[curName]>");
+	if (shouldGenFiles)
 	println("- Files: <filesData[path]>");
 
 	if (shouldGenChildren) {
@@ -60,18 +79,19 @@ private str generateJsonObject(path, relations, filesData) {
 	if (shouldGenChildren || shouldGenFiles) {
 		return 
 		    "{
-		    '    \"name\": \"<curName>\"<
-		    	 if (shouldGenChildren) {>,
-		    '    \"children\": [
-		    '        <genChildren(curName, path, relations, filesData)>
-		    '    ]<
-		    	 }><
-		    	 if (shouldGenFiles) {>,
-		    '    {<path>}<}>
+		    '    \"name\": \"<curName>\",
+		    '    \"children\": [<
+		    	 if (shouldGenChildren) {>
+		    '        <genChildren(curName, path, relations, filesData)><
+		    if (shouldGenFiles) {>,<}>
+		    '    <}><
+		    	 if (shouldGenFiles) {>
+		    '        <genFiles(path, relations, filesData)><}>
+		    '    ]
 		    '}"
 		    ;
 	} else {
-		return "_<path>_";
+		return "_ERROR_";
 	}
 	
 		    //'    \"children\": [<for (i <- toList(relations[curName])) {>
@@ -96,5 +116,15 @@ private str genChildren(curName, path, relations, filesData) {
 		"<for (i <- toList(relations[curName])) {>
 		'<generateJsonObject(path + i, relations, filesData)><
 		if (i != last(toList(relations[curName]))) {>,<}><
+		}>";
+}
+
+private str genFiles(path, relations, filesData) {
+println(size(filesData[path]));
+	int  i = 0;
+	return 
+		"<for (key <- filesData[path]) { i+= 1;>
+		'{\"name\": \"<key>\", \"size\": <(0 | it + n | <_,n> <- filesData[path][key])>}<
+		if (i != size(filesData[path])) {>,<}><
 		}>";
 }

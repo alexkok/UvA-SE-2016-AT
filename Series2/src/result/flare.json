@@ -12,16 +12,29 @@
                         
                         {
                             "name": "model",
-                            {["program","src","main","model"]}
-                        }
-                    ],
-                    {["program","src","main"]}
+                            "children": [
+                                
+                                {"name": "Car.java", "size": 48}
+                            ]
+                        },
+                    
+                        
+                        {"name": "Small.java", "size": 22},
+                        {"name": "Main.java", "size": 144}
+                    ]
                 },
                 {
                     "name": "tests",
-                    {["program","src","tests"]}
+                    "children": [
+                        
+                        {"name": "DuplicationBlock_Nested.java", "size": 15},
+                        {"name": "DuplicationSequence_StartAndEnd.java", "size": 6},
+                        {"name": "DuplicationBlock_Column.java", "size": 15}
+                    ]
                 }
+            
             ]
         }
+    
     ]
 }
