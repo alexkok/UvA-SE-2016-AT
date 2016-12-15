@@ -146,14 +146,14 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 					visit(clones) {
 						case <locations, fullLoc>: {
 							//dup1 
-							if (locations[0].begin.line >= possibleCloneToAdd1[1].begin.line && last(locations).end.line <= possibleCloneToAdd1[1].end.line) {
+							if (locations[0].file == possibleCloneToAdd1[1].file  && locations[0].begin.line >= possibleCloneToAdd1[1].begin.line && last(locations).end.line <= possibleCloneToAdd1[1].end.line) {
 								clones -= <locations, fullLoc>;
 								println("- 1 Removed block <fullLoc>");
 								println("within <possibleCloneToAdd1[1]>");
 							}
 									
 							//dup2
-							if (locations[0].begin.line >= possibleCloneToAdd2[1].begin.line && last(locations).end.line <= possibleCloneToAdd2[1].end.line) {
+							if (locations[0].file == possibleCloneToAdd2[1].file && locations[0].begin.line >= possibleCloneToAdd2[1].begin.line && last(locations).end.line <= possibleCloneToAdd2[1].end.line) {
 								clones -= <locations, fullLoc>;
 								println("- 2 Removed block <fullLoc>");
 								println("within <possibleCloneToAdd2[1]>");
@@ -172,13 +172,6 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 	return clones;
 }
 
-// Helper methods
-// Input: [1,2,3,4,5]
-// Output: [[1,2], [1,2,3], [1,2,3,4], [1,2,3,4,5], 
-// 		 	[2,3], [2,3,4], [2,3,4,5],
-//			[3,4], [3,4,5],
-//			[4,5]
-//		   ]
 public list[list[value]] createSequencePermutations(list[value] input) { // Value should be the type you give it. Have to lookup how the <:T was exactly
 	list[list[value]] perms = [];
 	for (i <- [0..size(input)]) {
