@@ -23,7 +23,7 @@ public str clonesToJson(set[tuple[list[loc stmntLoc] locations, loc fullLoc] clo
 
 	for (location <- sort([fullLoc | <_,fullLoc> <- clones])) {
 		path = tail(split("/", location.path));
-		name = last(path);
+		name = location.file;
 		folders = prefix(path);
 		relations += getRelations(folders);
 		fullFolder = ["program"] + folders;
@@ -37,7 +37,6 @@ public str clonesToJson(set[tuple[list[loc stmntLoc] locations, loc fullLoc] clo
 			filesData += (fullFolder : (name : [<location, size(readFileLines(location))>]));
 		}
 	}
-	iprintln(filesData);
 	relations += {<"program", r> | r <- top(relations)};
 	str jsonResult = generateJsonObject(["program"], relations, filesData);
 	println(jsonResult);
@@ -52,63 +51,22 @@ private rel[str, str] getRelations(list[str] folders) {
 }
 
 private str generateJsonObject(path, relations, filesData) {
-	// Get top
-	// For all clones found in dataObjects[topkey] 
-	// 	Gen template
-	// For all references from top
-	// 	Gen template again
 	curName = last(path);
-	children = "";
-	files = "";
 	shouldGenChildren = size(relations[curName]) > 0;
 	shouldGenFiles = filesData[path]?;
-	if (size(path) > 4)
-	println();
-	println("- Rels : <relations[curName]>");
-	if (shouldGenFiles)
-	println("- Files: <filesData[path]>");
-
-	if (shouldGenChildren) {
-		//children = genChildren();
-		;
-	}
-	if (shouldGenFiles) {
-		//files = genFiles();
-		;
-	}
-	if (shouldGenChildren || shouldGenFiles) {
-		return 
-		    "{
-		    '    \"name\": \"<curName>\",
-		    '    \"children\": [<
-		    	 if (shouldGenChildren) {>
-		    '        <genChildren(curName, path, relations, filesData)><
-		    if (shouldGenFiles) {>,<}>
-		    '    <}><
-		    	 if (shouldGenFiles) {>
-		    '        <genFiles(path, relations, filesData)><}>
-		    '    ]
-		    '}"
-		    ;
-	} else {
-		return "_ERROR_";
-	}
-	
-		    //'    \"children\": [<for (i <- toList(relations[curName])) {>
-		    //'        <generateJsonObject(i, relations, filesData)><
-		    //		 if (i != last(toList(relations[curName]))) {>,<
-		    //		 }><
-	    	//	 }>
-	
-	//} else {
-	//	return "{\"name\": \"<curName>\", \"size\": 4000}";
-	//}
-	
-    //'  <for (x <- sort([f | f <- fields])) {>
-    //'  private <fields[x]> <x>;
-    //'  <genSetter(fields, x)>
-    //'  <genGetter(fields, x)><}>
-    //'}";
+	return 
+	    "{
+	    '    \"name\": \"<curName>\",
+	    '    \"children\": [<
+	    	 if (shouldGenChildren) {>
+	    '        <genChildren(curName, path, relations, filesData)><
+	    if (shouldGenFiles) {>,<}>
+	    '    <}><
+	    	 if (shouldGenFiles) {>
+	    '        <genFiles(path, relations, filesData)><}>
+	    '    ]
+	    '}"
+	    ;
 }
 
 private str genChildren(curName, path, relations, filesData) {
@@ -120,7 +78,6 @@ private str genChildren(curName, path, relations, filesData) {
 }
 
 private str genFiles(path, relations, filesData) {
-println(size(filesData[path]));
 	int  i = 0;
 	return 
 		"<for (key <- filesData[path]) { i+= 1;>
