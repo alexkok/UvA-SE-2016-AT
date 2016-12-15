@@ -142,22 +142,20 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 					
 					possibleCloneToAdd1 = <[ls@src | ls <- dup1],fullLoc1>;
 					possibleCloneToAdd2 = <[ls@src | ls <- dup2],fullLoc2>;
-							
-					visit(clones) {
-						case <locations, fullLoc>: {
-							//dup1 
-							if (locations[0].file == possibleCloneToAdd1[1].file  && locations[0].begin.line >= possibleCloneToAdd1[1].begin.line && last(locations).end.line <= possibleCloneToAdd1[1].end.line) {
-								clones -= <locations, fullLoc>;
-								println("- 1 Removed block <fullLoc>");
-								println("within <possibleCloneToAdd1[1]>");
-							}
+					
+					for (<locations, fullLoc> <- clones) {
+						//dup1
+						if (locations[0].file == possibleCloneToAdd1[1].file  && locations[0].begin.line >= possibleCloneToAdd1[1].begin.line && last(locations).end.line <= possibleCloneToAdd1[1].end.line) {
+							clones -= <locations, fullLoc>;
+							println("- 1 Removed block <fullLoc>");
+							println("within <possibleCloneToAdd1[1]>");
+						}
 									
-							//dup2
-							if (locations[0].file == possibleCloneToAdd2[1].file && locations[0].begin.line >= possibleCloneToAdd2[1].begin.line && last(locations).end.line <= possibleCloneToAdd2[1].end.line) {
-								clones -= <locations, fullLoc>;
-								println("- 2 Removed block <fullLoc>");
-								println("within <possibleCloneToAdd2[1]>");
-							}
+						//dup2
+						if (locations[0].file == possibleCloneToAdd2[1].file && locations[0].begin.line >= possibleCloneToAdd2[1].begin.line && last(locations).end.line <= possibleCloneToAdd2[1].end.line) {
+							clones -= <locations, fullLoc>;
+							println("- 2 Removed block <fullLoc>");
+							println("within <possibleCloneToAdd2[1]>");
 						}
 					}
 					
