@@ -9,10 +9,6 @@ import analysis::graphs::Graph;
 import Config;
 import Map;
 
-data jsonDataTree = leaf(str name)
-				  | folder(str name, list[jsonDataTree] subTree)
-				  ;
-
 public str clonesToJson(set[tuple[list[loc stmntLoc] locations, loc fullLoc] clone] clones) {
 	relations = {};
 	map[list[str],
@@ -41,8 +37,20 @@ public str clonesToJson(set[tuple[list[loc stmntLoc] locations, loc fullLoc] clo
 	str jsonResult = generateJsonObject(["program"], relations, filesData);
 	//println(jsonResult);
 	writeFile(RESULT_JSON_FILE, jsonResult);
+	//str jsonObjectDetailsResult = generateObjectDetails(filesData);
+	//println(jsonObjectDetailsResult);
 	return jsonResult;
 }
+//
+//private str generateObjectDetails(filesData) {
+//	str result = "";
+//	for (key <- filesData) {
+//		result += generateSingleObject(filesData[key]);
+//	}
+//	return "";
+//}
+//
+//private str generateSingleObject(
 
 private rel[str, str] getRelations(list[str] folders) {
 	if (size(folders) > 1) 

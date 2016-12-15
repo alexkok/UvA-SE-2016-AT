@@ -32,6 +32,7 @@ public int getMaxStatementListsFromTree(set[Declaration] asts) {
 private map[node, int] nodesCache = (); 
 
 public int getNodesForTree(node d) {
+//println(d);
 	if (!nodesCache[d]?) {
 	 	int nodes = 0;
 	 	visit (d) {
@@ -67,28 +68,31 @@ public tuple[SubSequenceList subSequenceList, int maxSequenceLength] findSubSequ
 			counter += 1;
 			print("\r- Progress: [<counter>/<theSize>]");
 			if (size(sts) >= tresholdMinSequenceLength) {
-				for (list[int] seq <- createSequencePermutations([1..size(sts)])) {
-					list[int] indexes = [];
-					list[node] statements = [];
-					for (i <- seq) {
-						indexes += getBucketIndexOfSubTree(getNodesForTree(sts[i]), bucketSize);
-						statements += sts[i];
-					}
-					hash = createCustomSequenceHash(indexes);
-                	stsSize = (0 | it + getNodesForTree(s) | s <- sts); 
-                	if (stsSize > 10) { 
-	                	if (subSequenceList[stsSize]?) { 
-	                		if (subSequenceList[stsSize][hash]?) {
-	                			subSequenceList[stsSize][hash] += [statements];
-	            			} else {
-	            				subSequenceList[stsSize] += (hash : [statements]);
-	        				}
-	            		} else {
-	            			subSequenceList += (stsSize : (hash : [statements]));
-	            		} 
-            		}
-					if (maxSeqLength < stsSize) {
-						maxSeqLength = stsSize;
+            	stsSize = (0 | it + getNodesForTree(s) | s <- sts); 
+            	if (stsSize > 20) { 
+					for (list[int] seq <- createSequencePermutations([1..size(sts)])) {
+						list[int] indexes = [];
+						list[node] statements = [];
+						for (i <- seq) {
+							indexes += getBucketIndexOfSubTree(getNodesForTree(sts[i]), bucketSize);
+							statements += sts[i];
+						}
+						hash = createCustomSequenceHash(indexes);
+	                	//stsSize = (0 | it + getNodesForTree(s) | s <- sts); 
+	                	//if (stsSize > 20) { 
+		                	if (subSequenceList[stsSize]?) { 
+		                		if (subSequenceList[stsSize][hash]?) {
+		                			subSequenceList[stsSize][hash] += [statements];
+		            			} else {
+		            				subSequenceList[stsSize] += (hash : [statements]);
+		        				}
+		            		} else {
+		            			subSequenceList += (stsSize : (hash : [statements]));
+		            		} 
+	            		//}
+						if (maxSeqLength < stsSize) {
+							maxSeqLength = stsSize;
+						}
 					}
 				}
 			}
@@ -191,7 +195,7 @@ private map[list[int], str] sequenceHashCache = ();
 
 public str createCustomSequenceHash(list[int] indexes) {
 	if (!sequenceHashCache[indexes]?) {
-		sequenceHashCache += (indexes: ("" | it + "<i>_" | i <- indexes));
+		sequenceHashCache += (indexes: ("" | it + "<i>" | i <- indexes));
 	}
 	return sequenceHashCache[indexes];
 }

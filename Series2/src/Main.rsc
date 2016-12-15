@@ -13,8 +13,8 @@ import TreeUtil;
 import CloneParser;
 import Cache;
 
-public loc prLoc = |project://MetricsTests2|;
-//public loc prLoc = |project://smallsql0.21_src|;
+//public loc prLoc = |project://MetricsTests2|;
+public loc prLoc = |project://smallsql0.21_src|;
 //public loc prLoc = |project://hsqldb-2.3.1|;
 // Values to keep track of the current analysis
 private loc projectLocation;
@@ -84,7 +84,7 @@ private void step2_findCloneSequences() {
 private void step3_showResults() {
 	endTime = now();
 	println("******************* Finished *******************");
-	println("* End time:\t\t <startTime>");
+	println("* End time:\t\t <endTime>");
 	println("* Duration (y,m,d,h,m,s,ms): <createDuration(startTime, endTime)>");
 	println("************************************************");
 }

@@ -31,11 +31,11 @@ d3.json("flare.json", function(error, root) {
       .style("fill", function(d) { return d.children ? color(d.depth) : null; })
       .on("click", function(d) { 
         if (focus !== d) {
-          // if (!d.children) {
-            // zoom(d.parent);
-          // } else {
+          if (!d.children) {
+            zoom(d.parent);
+          } else {
           zoom(d); 
-          // }
+          }
           d3.event.stopPropagation();
           selectedNode(d); 
         } else {
@@ -98,5 +98,5 @@ d3.json("flare.json", function(error, root) {
 
 function selectedNode(node) {
   console.log("Selected a node!", node.data.name, node);
-  document.getElementById("selectedNodeText").innerHTML = "Selected node: " + node.data.name;
+  document.getElementById("selectedNodeText").innerHTML = node.data.name;
 }
