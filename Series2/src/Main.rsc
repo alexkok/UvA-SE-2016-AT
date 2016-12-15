@@ -11,6 +11,7 @@ import Set;
 import Config;
 import TreeUtil;
 import CloneParser;
+import Cache;
 
 public loc prLoc = |project://MetricsTests2|;
 //public loc prLoc = |project://smallsql0.21_src|;
@@ -28,8 +29,7 @@ private set[tuple[list[loc statement] statementLocations, loc fullLocation] clon
 public void main(loc prLoc, bool cache = true, bool debug = true) {
 	initializeDetector(prLoc, cache, debug);
 	
-	set[Declaration] asts = createAstsFromEclipseProject(prLoc, true);
-	 //Cache.getAstsFromProject(projectLocation, useCache, isDebug);
+	set[Declaration] asts = createAstsFromProject(prLoc, true, debug=isDebug);
 	
 	step1_createSequencesList(asts);
 	step2_findCloneSequences();
@@ -47,7 +47,7 @@ private void initializeDetector(loc prLoc, bool cache, bool debug) {
 	println("* Thanusijan Tharumarajah                      *");
 	println("*                                              *");
 	println("************************************************");
-	println("* Start time:\t\t<printDateTime(startTime)>");
+	println("* Start time:\t\t<startTime>");
 	println("* Project location:\t<projectLocation>");
 	println("* Using cache:\t\t<useCache>");
 	println("* Debug mode:\t\t<isDebug>");
@@ -66,7 +66,7 @@ private void step1_createSequencesList(set[Declaration] asts) {
 	subSequenceList = subSequences.subSequenceList;
 	maxSequenceLength = subSequences.maxSequenceLength;
 	println("- Max sequence length: <maxSequenceLength>");
-	println("- Current time: <printDateTime(now())>");
+	println("- Current time: <now()>");
 }
 
 private void step2_findCloneSequences() {
@@ -84,7 +84,7 @@ private void step2_findCloneSequences() {
 private void step3_showResults() {
 	endTime = now();
 	println("******************* Finished *******************");
-	println("* End time:\t\t <printDateTime(startTime)>");
+	println("* End time:\t\t <startTime>");
 	println("* Duration (y,m,d,h,m,s,ms): <createDuration(startTime, endTime)>");
 	println("************************************************");
 }
