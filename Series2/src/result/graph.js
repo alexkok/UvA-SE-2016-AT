@@ -52,7 +52,15 @@ d3.json("flare.json", function(error, root) {
       .attr("class", "label")
       .style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
       .style("display", function(d) { return d.parent === root ? "inline" : "none"; })
-      .text(function(d) { return d.data.name; });
+      .text(function(d) { 
+        var label = "";
+        if (d.data.size) {
+          label += d.data.name + " (" + d.data.size + " lines)";
+        } else {
+          label += d.data.name;
+        }
+        return label; 
+      });
 
   var node = g.selectAll("circle,text");
 

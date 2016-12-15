@@ -19,7 +19,7 @@
                         },
                     
                         
-                        {"name": "Small.java", "size": 22},
+                        {"name": "Small.java", "size": 44},
                         {"name": "Main.java", "size": 144}
                     ]
                 },
@@ -27,9 +27,14 @@
                     "name": "tests",
                     "children": [
                         
-                        {"name": "DuplicationBlock_Nested.java", "size": 15},
-                        {"name": "DuplicationSequence_StartAndEnd.java", "size": 6},
-                        {"name": "DuplicationBlock_Column.java", "size": 15}
+                        {"name": "DuplicationBlock_Multiple.java", "size": 20},
+                        {"name": "DuplicationSequence_End.java", "size": 12},
+                        {"name": "DuplicationSequence_Middle.java", "size": 13},
+                        {"name": "DuplicationBlock_Nested.java", "size": 25},
+                        {"name": "DuplicationSequence_StartAndEnd.java", "size": 12},
+                        {"name": "DuplicationBlock_Column.java", "size": 25},
+                        {"name": "DuplicationSequence_Start.java", "size": 12},
+                        {"name": "DuplicationBlock_Simple.java", "size": 10}
                     ]
                 }
             
