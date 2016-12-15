@@ -1,0 +1,27 @@
+{
+    "name": "program",
+    "children": [
+        
+        {
+            "name": "src",
+            "children": [
+                
+                {
+                    "name": "main",
+                    "children": [
+                        
+                        {
+                            "name": "model",
+                            {["program","src","main","model"]}
+                        }
+                    ],
+                    {["program","src","main"]}
+                },
+                {
+                    "name": "tests",
+                    {["program","src","tests"]}
+                }
+            ]
+        }
+    ]
+}

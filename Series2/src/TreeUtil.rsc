@@ -23,9 +23,7 @@ public int getMaxNodesFromTrees(set[Declaration] asts) {
 private map[node, int] nodesCache = (); 
 
 public int getNodesForTree(node d) {
-	if (nodesCache[d]?) {
-		return nodesCache[d];
-	} else {
+	if (!nodesCache[d]?) {
 	 	int nodes = 0;
 	 	visit (d) {
 	 		case node n:
@@ -38,8 +36,8 @@ public int getNodesForTree(node d) {
 				//println("Another node...");
 	 	}
 	 	nodesCache += (d: nodes);
-	 	return nodesCache[d];
- 	}
+	} 
+	return nodesCache[d];
 }
 
 /**
@@ -58,7 +56,7 @@ public tuple[SubSequenceList subSequenceList, int maxSequenceLength] findSubSequ
 	int maxSeqLength = 0;
 	
 	int counter = 0;
-	int theSize = (0 | it +  getNodesForTree(s) | s <- asts);
+	int theSize = getMaxNodesFromTrees(asts);
 	//for (Declaration d <- asts) {
 		//print("\r- Progress: <counter>/<size(asts)>");
 		bottom-up visit(asts) {
@@ -141,12 +139,12 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 					//println("Found duplicate sequence! C:<size(clones)> | <fullLoc1>\t| <fullLoc2>");
 					//println("<fullLoc1>\t|  <fullLoc2>");
 					
-					println("Found duplicate sequence!");
-					println("- Current clones: <size(clones)>");
-					for(<_, fullLocOfClone> <- clones) {
-						println("  - Location: <fullLocOfClone>");
-					} 
-					println("- Adding duplication of locations: <fullLoc1>\t| <fullLoc2>");
+					//println("Found duplicate sequence!");
+					//println("- Current clones: <size(clones)>");
+					//for(<_, fullLocOfClone> <- clones) {
+					//	println("  - Location: <fullLocOfClone>");
+					//} 
+					//println("- Adding duplication of locations: <fullLoc1>\t| <fullLoc2>");
 					
 					possibleCloneToAdd1 = <[ls@src | ls <- dup1],fullLoc1>;
 					possibleCloneToAdd2 = <[ls@src | ls <- dup2],fullLoc2>;
@@ -226,10 +224,20 @@ public list[list[value]] createSequencePermutations(list[value] input) { // Valu
 	return perms;
 }
 
+private map[int, int] subtreeIndexesCache = (); 
+
 public int getBucketIndexOfSubTree(int treeSize, int bucketSize) {
-	return treeSize % bucketSize;
+	if (!subtreeIndexesCache[treeSize]?) {
+		subtreeIndexesCache += (treeSize: treeSize % bucketSize);
+	}
+	return subtreeIndexesCache[treeSize];
 }
 
+private map[list[int], str] sequenceHashCache = (); 
+
 public str createCustomSequenceHash(list[int] indexes) {
-	return ("" | it + "<i>_" | i <- indexes);
+	if (!sequenceHashCache[indexes]?) {
+		sequenceHashCache += (indexes: ("" | it + "<i>_" | i <- indexes));
+	}
+	return sequenceHashCache[indexes];
 }
