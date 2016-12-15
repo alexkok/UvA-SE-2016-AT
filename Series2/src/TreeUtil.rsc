@@ -66,11 +66,14 @@ public tuple[SubSequenceList subSequenceList, int maxSequenceLength] findSubSequ
 		case list[node] sts: {
 			counter += 1;
 			print("\r- Progress: [<counter>/<theSize>]");
-			int theSize = size(sts);
-			if (theSize >= tresholdMinSequenceLength) {
-				for (list[int] seq <- createSequencePermutations([1..theSize])) {
-					list[int] indexes = ([] | it + getBucketIndexOfSubTree(getNodesForTree(sts[i]), bucketSize) | i <- seq);
-					list[node] statements = ([] | it + sts[i] | i <- seq);
+			if (size(sts) >= tresholdMinSequenceLength) {
+				for (list[int] seq <- createSequencePermutations([1..size(sts)])) {
+					list[int] indexes = [];
+					list[node] statements = [];
+					for (i <- seq) {
+						indexes += getBucketIndexOfSubTree(getNodesForTree(sts[i]), bucketSize);
+						statements += sts[i];
+					}
 					hash = createCustomSequenceHash(indexes);
                 	stsSize = (0 | it + getNodesForTree(s) | s <- sts); 
                 	if (stsSize > 10) { 
@@ -140,15 +143,15 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 						//dup1
 						if (locations[0].file == possibleCloneToAdd1[1].file  && locations[0].begin.line >= possibleCloneToAdd1[1].begin.line && last(locations).end.line <= possibleCloneToAdd1[1].end.line) {
 							clones -= <locations, fullLoc>;
-							println("- 1 Removed block <fullLoc>");
-							println("within <possibleCloneToAdd1[1]>");
+							//println("- 1 Removed block <fullLoc>");
+							//println("within <possibleCloneToAdd1[1]>");
 						}
 									
 						//dup2
 						if (locations[0].file == possibleCloneToAdd2[1].file && locations[0].begin.line >= possibleCloneToAdd2[1].begin.line && last(locations).end.line <= possibleCloneToAdd2[1].end.line) {
 							clones -= <locations, fullLoc>;
-							println("- 2 Removed block <fullLoc>");
-							println("within <possibleCloneToAdd2[1]>");
+							//println("- 2 Removed block <fullLoc>");
+							//println("within <possibleCloneToAdd2[1]>");
 						}
 					}
 					
