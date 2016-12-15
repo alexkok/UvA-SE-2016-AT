@@ -26,7 +26,7 @@ private SubSequenceList subSequenceList;
 private int maxSequenceLength;
 private set[tuple[list[loc statement] statementLocations, loc fullLocation] clone] clones;
 
-public void main(loc prLoc, bool cache = true, bool debug = true) {
+public void main(loc prLoc, bool cache = true, bool debug = false) {
 	initializeDetector(prLoc, cache, debug);
 	
 	set[Declaration] asts = createAstsFromProject(prLoc, true, debug=isDebug);

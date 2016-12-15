@@ -20,6 +20,15 @@ public int getMaxNodesFromTrees(set[Declaration] asts) {
 	return (0 | max(it, getNodesForTree(ast)) | ast <- asts);
 }
 
+public int getMaxStatementListsFromTree(set[Declaration] asts) {
+	int counter = 0;
+	visit (asts) {
+		case list[node] sts:
+			counter += 1;
+	}
+	return counter;
+}
+
 private map[node, int] nodesCache = (); 
 
 public int getNodesForTree(node d) {
@@ -52,7 +61,7 @@ public tuple[SubSequenceList subSequenceList, int maxSequenceLength] findSubSequ
 	int maxSeqLength = 0;
 	
 	int counter = 0;
-	int theSize = getMaxNodesFromTrees(asts);
+	int theSize = getMaxStatementListsFromTree(asts);
 	bottom-up visit(asts) {
 		case list[node] sts: {
 			counter += 1;
@@ -101,7 +110,7 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 	set[tuple[list[loc], loc]] clones = {};
 
 	for (subSeqLength <- [0..maxSeqLength]) { // [1..5] gives me [1,2,3,4]. That's why +1
-		print("\r- Progress: <subSeqLength>/<maxSeqLength>           ");
+		print("\r- Progress: [<subSeqLength>/<maxSeqLength-1>]");
 		if (subSequenceList[subSeqLength]?) {
 			hashMapEntriesToCheck  = subSequenceList[subSeqLength];
 			for (hash <- hashMapEntriesToCheck) { // Order doesn't matter here: Possible clones have the same hash already
@@ -130,17 +139,18 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 					visit(clones) {
 						case <locations, fullLoc>: {
 							//dup1 
-							if (locations[0].file == possibleCloneToAdd1[1].file  && locations[0].begin.line >= possibleCloneToAdd1[1].begin.line && last(locations).end.line <= possibleCloneToAdd1[1].end.line) {
+							//if (shouldRemoveClone(locations, possibleCloneToAdd1[1])) {
+							if (locations[0].file == possibleCloneToAdd1[1].file && locations[0].begin.line >= possibleCloneToAdd1[1].begin.line && last(locations).end.line <= possibleCloneToAdd1[1].end.line) {
 								clones -= <locations, fullLoc>;
-								println("- 1 Removed block <fullLoc>");
-								println("within <possibleCloneToAdd1[1]>");
+								//println("- 1 Removed block <fullLoc>");
+								//println("within <possibleCloneToAdd1[1]>");
 							}
 									
 							//dup2
 							if (locations[0].file == possibleCloneToAdd2[1].file && locations[0].begin.line >= possibleCloneToAdd2[1].begin.line && last(locations).end.line <= possibleCloneToAdd2[1].end.line) {
 								clones -= <locations, fullLoc>;
-								println("- 2 Removed block <fullLoc>");
-								println("within <possibleCloneToAdd2[1]>");
+								//println("- 2 Removed block <fullLoc>");
+								//println("within <possibleCloneToAdd2[1]>");
 							}
 						}
 					}
