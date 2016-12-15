@@ -112,9 +112,9 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 																		 , statementListsToCheck[i] == statementListsToCheck[j] // TRESHOLD_SIMILARITY
 																		 ]) {
 					loc src1first = dup1[0]@src;
-					loc src1last = last(dup1)@src;
+					loc src1last = dup1[size(dup1)-1]@src;
 					loc src2first = dup2[0]@src;
-					loc src2last = last(dup2)@src;
+					loc src2last = dup2[size(dup2)-1]@src;
 					
 					// Editing a src works too, but this  modifies the normal source. So we create a new location
 					int fullLoc1Length = src1last.offset-src1first.offset + src1last.length;
@@ -129,14 +129,14 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 					
 					for (<locations, fullLoc> <- clones) {
 						//dup1
-						if (locations[0].file == possibleCloneToAdd1[1].file  && locations[0].begin.line >= possibleCloneToAdd1[1].begin.line && last(locations).end.line <= possibleCloneToAdd1[1].end.line) {
+						if (locations[0].file == possibleCloneToAdd1[1].file  && locations[0].begin.line >= possibleCloneToAdd1[1].begin.line && locations[size(locations)-1].end.line <= possibleCloneToAdd1[1].end.line) {
 							clones -= <locations, fullLoc>;
 							println("- 1 Removed block <fullLoc>");
 							println("within <possibleCloneToAdd1[1]>");
 						}
 									
 						//dup2
-						if (locations[0].file == possibleCloneToAdd2[1].file && locations[0].begin.line >= possibleCloneToAdd2[1].begin.line && last(locations).end.line <= possibleCloneToAdd2[1].end.line) {
+						if (locations[0].file == possibleCloneToAdd2[1].file && locations[0].begin.line >= possibleCloneToAdd2[1].begin.line && locations[size(locations)-1].end.line <= possibleCloneToAdd2[1].end.line) {
 							clones -= <locations, fullLoc>;
 							println("- 2 Removed block <fullLoc>");
 							println("within <possibleCloneToAdd2[1]>");
