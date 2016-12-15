@@ -23,12 +23,20 @@ test bool testBlockMultiple() {
 	return (amountClones == 4 && amountLOC == 20);
 }
 
-// Doesn't work...
 test bool testBlockNested() {
 	loc location = |project://MetricsTests2/src/tests/DuplicationBlock_Nested.java|;
 	
 	clones = getClonesForLocation(location);
 	<amountClones, amountLOC> = getSizeAndLocFromClones(clones);
 	
-	return (amountClones == 3 && amountLOC == 19);
+	return (amountClones == 3 && amountLOC == 25);
+}
+
+test bool testBlockColumn() {
+	loc location = |project://MetricsTests2/src/tests/DuplicationBlock_Column.java|;
+	
+	clones = getClonesForLocation(location);
+	<amountClones, amountLOC> = getSizeAndLocFromClones(clones);
+	
+	return (amountClones == 4 && amountLOC == 25);
 }
