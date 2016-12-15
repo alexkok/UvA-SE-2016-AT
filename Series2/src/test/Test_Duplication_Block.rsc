@@ -31,3 +31,12 @@ test bool testBlockNested() {
 	
 	return (amountClones == 3 && amountLOC == 25);
 }
+
+test bool testBlockColumn() {
+	loc location = |project://MetricsTests2/src/tests/DuplicationBlock_Column.java|;
+	
+	clones = getClonesForLocation(location);
+	<amountClones, amountLOC> = getSizeAndLocFromClones(clones);
+	
+	return (amountClones == 4 && amountLOC == 25);
+}
