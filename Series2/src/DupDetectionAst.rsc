@@ -17,11 +17,6 @@ private int TRESHOLD_MIN_SEQUENCE_LENGTH = 2; // The minimum sequence length of 
 
 public loc fileLoc = |project://MetricsTests2/src/tests/DuplicationSequence_Start.java|;
 
-// Custom data types don't allow us to use in or ? Aliases should fix this...
-//data subSequenceList = subSequenceList(map[int listLength, sequenceHashList content]);
-//data sequenceHashList = sequenceHashList(map[str hashId, list[list[node]] statementLists]);
-//alias Testtttt = str;
-
 public void parseSomeTree() {
 	Declaration d = createAstFromFile(fileLoc, true);
 	
@@ -181,12 +176,6 @@ public void findDuplicateSequences(subSequenceList, int maxSeqLength) {
 	}
 }
 
-// Input: [1,2,3,4,5]
-// Output: [[1,2], [1,2,3], [1,2,3,4], [1,2,3,4,5], 
-// 		 	[2,3], [2,3,4], [2,3,4,5],
-//			[3,4], [3,4,5],
-//			[4,5]
-//		   ]
 public list[list[value]] createSequencePermutations(list[value] input) { // Value should be the type you give it. Have to lookup how the <:T was exactly
 	list[list[value]] perms = [];
 	for (i <- [0..size(input)]) {
