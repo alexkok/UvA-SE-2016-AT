@@ -95,8 +95,9 @@ private str generateJsonResultDetails(set[tuple[list[loc stmntLoc] locations, lo
 }
 
 private str escapeContent(loc location) {
-	escapeChars = replaceAll(readFile(location), "\"", "\\\"");
-	escapeTabs = replaceAll(escapeChars, "\t", "&nbsp;&nbsp;&nbsp;&nbsp;"); // Tabs to 4 html non-breaking spaces
+	escapeChars = replaceAll(readFile(location), "\\", "\\\\");
+	escapeChars2 = replaceAll(escapeChars, "\"", "\\\"");
+	escapeTabs = replaceAll(escapeChars2, "\t", "&nbsp;&nbsp;&nbsp;&nbsp;"); // Tabs to 4 html non-breaking spaces
 	escapeNewlines = replaceAll(escapeTabs, "\r\n", "\<br/\>"); 
 	return escapeNewlines;
 }

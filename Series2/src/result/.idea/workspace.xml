@@ -21,86 +21,71 @@
     <favorites_list name="result" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/index.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="92">
-                  <caret line="58" column="12" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="flare.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/data/flare.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="graph.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/js/graph.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="472">
-                  <caret line="104" column="50" selection-start-line="104" selection-start-column="50" selection-end-line="104" selection-end-column="50" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="details.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/js/details.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="details.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/data/details.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-442">
-                  <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="details - backup - hc.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/data/details - backup - hc.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="170">
-                  <caret line="10" column="33" selection-start-line="0" selection-start-column="0" selection-end-line="27" selection-end-column="1" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/index.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="585">
-                  <caret line="73" column="14" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="58" column="12" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flare.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/flare.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1853">
+              <caret line="109" column="2" selection-start-line="109" selection-start-column="2" selection-end-line="109" selection-end-column="2" />
+              <folding>
+                <marker date="1482089202571" expanded="true" signature="10565:10587" ph="[...]" />
+                <marker date="1482089202571" expanded="true" signature="10565:10605" ph="{&quot;name&quot;: &quot;tests&quot;...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="graph.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/graph.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="472">
+              <caret line="104" column="50" selection-start-line="104" selection-start-column="50" selection-end-line="104" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="details.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/details.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="details.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data/details.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="422">
+              <caret line="4177" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="6774" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="details - backup - hc.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/details - backup - hc.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="33" selection-start-line="0" selection-start-column="0" selection-end-line="27" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -269,12 +254,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1482066620527</updated>
-      <workItem from="1482066621780" duration="16870000" />
+      <workItem from="1482066621780" duration="17525000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16870000" />
+    <option name="totallyTimeSpent" value="17525000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -287,7 +272,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26002166" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="GhcMod" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -335,9 +320,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data/flare.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
-          <folding />
+        <state relative-caret-position="1853">
+          <caret line="109" column="2" selection-start-line="109" selection-start-column="2" selection-end-line="109" selection-end-column="2" />
+          <folding>
+            <marker date="1482089202571" expanded="true" signature="10565:10587" ph="[...]" />
+            <marker date="1482089202571" expanded="true" signature="10565:10605" ph="{&quot;name&quot;: &quot;tests&quot;...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -345,14 +333,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/details.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-442">
-          <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -369,6 +349,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="472">
           <caret line="104" column="50" selection-start-line="104" selection-start-column="50" selection-end-line="104" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/details.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="4177" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="6774" selection-end-column="1" />
           <folding />
         </state>
       </provider>
