@@ -101,6 +101,6 @@ d3.json("data/flare.json", function(error, root) {
 });
 
 function selectedNode(node) {
-    console.log("Selected a node!", node.data.name, node);
+    // console.log("Selected a node!", node.data.name, node);
     loadCloneDetails(node.data.name.replace("program/", ""));
 }

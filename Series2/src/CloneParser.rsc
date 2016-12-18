@@ -51,18 +51,19 @@ private str generateJsonResultDetails(set[tuple[list[loc stmntLoc] locations, lo
 		for (file <- filesData[path]) {
 			fullPath = ("" | it + e + "/" | e <- tail(path)) + file;
 			dupLines = (0 | it + e | <_, e> <- filesData[path][file]);
+			clonesInFile = sort(filesData[path][file], bool(a, b){ return a[1] > b[1]; });
 			str fileContent = 
 				"{
 				'  \"path\": \"<fullPath>\",
 				'  \"loc_duplicate\": <dupLines>,
 				'  \"clones\": [
-				'      <for (<cloneLoc, cloneSize> <- filesData[path][file]) {cloneContent = escapeContent(cloneLoc);>{
+				'      <for (<cloneLoc, cloneSize> <- clonesInFile) {cloneContent = escapeContent(cloneLoc);>{
 				'      \"total_lines\": <size(readFileLines(cloneLoc))>,
 				'      \"line_start\": <cloneLoc.begin.line>,
 				'      \"line_end\": <cloneLoc.end.line>,
 				'      \"content\": \"<cloneContent>\"
 				'    }<
-				if (<cloneLoc, cloneSize> != last(filesData[path][file])) {>,<}>
+					if (<cloneLoc, cloneSize> != last(clonesInFile)) {>,<}>
 				'    <}>
 				'  ]
 				'}";
@@ -73,7 +74,7 @@ private str generateJsonResultDetails(set[tuple[list[loc stmntLoc] locations, lo
 			}
 		}
 	}
-	iprintln(detailsData);
+	//iprintln(detailsData);
 
 	theDuration = createDuration(startTime, endTime);
 	str result = "{
@@ -84,9 +85,9 @@ private str generateJsonResultDetails(set[tuple[list[loc stmntLoc] locations, lo
 	'  \"loc_duplicate\": <(0 | it + e | <_,<e, _>> <-toList(detailsData))>,
 	'  \"total_clones\": <size(clones)>,
 	'  \"clones\": [<
-	for (<path,<dupLines, content>> <- toList(detailsData)) {>
+		for (<path,<dupLines, content>> <- toList(detailsData)) {>
 	'    <content><
-	if (<path,<dupLines, content>> != last(toList(detailsData))) {>,<}><}>
+		if (<path,<dupLines, content>> != last(toList(detailsData))) {>,<}><}>
 	'  ]
 	'}";
 	
