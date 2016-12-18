@@ -7,7 +7,7 @@
     "total_duration": "0h 7m 30s",
     "clones": [
         {
-            "path": "/src/main/Main,java",
+            "path": "src/main/Main.java",
             "loc_duplicate": 6,
             "clones": [
               {

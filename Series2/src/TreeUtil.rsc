@@ -63,7 +63,6 @@ public tuple[SubSequenceList subSequenceList, int maxSequenceLength] findSubSequ
 	
 	int counter = 0;
 	int theSize = getMaxStatementListsFromTree(asts);
-	//for (list[node] sts <- ast | ast <- asts) {
 	bottom-up visit(asts) {
 		case list[node] sts: {
 			counter += 1;

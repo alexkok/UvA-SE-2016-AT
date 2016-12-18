@@ -29,17 +29,18 @@
 					<!--<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>-->
 					<h4>Analysis details</h4>
 					<p>
-						<strong>Start time:</strong> &nbsp; 11:11 <br/>
-						<strong>End time:</strong> &nbsp; 11:11 <br/>
-						<strong>Duration:</strong> &nbsp; 0h 7m 30s <br/>
-						<strong>Total LOC:</strong> &nbsp; 11111 <br/>
-						<strong>Duplicated LOC:</strong> &nbsp; 1111
+						<strong>Start time:</strong> &nbsp; <span id="analysesDetailsStartTime"></span><br/>
+						<strong>End time:</strong> &nbsp; <span id="analysesDetailsEndTime"></span> <br/>
+						<strong>Duration:</strong> &nbsp; <span id="analysesDetailsDuration"></span> <br/>
+						<strong>Total LOC:</strong> &nbsp; <span id="analysesDetailsTotalLOC"></span> <br/>
+						<strong>Duplicated LOC:</strong> &nbsp; <span id="analysesDetailsDuplicatedLOC"></span> <br/>
+						<strong>Clones found:</strong> &nbsp; <span id="analysesDetailsTotalClones"></span>
 					</p>
 				</div>
 				<div class="col-md-3"></div>
 			</div>
 			<div class="col-md-12">
-				<div class="col-md-6">
+				<div class="well col-md-6">
 					<div class="alert alert-info alert-dismissible fade in" role="alert">
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
 						<h4>Graph description</h4>
@@ -54,7 +55,16 @@
 					</div>
 					<svg width="700" height="700"></svg>
 				</div>
-				<div class="col-md-6">
+				<div class="well col-md-6">
+					<div class="col-md-12">
+						<h3 id="selectedCloneText">No node selected</h3>
+						<p id="selectedCloneDetails">
+							<strong>Clones found:</strong> <span id="selectedCloneClonesFound"></span> <br/>
+							<strong>Duplicated loc:</strong> <span id="selectedCloneDuplicatedLOC"></span> <br/>
+							<br/>
+							<strong>Clones:</strong> (Sorted by clone size)
+						</p>
+					</div>
 					<div class="col-md-12">
 					  <div class="panel-group">
 					    <div class="panel panel-default">
@@ -90,6 +100,7 @@
 		<script src="js/graph.js"></script>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="js/details.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	</body>
 </html>
