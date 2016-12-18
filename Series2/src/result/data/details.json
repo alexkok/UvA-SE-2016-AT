@@ -1,6 +1,6 @@
 {
-  "time_start": "18:49:35",
-  "time_end": "18:49:36",
+  "time_start": "19:04:47",
+  "time_end": "19:04:48",
   "total_duration": "0h 0m 1s",
   "loc_total": 0,
   "loc_duplicate": 554,
@@ -14,13 +14,13 @@
           "total_lines": 5,
           "line_start": 8,
           "line_end": 12,
-          "content": "int x=0;<br/>        int a=1;<br/>        int b=2;<br/>        int c=3;<br/>        int w=4;"
+          "content": "int x=0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int w=4;"
         },
         {
           "total_lines": 5,
           "line_start": 17,
           "line_end": 21,
-          "content": "int x=0;<br/>        int a=1;<br/>        int b=2;<br/>        int c=3;<br/>        int w=4;"
+          "content": "int x=0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int w=4;"
         }
         
       ]
@@ -30,52 +30,52 @@
       "loc_duplicate": 24,
       "clones": [
           {
-          "total_lines": 3,
-          "line_start": 18,
-          "line_end": 20,
-          "content": "int b=2;<br/>        int c=3;<br/>        int i=5;"
-        },
-        {
           "total_lines": 2,
           "line_start": 11,
           "line_end": 12,
-          "content": "int w=4;<br/>        int x=0;"
-        },
-        {
-          "total_lines": 4,
-          "line_start": 17,
-          "line_end": 20,
-          "content": "int a=1;<br/>        int b=2;<br/>        int c=3;<br/>        int i=5;"
+          "content": "int w=4;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int x=0;"
         },
         {
           "total_lines": 3,
           "line_start": 9,
           "line_end": 11,
-          "content": "int b=2;<br/>        int c=3;<br/>        int w=4;"
-        },
-        {
-          "total_lines": 2,
-          "line_start": 20,
-          "line_end": 21,
-          "content": "int i=5;<br/>        int y=2;"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 17,
-          "line_end": 19,
-          "content": "int a=1;<br/>        int b=2;<br/>        int c=3;"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 8,
-          "line_end": 10,
-          "content": "int a=1;<br/>        int b=2;<br/>        int c=3;"
+          "content": "int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int w=4;"
         },
         {
           "total_lines": 4,
           "line_start": 8,
           "line_end": 11,
-          "content": "int a=1;<br/>        int b=2;<br/>        int c=3;<br/>        int w=4;"
+          "content": "int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int w=4;"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 17,
+          "line_end": 19,
+          "content": "int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 18,
+          "line_end": 20,
+          "content": "int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int i=5;"
+        },
+        {
+          "total_lines": 4,
+          "line_start": 17,
+          "line_end": 20,
+          "content": "int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int i=5;"
+        },
+        {
+          "total_lines": 2,
+          "line_start": 20,
+          "line_end": 21,
+          "content": "int i=5;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int y=2;"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 8,
+          "line_end": 10,
+          "content": "int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;"
         }
         
       ]
@@ -86,27 +86,27 @@
       "clones": [
           {
           "total_lines": 3,
-          "line_start": 8,
-          "line_end": 10,
-          "content": "int a=1;<br/>        int b=2;<br/>        int c=3;"
+          "line_start": 25,
+          "line_end": 27,
+          "content": "int k=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int l=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int m=3;"
         },
         {
           "total_lines": 3,
-          "line_start": 25,
-          "line_end": 27,
-          "content": "int k=1;<br/>        int l=2;<br/>        int m=3;"
+          "line_start": 8,
+          "line_end": 10,
+          "content": "int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;"
         },
         {
           "total_lines": 3,
           "line_start": 13,
           "line_end": 15,
-          "content": "int k=1;<br/>        int l=2;<br/>        int m=3;"
+          "content": "int k=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int l=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int m=3;"
         },
         {
           "total_lines": 3,
           "line_start": 20,
           "line_end": 22,
-          "content": "int a=1;<br/>        int b=2;<br/>        int c=3;"
+          "content": "int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;"
         }
         
       ]
@@ -116,28 +116,28 @@
       "loc_duplicate": 25,
       "clones": [
           {
-          "total_lines": 10,
-          "line_start": 24,
-          "line_end": 33,
-          "content": "if (true) {<br/>            int x=0;<br/>            int a=1;<br/>            int b=2;<br/>            int c=3;<br/>            int w=4;<br/>        }<br/>        if (true) {<br/>            return;<br/>        }"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 8,
-          "line_end": 10,
-          "content": "int z=0; int a=1; <br/>        int b=2; <br/>        int c=3; int w=4;"
+          "total_lines": 5,
+          "line_start": 15,
+          "line_end": 19,
+          "content": "int z=0; <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2; <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3; <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int w=4;"
         },
         {
           "total_lines": 7,
           "line_start": 38,
           "line_end": 44,
-          "content": "if (true) { int x=0; int a=1;<br/>            int b=2;<br/>            int c=3;<br/>            int w=4;<br/>        }<br/>        if (true) { return;<br/>        }"
+          "content": "if (true) { int x=0; int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int w=4;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (true) { return;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}"
         },
         {
-          "total_lines": 5,
-          "line_start": 15,
-          "line_end": 19,
-          "content": "int z=0; <br/>        int a=1;<br/>        int b=2; <br/>        int c=3; <br/>        int w=4;"
+          "total_lines": 10,
+          "line_start": 24,
+          "line_end": 33,
+          "content": "if (true) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int x=0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int w=4;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (true) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 8,
+          "line_end": 10,
+          "content": "int z=0; int a=1; <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2; <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3; int w=4;"
         }
         
       ]
@@ -147,22 +147,22 @@
       "loc_duplicate": 25,
       "clones": [
           {
+          "total_lines": 5,
+          "line_start": 8,
+          "line_end": 12,
+          "content": "int x=0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int w=4;"
+        },
+        {
           "total_lines": 10,
           "line_start": 17,
           "line_end": 26,
-          "content": "if (true) {<br/>            int x=0;<br/>            int a=1;<br/>            int b=2;<br/>            int c=3;<br/>            int w=4;<br/>        }<br/>        if (true) {<br/>            return;<br/>        }"
+          "content": "if (true) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int x=0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int w=4;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (true) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}"
         },
         {
           "total_lines": 10,
           "line_start": 31,
           "line_end": 40,
-          "content": "if (true) {<br/>            int x=0;<br/>            int a=1;<br/>            int b=2;<br/>            int c=3;<br/>            int w=4;<br/>        }<br/>        if (true) {<br/>            return;<br/>        }"
-        },
-        {
-          "total_lines": 5,
-          "line_start": 8,
-          "line_end": 12,
-          "content": "int x=0;<br/>        int a=1;<br/>        int b=2;<br/>        int c=3;<br/>        int w=4;"
+          "content": "if (true) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int x=0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int w=4;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (true) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}"
         }
         
       ]
@@ -172,40 +172,40 @@
       "loc_duplicate": 22,
       "clones": [
           {
-          "total_lines": 4,
-          "line_start": 17,
-          "line_end": 20,
-          "content": "int y=2;<br/>        int a=1;<br/>        int b=2;<br/>        int c=3;"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 19,
-          "line_end": 21,
-          "content": "int b=2;<br/>        int c=3;<br/>        int i=5;"
-        },
-        {
           "total_lines": 5,
           "line_start": 8,
           "line_end": 12,
-          "content": "int x=0;<br/>        int a=1;<br/>        int b=2;<br/>        int c=3;<br/>        int w=4;"
+          "content": "int x=0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int w=4;"
         },
         {
           "total_lines": 3,
           "line_start": 17,
           "line_end": 19,
-          "content": "int y=2;<br/>        int a=1;<br/>        int b=2;"
+          "content": "int y=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;"
+        },
+        {
+          "total_lines": 4,
+          "line_start": 17,
+          "line_end": 20,
+          "content": "int y=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;"
         },
         {
           "total_lines": 3,
           "line_start": 18,
           "line_end": 20,
-          "content": "int a=1;<br/>        int b=2;<br/>        int c=3;"
+          "content": "int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 19,
+          "line_end": 21,
+          "content": "int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int i=5;"
         },
         {
           "total_lines": 4,
           "line_start": 18,
           "line_end": 21,
-          "content": "int a=1;<br/>        int b=2;<br/>        int c=3;<br/>        int i=5;"
+          "content": "int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int i=5;"
         }
         
       ]
@@ -215,52 +215,52 @@
       "loc_duplicate": 24,
       "clones": [
           {
-          "total_lines": 2,
-          "line_start": 17,
-          "line_end": 18,
-          "content": "int i=5;<br/>        int y=2;"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 19,
-          "line_end": 21,
-          "content": "int a=1;<br/>        int b=2;<br/>        int c=3;"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 18,
-          "line_end": 20,
-          "content": "int y=2;<br/>        int a=1;<br/>        int b=2;"
-        },
-        {
           "total_lines": 3,
           "line_start": 10,
           "line_end": 12,
-          "content": "int a=1;<br/>        int b=2;<br/>        int c=3;"
-        },
-        {
-          "total_lines": 4,
-          "line_start": 18,
-          "line_end": 21,
-          "content": "int y=2;<br/>        int a=1;<br/>        int b=2;<br/>        int c=3;"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 9,
-          "line_end": 11,
-          "content": "int x=0;<br/>        int a=1;<br/>        int b=2;"
+          "content": "int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;"
         },
         {
           "total_lines": 2,
           "line_start": 8,
           "line_end": 9,
-          "content": "int w=4;<br/>        int x=0;"
+          "content": "int w=4;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int x=0;"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 19,
+          "line_end": 21,
+          "content": "int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 9,
+          "line_end": 11,
+          "content": "int x=0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 18,
+          "line_end": 20,
+          "content": "int y=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;"
+        },
+        {
+          "total_lines": 2,
+          "line_start": 17,
+          "line_end": 18,
+          "content": "int i=5;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int y=2;"
+        },
+        {
+          "total_lines": 4,
+          "line_start": 18,
+          "line_end": 21,
+          "content": "int y=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;"
         },
         {
           "total_lines": 4,
           "line_start": 9,
           "line_end": 12,
-          "content": "int x=0;<br/>        int a=1;<br/>        int b=2;<br/>        int c=3;"
+          "content": "int x=0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;"
         }
         
       ]
@@ -271,27 +271,27 @@
       "clones": [
           {
           "total_lines": 5,
-          "line_start": 26,
-          "line_end": 30,
-          "content": "int x=0;<br/>        int a=1;<br/>        int b=2;<br/>        int c=3;<br/>        int w=4;"
-        },
-        {
-          "total_lines": 5,
           "line_start": 17,
           "line_end": 21,
-          "content": "int x=0;<br/>        int a=1;<br/>        int b=2;<br/>        int c=3;<br/>        int w=4;"
-        },
-        {
-          "total_lines": 5,
-          "line_start": 8,
-          "line_end": 12,
-          "content": "int x=0;<br/>        int a=1;<br/>        int b=2;<br/>        int c=3;<br/>        int w=4;"
+          "content": "int x=0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int w=4;"
         },
         {
           "total_lines": 5,
           "line_start": 35,
           "line_end": 39,
-          "content": "int x=0;<br/>        int a=1;<br/>        int b=2;<br/>        int c=3;<br/>        int w=4;"
+          "content": "int x=0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int w=4;"
+        },
+        {
+          "total_lines": 5,
+          "line_start": 26,
+          "line_end": 30,
+          "content": "int x=0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int w=4;"
+        },
+        {
+          "total_lines": 5,
+          "line_start": 8,
+          "line_end": 12,
+          "content": "int x=0;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a=1;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int b=2;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int c=3;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int w=4;"
         }
         
       ]
@@ -301,172 +301,172 @@
       "loc_duplicate": 88,
       "clones": [
           {
-          "total_lines": 2,
-          "line_start": 19,
+          "total_lines": 3,
+          "line_start": 18,
           "line_end": 20,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
-        },
-        {
-          "total_lines": 2,
-          "line_start": 8,
-          "line_end": 9,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
-        },
-        {
-          "total_lines": 2,
-          "line_start": 20,
-          "line_end": 21,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 20,
-          "line_end": 22,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
-        },
-        {
-          "total_lines": 4,
-          "line_start": 19,
-          "line_end": 22,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 6,
-          "line_end": 8,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
         },
         {
           "total_lines": 2,
           "line_start": 6,
           "line_end": 7,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
         },
         {
-          "total_lines": 5,
-          "line_start": 18,
-          "line_end": 22,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
+          "total_lines": 4,
+          "line_start": 7,
+          "line_end": 10,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
+        },
+        {
+          "total_lines": 4,
+          "line_start": 8,
+          "line_end": 11,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
         },
         {
           "total_lines": 2,
           "line_start": 22,
           "line_end": 23,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
-        },
-        {
-          "total_lines": 2,
-          "line_start": 18,
-          "line_end": 19,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
         },
         {
           "total_lines": 3,
-          "line_start": 19,
-          "line_end": 21,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
+          "line_start": 7,
+          "line_end": 9,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
         },
         {
-          "total_lines": 2,
-          "line_start": 7,
+          "total_lines": 3,
+          "line_start": 6,
           "line_end": 8,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
         },
         {
           "total_lines": 4,
-          "line_start": 18,
-          "line_end": 21,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 21,
-          "line_end": 23,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
+          "line_start": 6,
+          "line_end": 9,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
         },
         {
           "total_lines": 2,
-          "line_start": 10,
-          "line_end": 11,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
+          "line_start": 9,
+          "line_end": 10,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
         },
         {
           "total_lines": 4,
           "line_start": 20,
           "line_end": 23,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 18,
-          "line_end": 20,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 7,
-          "line_end": 9,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
         },
         {
           "total_lines": 2,
-          "line_start": 9,
-          "line_end": 10,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
+          "line_start": 19,
+          "line_end": 20,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
         },
         {
-          "total_lines": 3,
+          "total_lines": 2,
+          "line_start": 20,
+          "line_end": 21,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
+        },
+        {
+          "total_lines": 2,
           "line_start": 8,
-          "line_end": 10,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 9,
-          "line_end": 11,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
-        },
-        {
-          "total_lines": 4,
-          "line_start": 6,
           "line_end": 9,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
         },
         {
-          "total_lines": 4,
-          "line_start": 7,
-          "line_end": 10,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
-        },
-        {
-          "total_lines": 4,
-          "line_start": 8,
+          "total_lines": 3,
+          "line_start": 9,
           "line_end": 11,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
+        },
+        {
+          "total_lines": 4,
+          "line_start": 19,
+          "line_end": 22,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
         },
         {
           "total_lines": 5,
-          "line_start": 7,
-          "line_end": 11,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
+          "line_start": 18,
+          "line_end": 22,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 19,
+          "line_end": 21,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
+        },
+        {
+          "total_lines": 2,
+          "line_start": 18,
+          "line_end": 19,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 20,
+          "line_end": 22,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
         },
         {
           "total_lines": 2,
           "line_start": 21,
           "line_end": 22,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
+        },
+        {
+          "total_lines": 2,
+          "line_start": 10,
+          "line_end": 11,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 8,
+          "line_end": 10,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
+        },
+        {
+          "total_lines": 2,
+          "line_start": 7,
+          "line_end": 8,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 21,
+          "line_end": 23,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
+        },
+        {
+          "total_lines": 4,
+          "line_start": 18,
+          "line_end": 21,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
+        },
+        {
+          "total_lines": 5,
+          "line_start": 7,
+          "line_end": 11,
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
         },
         {
           "total_lines": 5,
           "line_start": 19,
           "line_end": 23,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
         },
         {
           "total_lines": 5,
           "line_start": 6,
           "line_end": 10,
-          "content": "System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");<br/>        System.out.println(\"AAAAA\");"
+          "content": "System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"AAAAA\");"
         }
         
       ]
@@ -477,15 +477,15 @@
       "clones": [
           {
           "total_lines": 9,
-          "line_start": 62,
-          "line_end": 70,
-          "content": "System.out.println(\"SOMETEST\");<br/>        System.out.println(\"SOMETEST\");<br/>        System.out.println(\"SOMETEST\");<br/>        System.out.println(\"SOMETEST\");<br/>        System.out.println(\"SOMETEST\");<br/>        System.out.println(\"SOMETEST\");<br/>        System.out.println(\"SOMETEST\");<br/>        System.out.println(\"SOMETEST\");<br/>        System.out.println(\"SOMETEST\");"
+          "line_start": 63,
+          "line_end": 71,
+          "content": "System.out.println(\"SOMETEST\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST\");"
         },
         {
           "total_lines": 9,
-          "line_start": 63,
-          "line_end": 71,
-          "content": "System.out.println(\"SOMETEST\");<br/>        System.out.println(\"SOMETEST\");<br/>        System.out.println(\"SOMETEST\");<br/>        System.out.println(\"SOMETEST\");<br/>        System.out.println(\"SOMETEST\");<br/>        System.out.println(\"SOMETEST\");<br/>        System.out.println(\"SOMETEST\");<br/>        System.out.println(\"SOMETEST\");<br/>        System.out.println(\"SOMETEST\");"
+          "line_start": 62,
+          "line_end": 70,
+          "content": "System.out.println(\"SOMETEST\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST\");"
         }
         
       ]
@@ -496,51 +496,141 @@
       "clones": [
           {
           "total_lines": 2,
-          "line_start": 23,
-          "line_end": 24,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 23,
-          "line_end": 25,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 2,
-          "line_start": 22,
-          "line_end": 23,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 21,
-          "line_end": 23,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 2,
-          "line_start": 19,
-          "line_end": 20,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 4,
-          "line_start": 23,
-          "line_end": 26,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 2,
-          "line_start": 21,
-          "line_end": 22,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "line_start": 20,
+          "line_end": 21,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         },
         {
           "total_lines": 2,
           "line_start": 24,
           "line_end": 25,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 2,
+          "line_start": 22,
+          "line_end": 23,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 2,
+          "line_start": 17,
+          "line_end": 18,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 17,
+          "line_end": 19,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 4,
+          "line_start": 21,
+          "line_end": 24,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 4,
+          "line_start": 19,
+          "line_end": 22,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 4,
+          "line_start": 20,
+          "line_end": 23,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 7,
+          "line_start": 18,
+          "line_end": 24,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 24,
+          "line_end": 26,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 23,
+          "line_end": 25,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 7,
+          "line_start": 20,
+          "line_end": 26,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 21,
+          "line_end": 23,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 5,
+          "line_start": 18,
+          "line_end": 22,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 22,
+          "line_end": 24,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 4,
+          "line_start": 22,
+          "line_end": 25,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 4,
+          "line_start": 23,
+          "line_end": 26,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 4,
+          "line_start": 16,
+          "line_end": 19,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 2,
+          "line_start": 23,
+          "line_end": 24,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 8,
+          "line_start": 16,
+          "line_end": 23,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 6,
+          "line_start": 19,
+          "line_end": 24,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 4,
+          "line_start": 18,
+          "line_end": 21,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 2,
+          "line_start": 25,
+          "line_end": 26,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         },
         {
           "total_lines": 1,
@@ -550,261 +640,135 @@
         },
         {
           "total_lines": 2,
-          "line_start": 25,
-          "line_end": 26,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 4,
-          "line_start": 20,
-          "line_end": 23,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 4,
           "line_start": 21,
-          "line_end": 24,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 4,
-          "line_start": 22,
-          "line_end": 25,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "line_end": 22,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         },
         {
           "total_lines": 2,
+          "line_start": 19,
+          "line_end": 20,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 3,
           "line_start": 20,
+          "line_end": 22,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 5,
+          "line_start": 20,
+          "line_end": 24,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 3,
+          "line_start": 19,
           "line_end": 21,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 5,
+          "line_start": 21,
+          "line_end": 25,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 6,
+          "line_start": 18,
+          "line_end": 23,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         },
         {
           "total_lines": 6,
           "line_start": 20,
           "line_end": 25,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         },
         {
-          "total_lines": 3,
-          "line_start": 24,
-          "line_end": 26,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "total_lines": 5,
+          "line_start": 19,
+          "line_end": 23,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         },
         {
-          "total_lines": 3,
-          "line_start": 17,
+          "total_lines": 2,
+          "line_start": 18,
           "line_end": 19,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 6,
-          "line_start": 21,
-          "line_end": 26,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         },
         {
           "total_lines": 2,
           "line_start": 16,
           "line_end": 17,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         },
         {
-          "total_lines": 2,
+          "total_lines": 5,
+          "line_start": 16,
+          "line_end": 20,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 4,
           "line_start": 17,
-          "line_end": 18,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "line_end": 20,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 8,
+          "line_start": 18,
+          "line_end": 25,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 5,
+          "line_start": 22,
+          "line_end": 26,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         },
         {
           "total_lines": 7,
-          "line_start": 20,
-          "line_end": 26,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 10,
-          "line_start": 54,
-          "line_end": 63,
-          "content": "System.out.println(\"SOMETEST0\");<br/>        System.out.println(\"SOMETEST1\");<br/>        System.out.println(\"SOMETEST2\");<br/>        System.out.println(\"SOMETEST3\");<br/>        System.out.println(\"SOMETEST4\");<br/>        System.out.println(\"SOMETEST5\");<br/>        System.out.println(\"SOMETEST6\");<br/>        System.out.println(\"SOMETEST7\");<br/>        System.out.println(\"SOMETEST8\");<br/>        System.out.println(\"SOMETEST10\");"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 19,
-          "line_end": 21,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 4,
-          "line_start": 18,
-          "line_end": 21,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 22,
-          "line_end": 24,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 20,
-          "line_end": 22,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 3,
-          "line_start": 16,
-          "line_end": 18,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 4,
-          "line_start": 16,
-          "line_end": 19,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 4,
-          "line_start": 19,
-          "line_end": 22,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 6,
           "line_start": 17,
-          "line_end": 22,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 5,
-          "line_start": 19,
           "line_end": 23,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 5,
-          "line_start": 16,
-          "line_end": 20,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 5,
-          "line_start": 18,
-          "line_end": 22,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 6,
-          "line_start": 19,
-          "line_end": 24,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 4,
-          "line_start": 17,
-          "line_end": 20,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 5,
-          "line_start": 20,
-          "line_end": 24,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 6,
-          "line_start": 18,
-          "line_end": 23,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         },
         {
           "total_lines": 7,
           "line_start": 19,
           "line_end": 25,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         },
         {
-          "total_lines": 5,
+          "total_lines": 8,
+          "line_start": 19,
+          "line_end": 26,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 6,
           "line_start": 21,
-          "line_end": 25,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 9,
-          "line_start": 17,
-          "line_end": 25,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 6,
-          "line_start": 16,
-          "line_end": 21,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 5,
-          "line_start": 17,
-          "line_end": 21,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 5,
-          "line_start": 22,
           "line_end": 26,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 2,
-          "line_start": 18,
-          "line_end": 19,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         },
         {
           "total_lines": 3,
           "line_start": 18,
           "line_end": 20,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         },
         {
-          "total_lines": 7,
-          "line_start": 17,
-          "line_end": 23,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 10,
-          "line_start": 36,
-          "line_end": 45,
-          "content": "System.out.println(\"SOMETEST0\");<br/>        System.out.println(\"SOMETEST1\");<br/>        System.out.println(\"SOMETEST2\");<br/>        System.out.println(\"SOMETEST3\");<br/>        System.out.println(\"SOMETEST4\");<br/>        System.out.println(\"SOMETEST5\");<br/>        System.out.println(\"SOMETEST6\");<br/>        System.out.println(\"SOMETEST7\");<br/>        System.out.println(\"SOMETEST8\");<br/>        System.out.println(\"SOMETEST10\");"
-        },
-        {
-          "total_lines": 8,
-          "line_start": 18,
-          "line_end": 25,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 8,
+          "total_lines": 3,
           "line_start": 16,
-          "line_end": 23,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 9,
-          "line_start": 16,
-          "line_end": 24,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 8,
-          "line_start": 19,
-          "line_end": 26,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "line_end": 18,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         },
         {
           "total_lines": 9,
           "line_start": 18,
           "line_end": 26,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         },
         {
           "total_lines": 1,
@@ -813,34 +777,70 @@
           "content": "System.out.println(\"SOMETESTL\"); System.out.println(\"SOMETEST\"); System.out.println(\"SOMETEST\"); System.out.println(\"SOMETEST\"); System.out.println(\"SOMETESTL\");"
         },
         {
-          "total_lines": 10,
+          "total_lines": 6,
           "line_start": 17,
-          "line_end": 26,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 7,
-          "line_start": 18,
-          "line_end": 24,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
-        },
-        {
-          "total_lines": 7,
-          "line_start": 16,
           "line_end": 22,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 10,
+          "line_start": 54,
+          "line_end": 63,
+          "content": "System.out.println(\"SOMETEST0\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST1\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST2\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST3\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST4\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST5\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST6\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST7\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST8\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST10\");"
+        },
+        {
+          "total_lines": 5,
+          "line_start": 17,
+          "line_end": 21,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         },
         {
           "total_lines": 8,
           "line_start": 17,
           "line_end": 24,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 6,
+          "line_start": 16,
+          "line_end": 21,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 9,
+          "line_start": 17,
+          "line_end": 25,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 7,
+          "line_start": 16,
+          "line_end": 22,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 9,
+          "line_start": 16,
+          "line_end": 24,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
+        },
+        {
+          "total_lines": 10,
+          "line_start": 36,
+          "line_end": 45,
+          "content": "System.out.println(\"SOMETEST0\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST1\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST2\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST3\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST4\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST5\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST6\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST7\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST8\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"SOMETEST10\");"
+        },
+        {
+          "total_lines": 10,
+          "line_start": 17,
+          "line_end": 26,
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         },
         {
           "total_lines": 10,
           "line_start": 16,
           "line_end": 25,
-          "content": "System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");<br/>        System.out.println(\"MAIN\");"
+          "content": "System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(\"MAIN\");"
         }
         
       ]

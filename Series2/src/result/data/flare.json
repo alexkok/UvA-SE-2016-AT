@@ -14,27 +14,27 @@
                             "name": "model",
                             "children": [
                                 
-                                {"name": "Car.java", "size": 18}
+                                {"name": "program/src/main/model/Car.java", "size": 18}
                             ]
                         },
                     
                         
-                        {"name": "Small.java", "size": 88},
-                        {"name": "Main.java", "size": 286}
+                        {"name": "program/src/main/Small.java", "size": 88},
+                        {"name": "program/src/main/Main.java", "size": 286}
                     ]
                 },
                 {
                     "name": "tests",
                     "children": [
                         
-                        {"name": "DuplicationBlock_Multiple.java", "size": 20},
-                        {"name": "DuplicationSequence_End.java", "size": 24},
-                        {"name": "DuplicationSequence_Middle.java", "size": 22},
-                        {"name": "DuplicationBlock_Nested.java", "size": 25},
-                        {"name": "DuplicationSequence_StartAndEnd.java", "size": 12},
-                        {"name": "DuplicationBlock_Column.java", "size": 25},
-                        {"name": "DuplicationSequence_Start.java", "size": 24},
-                        {"name": "DuplicationBlock_Simple.java", "size": 10}
+                        {"name": "program/src/tests/DuplicationBlock_Multiple.java", "size": 20},
+                        {"name": "program/src/tests/DuplicationSequence_End.java", "size": 24},
+                        {"name": "program/src/tests/DuplicationSequence_Middle.java", "size": 22},
+                        {"name": "program/src/tests/DuplicationBlock_Nested.java", "size": 25},
+                        {"name": "program/src/tests/DuplicationSequence_StartAndEnd.java", "size": 12},
+                        {"name": "program/src/tests/DuplicationBlock_Column.java", "size": 25},
+                        {"name": "program/src/tests/DuplicationSequence_Start.java", "size": 24},
+                        {"name": "program/src/tests/DuplicationBlock_Simple.java", "size": 10}
                     ]
                 }
             

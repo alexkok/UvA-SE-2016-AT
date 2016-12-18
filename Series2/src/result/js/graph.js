@@ -1,3 +1,9 @@
+// Usefull last function on an array
+if (!Array.prototype.last){
+    Array.prototype.last = function(){
+        return this[this.length - 1];
+    };
+}
 
 var svg = d3.select("svg"),
     margin = 20,
@@ -53,13 +59,11 @@ d3.json("data/flare.json", function(error, root) {
       .style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
       .style("display", function(d) { return d.parent === root ? "inline" : "none"; })
       .text(function(d) { 
-        var label = "";
         if (d.data.size) {
-          label += d.data.name + " (" + d.data.size + " lines)";
+          return d.data.name.split("/").last() + " (" + d.data.size + " lines)";
         } else {
-          label += d.data.name;
+          return d.data.name;
         }
-        return label; 
       });
 
   var node = g.selectAll("circle,text");
@@ -98,5 +102,5 @@ d3.json("data/flare.json", function(error, root) {
 
 function selectedNode(node) {
     console.log("Selected a node!", node.data.name, node);
-    loadCloneDetails("src/main/Main.java");
+    loadCloneDetails(node.data.name.replace("program/", ""));
 }

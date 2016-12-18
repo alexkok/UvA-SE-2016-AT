@@ -41,7 +41,7 @@ public str parseClonesToJson(set[tuple[list[loc stmntLoc] locations, loc fullLoc
 	writeFile(RESULT_JSON_LOCATION + "flare.json", jsonResult);
 	str jsonDetailResult = generateJsonResultDetails(clones, filesData, startTime, endTime);
 	writeFile(RESULT_JSON_LOCATION + "details.json", jsonDetailResult);
-	println(jsonDetailResult);
+	//println(jsonDetailResult);
 	return jsonResult;
 }
 
@@ -71,7 +71,6 @@ private str generateJsonResultDetails(set[tuple[list[loc stmntLoc] locations, lo
 			} else {
 				detailsData += (fullPath : <dupLines, fileContent>); 
 			}
-			//println("<fullPath> | <cloneLoc>");
 		}
 	}
 	iprintln(detailsData);
@@ -96,20 +95,10 @@ private str generateJsonResultDetails(set[tuple[list[loc stmntLoc] locations, lo
 
 private str escapeContent(loc location) {
 	escapeChars = replaceAll(readFile(location), "\"", "\\\"");
-	escapeTabs = replaceAll(escapeChars, "\t", "    "); // Tabs to 4 spaces
+	escapeTabs = replaceAll(escapeChars, "\t", "&nbsp;&nbsp;&nbsp;&nbsp;"); // Tabs to 4 html non-breaking spaces
 	escapeNewlines = replaceAll(escapeTabs, "\r\n", "\<br/\>"); 
 	return escapeNewlines;
 }
-//
-//private str generateObjectDetails(filesData) {
-//	str result = "";
-//	for (key <- filesData) {
-//		result += generateSingleObject(filesData[key]);
-//	}
-//	return "";
-//}
-//
-//private str generateSingleObject(
 
 private rel[str, str] getRelations(list[str] folders) {
 	if (size(folders) > 1) 
@@ -148,7 +137,7 @@ private str genFiles(path, relations, filesData) {
 	int  i = 0;
 	return 
 		"<for (key <- filesData[path]) { i+= 1;>
-		'{\"name\": \"<key>\", \"size\": <(0 | it + n | <_,n> <- filesData[path][key])>}<
+		'{\"name\": \"<("" | it + s + "/" | s <- path) + key>\", \"size\": <(0 | it + n | <_,n> <- filesData[path][key])>}<
 		if (i != size(filesData[path])) {>,<}><
 		}>";
 }
