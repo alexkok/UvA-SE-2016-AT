@@ -42,7 +42,7 @@ public int getNodesForTree(node d) {
 				nodes += 1;
 	 	}
 	 	nodesCache += (d: nodes);
-	} 
+	}
 	return nodesCache[d];
 }
 
@@ -133,8 +133,8 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 					// Editing a src works too, but this  modifies the normal source. So we create a new location
 					int fullLoc1Length = src1last.offset-src1first.offset + src1last.length;
 					int fullLoc2Length = src2last.offset-src2first.offset + src2last.length;
-					loc fullLoc1 = |project://<src1first.authority><src1first.path>|(src1first.offset, fullLoc1Length, <src1first.begin.line, src1first.begin.column>, <src1last.end.line, src1last.end.column>);
-					loc fullLoc2 = |project://<src2first.authority><src2first.path>|(src2first.offset, fullLoc2Length, <src2first.begin.line, src2first.begin.column>, <src2last.end.line, src2last.end.column>);
+					loc fullLoc1 = |file://<src1first.authority><src1first.path>|(src1first.offset, fullLoc1Length, <src1first.begin.line, src1first.begin.column>, <src1last.end.line, src1last.end.column>);
+					loc fullLoc2 = |file://<src2first.authority><src2first.path>|(src2first.offset, fullLoc2Length, <src2first.begin.line, src2first.begin.column>, <src2last.end.line, src2last.end.column>);
 					//println("Found duplicate sequence! C:<size(clones)> | <fullLoc1>\t| <fullLoc2>");
 					//println("<fullLoc1>\t|  <fullLoc2>");
 					
