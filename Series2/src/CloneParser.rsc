@@ -31,7 +31,6 @@ public str parseClonesToJson(set[tuple[list[loc stmntLoc] locations, loc fullLoc
 				filesData[fullFolder] += (name : [<location, size(readFileLines(location))>]);
 			}
 		} else {
-			println(location);
 			filesData += (fullFolder : (name : [<location, size(readFileLines(location))>]));
 		}
 	}
