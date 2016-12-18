@@ -58,7 +58,7 @@
 				<div class="well col-md-6">
 					<div class="col-md-12">
 						<h3 id="selectedCloneText">No node selected</h3>
-						<p id="selectedCloneDetails">
+						<p class="selectedCloneDetails">
 							<strong>Clones found:</strong> <span id="selectedCloneClonesFound"></span> <br/>
 							<strong>Duplicated loc:</strong> <span id="selectedCloneDuplicatedLOC"></span> <br/>
 							<br/>
@@ -66,29 +66,8 @@
 						</p>
 					</div>
 					<div class="col-md-12">
-					  <div class="panel-group">
-					    <div class="panel panel-default">
-					      <div class="panel-heading">
-					      	<a data-toggle="collapse" href="#collapse1">
-					        	<h4 class="panel-title">20 Lines (10 - 30) </h4>
-					        </a>
-					      </div>
-					      <div id="collapse1" class="panel-collapse collapse">
-					        <div class="panel-body">public void setUsername(String username) { <br>
-					        	&nbsp;&nbsp;&nbsp;&nbsp;    this.username = username;<br>
-					        }</div>
-					      </div>
-					    </div>
-					    <div class="panel panel-default">
-					      <div class="panel-heading">
-					      	<a data-toggle="collapse" href="#collapse2">
-					        	<h4 class="panel-title">15 Lines (40 - 55)</h4>
-					        </a>
-					      </div>
-					      <div id="collapse2" class="panel-collapse collapse">
-					        <div class="panel-body">Panel Body</div>
-					      </div>
-					    </div>
+					  <div id="selectedCloneDetailsPanel" class="panel-group selectedCloneDetails">
+                      </div>
 					</div>
 				</div>
 			</div>
