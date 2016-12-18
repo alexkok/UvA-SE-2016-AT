@@ -22,6 +22,7 @@ public int getMaxNodesFromTrees(set[Declaration] asts) {
 
 public int getMaxStatementListsFromTree(set[Declaration] asts) {
 	int counter = 0;
+
 	visit (asts) {
 		case list[node] sts:
 			counter += 1;
@@ -32,7 +33,6 @@ public int getMaxStatementListsFromTree(set[Declaration] asts) {
 private map[node, int] nodesCache = (); 
 
 public int getNodesForTree(node d) {
-//println(d);
 	if (!nodesCache[d]?) {
 	 	int nodes = 0;
 	 	visit (d) {
@@ -63,13 +63,14 @@ public tuple[SubSequenceList subSequenceList, int maxSequenceLength] findSubSequ
 	
 	int counter = 0;
 	int theSize = getMaxStatementListsFromTree(asts);
+	//for (list[node] sts <- ast | ast <- asts) {
 	bottom-up visit(asts) {
 		case list[node] sts: {
 			counter += 1;
 			print("\r- Progress: [<counter>/<theSize>]");
 			if (size(sts) >= tresholdMinSequenceLength) {
             	stsSize = (0 | it + getNodesForTree(s) | s <- sts); 
-            	if (stsSize > 20) { 
+            	if (stsSize > 40) { 
 					for (list[int] seq <- createSequencePermutations([1..size(sts)])) {
 						list[int] indexes = [];
 						list[node] statements = [];
@@ -77,19 +78,16 @@ public tuple[SubSequenceList subSequenceList, int maxSequenceLength] findSubSequ
 							indexes += getBucketIndexOfSubTree(getNodesForTree(sts[i]), bucketSize);
 							statements += sts[i];
 						}
-						hash = createCustomSequenceHash(indexes);
-	                	//stsSize = (0 | it + getNodesForTree(s) | s <- sts); 
-	                	//if (stsSize > 20) { 
-		                	if (subSequenceList[stsSize]?) { 
-		                		if (subSequenceList[stsSize][hash]?) {
-		                			subSequenceList[stsSize][hash] += [statements];
-		            			} else {
-		            				subSequenceList[stsSize] += (hash : [statements]);
-		        				}
-		            		} else {
-		            			subSequenceList += (stsSize : (hash : [statements]));
-		            		} 
-	            		//}
+						hash = createCustomSequenceHash(indexes); 
+	                	if (subSequenceList[stsSize]?) { 
+	                		if (subSequenceList[stsSize][hash]?) {
+	                			subSequenceList[stsSize][hash] += [statements];
+	            			} else {
+	            				subSequenceList[stsSize] += (hash : [statements]);
+	        				}
+	            		} else {
+	            			subSequenceList += (stsSize : (hash : [statements]));
+	            		} 
 						if (maxSeqLength < stsSize) {
 							maxSeqLength = stsSize;
 						}
@@ -121,7 +119,7 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 		if (subSequenceList[subSeqLength]?) {
 			hashMapEntriesToCheck  = subSequenceList[subSeqLength];
 			for (hash <- hashMapEntriesToCheck) { // Order doesn't matter here: Possible clones have the same hash already
-				statementListsToCheck = sort(hashMapEntriesToCheck[hash]);
+				statementListsToCheck = reverse(sort(hashMapEntriesToCheck[hash]));
 				// [[Statement, statement], [statement, statement]] | Comparing each [Statement] with the others 
 				for (<dup1, dup2> <- [<statementListsToCheck[i], statementListsToCheck[j]> | i <- [0..size(statementListsToCheck)]
 																		 , j <- [i+1..size(statementListsToCheck)]

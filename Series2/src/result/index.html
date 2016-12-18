@@ -18,15 +18,40 @@
 		<div class="col-md-1"></div>
 		<div id="wrapper" class="col-md-10">
 			<div class="col-md-12">
-				<div class="col-md-6">
-					<h3>2060 duplicated blocks found (xxx lines, xx% of total xxxx lines)</h3>
+				<!--<div class="col-md-6">-->
+					<!--<h3>2060 duplicated blocks found (xxx lines, xx% of total xxxx lines)</h3>-->
+				<!--</div>-->
+				<!--<div class="col-md-6">-->
+					<!--<h3 id="selectedNodeText">No node selected</h3>-->
+				<!--</div>-->
+				<div class="col-md-3"></div>
+				<div class="alert alert-info alert-dismissible fade in col-md-6" role="alert">
+					<!--<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>-->
+					<h4>Analysis details</h4>
+					<p>
+						<strong>Start time:</strong> &nbsp; 11:11 <br/>
+						<strong>End time:</strong> &nbsp; 11:11 <br/>
+						<strong>Duration:</strong> &nbsp; 0h 7m 30s <br/>
+						<strong>Total LOC:</strong> &nbsp; 11111 <br/>
+						<strong>Duplicated LOC:</strong> &nbsp; 1111
+					</p>
 				</div>
-				<div class="col-md-6">
-					<h3 id="selectedNodeText">No node selected</h3>
-				</div>
+				<div class="col-md-3"></div>
 			</div>
 			<div class="col-md-12">
 				<div class="col-md-6">
+					<div class="alert alert-info alert-dismissible fade in" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+						<h4>Graph description</h4>
+							The results are visible in the graph below. <br/>
+							<strong>White</strong> circles indicates <strong>classes</strong> containing duplicates. <br/>
+							The <strong>bigger</strong> the size, the <strong>more</strong> duplicated lines it contains.
+							<br/>
+							The <strong>blue</strong> circles indicate <strong>packages</strong>, which are found in the source. <br/>
+							Clicking on a circle will result in a <strong>zoom-in</strong>. <br/>
+							When clicking on a <strong>class</strong> (white circle), all <strong>duplicates</strong> found in that class will be shown on the left.
+						</p>
+					</div>
 					<svg width="700" height="700"></svg>
 				</div>
 				<div class="col-md-6">
@@ -62,7 +87,7 @@
 
 
 		<script src="https://d3js.org/d3.v4.min.js"></script>
-		<script src="graph.js"></script>
+		<script src="js/graph.js"></script>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

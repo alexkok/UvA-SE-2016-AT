@@ -1,0 +1,28 @@
+{
+	"loc_total": 24070,
+	"loc_duplicate": 1111,
+    "total_clones": 1007,
+    "time_start": "18 december, 14:15",
+    "time_end": "18 december, 14:22",
+    "total_duration": "0h 7m 30s",
+    "clones": [
+        {
+            "path": "/src/main/Main,java",
+            "loc_duplicate": 6,
+            "clones": [
+              {
+                "total_lines": 3,
+                "line_start": 1,
+                "line_end": 3,
+                "content": "public void etc.."
+              },
+              {
+                "total_lines": 3,
+                "line_start": 10,
+                "line_end": 13,
+                "content": "public void etc.."
+              }
+            ]
+        }
+    ]
+}
