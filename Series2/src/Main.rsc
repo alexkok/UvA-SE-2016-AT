@@ -13,8 +13,8 @@ import TreeUtil;
 import CloneParser;
 import Cache;
 
-//public loc prLoc = |project://MetricsTests2|;
-public loc prLoc = |project://smallsql0.21_src|;
+public loc prLoc = |project://MetricsTests2|;
+//public loc prLoc = |project://smallsql0.21_src|;
 //public loc prLoc = |project://hsqldb-2.3.1|;
 // Values to keep track of the current analysis
 private loc projectLocation;
@@ -90,7 +90,7 @@ private void step3_showResults() {
 }
 
 private void step4_createReport() {
-	clonesToJson(clones);
-	println("* Resulting json can be found at: <RESULT_JSON_FILE>");
+	parseClonesToJson(clones, startTime, endTime);
+	println("* Resulting json files can be found at: <RESULT_JSON_LOCATION>");
 	println("* Did you start a php server in that map? <|http://localhost:8000|>");
 }

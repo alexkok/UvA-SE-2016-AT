@@ -5,7 +5,7 @@ showNoNodeSelected();
 var jsonData;
 $.getJSON("data/details.json", function(json) {
     jsonData = json;
-
+    console.log(jsonData);
     // Load analysis details immediately
     if (jsonData) {
         document.getElementById("analysesDetailsStartTime").innerHTML = jsonData.time_start;
