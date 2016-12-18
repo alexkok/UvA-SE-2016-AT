@@ -11,7 +11,6 @@ $.getJSON("data/details.json", function(json) {
         document.getElementById("analysesDetailsStartTime").innerHTML = jsonData.time_start;
         document.getElementById("analysesDetailsEndTime").innerHTML = jsonData.time_end;
         document.getElementById("analysesDetailsDuration").innerHTML = jsonData.total_duration;
-        document.getElementById("analysesDetailsTotalLOC").innerHTML = jsonData.loc_total;
         document.getElementById("analysesDetailsDuplicatedLOC").innerHTML = jsonData.loc_duplicate;
         document.getElementById("analysesDetailsTotalClones").innerHTML = jsonData.total_clones;
     }
