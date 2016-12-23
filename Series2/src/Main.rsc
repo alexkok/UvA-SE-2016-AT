@@ -14,8 +14,8 @@ import CloneParser;
 import Cache;
 
 //public loc prLoc = |project://MetricsTests2|;
-public loc prLoc = |project://smallsql0.21_src|;
-//public loc prLoc = |project://hsqldb-2.3.1|;
+//public loc prLoc = |project://smallsql0.21_src|;
+public loc prLoc = |project://hsqldb-2.3.1|;
 // Values to keep track of the current analysis
 private loc projectLocation;
 private bool useCache;

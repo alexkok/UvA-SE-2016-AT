@@ -1,45 +1,5 @@
 {
     "name": "program",
     "children": [
-        
-        {
-            "name": "src",
-            "children": [
-                
-                {
-                    "name": "main",
-                    "children": [
-                        
-                        {
-                            "name": "model",
-                            "children": [
-                                
-                                {"name": "program/src/main/model/Car.java", "size": 18}
-                            ]
-                        },
-                    
-                        
-                        {"name": "program/src/main/Small.java", "size": 88},
-                        {"name": "program/src/main/Main.java", "size": 286}
-                    ]
-                },
-                {
-                    "name": "tests",
-                    "children": [
-                        
-                        {"name": "program/src/tests/DuplicationBlock_Multiple.java", "size": 20},
-                        {"name": "program/src/tests/DuplicationSequence_End.java", "size": 24},
-                        {"name": "program/src/tests/DuplicationSequence_Middle.java", "size": 22},
-                        {"name": "program/src/tests/DuplicationBlock_Nested.java", "size": 25},
-                        {"name": "program/src/tests/DuplicationSequence_StartAndEnd.java", "size": 12},
-                        {"name": "program/src/tests/DuplicationBlock_Column.java", "size": 25},
-                        {"name": "program/src/tests/DuplicationSequence_Start.java", "size": 24},
-                        {"name": "program/src/tests/DuplicationBlock_Simple.java", "size": 10}
-                    ]
-                }
-            
-            ]
-        }
-    
     ]
 }

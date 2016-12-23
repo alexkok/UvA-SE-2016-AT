@@ -41,7 +41,11 @@ public int getNodesForTree(node d) {
 			default:
 				nodes += 1;
 	 	}
-	 	nodesCache += (d: nodes);
+	 	//if (nodes < 5000) {
+ 			nodesCache += (d: nodes);
+		//} else {
+			//return nodes;
+		//}
 	}
 	return nodesCache[d];
 }
@@ -167,16 +171,21 @@ public set[tuple[list[loc statementLocation] statementLocations, loc fullLocatio
 	return clones;
 }
 
-public list[list[value]] createSequencePermutations(list[value] input) { // Value should be the type you give it. Have to lookup how the <:T was exactly
-	list[list[value]] perms = [];
-	for (i <- [0..size(input)]) {
-		tmpPerm = [i];
-		for (j <- [i..size(input)]) {
-			tmpPerm += j+1;
-			perms += [tmpPerm];
+private map[int, list[list[int]]] sequencePermutationsCache = ();
+
+public list[list[int]] createSequencePermutations(list[value] input) { // Value should be the type you give it. Have to lookup how the <:T was exactly
+	if (!sequencePermutationsCache[size(input)]?) {
+		list[list[int]] perms = [];
+		for (i <- [0..size(input)]) {
+			tmpPerm = [i];
+			for (j <- [i..size(input)]) {
+				tmpPerm += j+1;
+				perms += [tmpPerm];
+			}
 		}
+		sequencePermutationsCache += (size(input) : perms);
 	}
-	return perms;
+	return sequencePermutationsCache[size(input)];
 }
 
 private map[int, int] subtreeIndexesCache = (); 
@@ -184,6 +193,7 @@ private map[int, int] subtreeIndexesCache = ();
 public int getBucketIndexOfSubTree(int treeSize, int bucketSize) {
 	if (!subtreeIndexesCache[treeSize]?) {
 		subtreeIndexesCache += (treeSize: treeSize % bucketSize);
+		//return treeSize % bucketSize;
 	}
 	return subtreeIndexesCache[treeSize];
 }
@@ -191,8 +201,10 @@ public int getBucketIndexOfSubTree(int treeSize, int bucketSize) {
 private map[list[int], str] sequenceHashCache = (); 
 
 public str createCustomSequenceHash(list[int] indexes) {
-	if (!sequenceHashCache[indexes]?) {
-		sequenceHashCache += (indexes: ("" | it + "<i>" | i <- indexes));
-	}
-	return sequenceHashCache[indexes];
+	return intercalate("", indexes);
+	//if (!sequenceHashCache[indexes]?) {
+	//	sequenceHashCache += (indexes: ("" | it + "<i>" | i <- indexes));
+	//	//return ("" | it + "<i>" | i <- indexes);
+	//}
+	//return sequenceHashCache[indexes];
 }
